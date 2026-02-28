@@ -4,5 +4,11 @@
     "model": "openai-codex/gpt-5.3-codex",
     "w5": 21,
     "day": 27
+  },
+  {
+    "generatedAt": "2026-02-28T09:50:05.471109Z",
+    "model": "openai-codex/gpt-5.3-codex",
+    "w5": 21,
+    "day": 28
   }
 ]
