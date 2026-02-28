@@ -1,0 +1,13 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>OpenClaw 实时监控面板</title><style>body{font-family:Inter,Arial;background:#0b0d12;color:#eaf0ff;margin:0}header{padding:16px 20px;border-bottom:1px solid #27304a;background:#11162a;position:sticky;top:0}.wrap{max-width:1100px;margin:0 auto;padding:18px}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.card{background:#12192d;border:1px solid #27304a;border-radius:10px;padding:12px}.k{font-size:12px;color:#9fb0d9}.v{font-size:20px;margin-top:6px}table{width:100%;border-collapse:collapse}th,td{border-bottom:1px solid #27304a;padding:8px;text-align:left;font-size:13px}a{color:#90b7ff} .ok{color:#52d68a}.bad{color:#ff7b7b} @media(max-width:900px){.grid{grid-template-columns:1fr}}</style></head><body><header><div class='wrap'><b>OpenClaw 实时监控面板</b> · <span id='ts'></span> · <a href='./data/current.json' target='_blank'>原始JSON</a></div></header><div class='wrap'><div class='grid' id='kpis'></div><div class='card' style='margin-top:12px'><h3>Cron 任务</h3><table id='cron'><thead><tr><th>名称</th><th>状态</th><th>下次运行</th></tr></thead><tbody></tbody></table></div><div class='card' style='margin-top:12px'><h3>最近用量快照（历史）</h3><table id='hist'><thead><tr><th>时间</th><th>模型</th><th>5h%</th><th>Day%</th></tr></thead><tbody></tbody></table></div></div><script>
+async function load(){
+ const c=await fetch('./data/current.json?t='+Date.now()).then(r=>r.json());
+ const h=await fetch('./data/history.json?t='+Date.now()).then(r=>r.json()).catch(()=>[]);
+ document.getElementById('ts').textContent=new Date(c.generatedAt).toLocaleString();
+ const provider=(c.usage?.providers||[])[0]||{}; const w=provider.windows||[];
+ const k=[['当前模型',c.model||'-'],['5h已用',w[0]?w[0].usedPercent+'%':'-'],['Day已用',w[1]?w[1].usedPercent+'%':'-'],['Gateway',c.gatewayOk?'正常':'异常'],['Memory检索',c.memoryReady?'可用':'不可用'],['Agent数',String(c.agentCount||0)]];
+ document.getElementById('kpis').innerHTML=k.map(x=>`<div class='card'><div class='k'>${x[0]}</div><div class='v'>${x[1]}</div></div>`).join('');
+ document.querySelector('#cron tbody').innerHTML=(c.cronJobs||[]).map(j=>`<tr><td>${j.name}</td><td class='${j.status==='ok'?'ok':'bad'}'>${j.status||'idle'}</td><td>${j.next||'-'}</td></tr>`).join('');
+ document.querySelector('#hist tbody').innerHTML=(h.slice(-20).reverse()).map(r=>`<tr><td>${new Date(r.generatedAt).toLocaleString()}</td><td>${r.model||'-'}</td><td>${r.w5||'-'}</td><td>${r.day||'-'}</td></tr>`).join('');
+}
+load(); setInterval(load,30000);
+</script></body></html>

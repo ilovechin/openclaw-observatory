@@ -1,0 +1,86 @@
+{
+  "generatedAt": "2026-02-28T09:49:17.412802Z",
+  "model": "openai-codex/gpt-5.3-codex",
+  "usage": {
+    "updatedAt": 1772272162648,
+    "providers": [
+      {
+        "provider": "openai-codex",
+        "displayName": "Codex",
+        "windows": [
+          {
+            "label": "5h",
+            "usedPercent": 21,
+            "resetAt": 1772276999000
+          },
+          {
+            "label": "Day",
+            "usedPercent": 27,
+            "resetAt": 1772764474000
+          }
+        ],
+        "plan": "plus ($0.00)"
+      }
+    ]
+  },
+  "gatewayOk": true,
+  "memoryReady": true,
+  "agentCount": 0,
+  "cronJobs": [
+    {
+      "name": "daily-evolution-scan",
+      "status": "idle",
+      "next": 1772274600000
+    },
+    {
+      "name": "daily-change-report-19",
+      "status": "idle",
+      "next": 1772276400000
+    },
+    {
+      "name": "mira-hourly-check",
+      "status": "ok",
+      "next": 1772284641831
+    },
+    {
+      "name": "daily-task-digest",
+      "status": "idle",
+      "next": 1772286600000
+    },
+    {
+      "name": "nightly-memory-reflect",
+      "status": "idle",
+      "next": 1772289000000
+    },
+    {
+      "name": "watchdog-mira-run",
+      "status": "idle",
+      "next": 1772290769200
+    },
+    {
+      "name": "weekly-health-trend",
+      "status": "idle",
+      "next": 1772366400000
+    },
+    {
+      "name": "monthly-architecture-review",
+      "status": "idle",
+      "next": 1772366400000
+    },
+    {
+      "name": "weekly-memory-gc-tier",
+      "status": "idle",
+      "next": 1772373600000
+    },
+    {
+      "name": "weekly-regression-guard",
+      "status": "idle",
+      "next": 1772374500000
+    },
+    {
+      "name": "daily-morning-brief",
+      "status": "idle",
+      "next": 1772412600000
+    }
+  ]
+}
