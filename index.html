@@ -127,6 +127,18 @@
     </div>
   </section>
 
+
+  <section class="card full">
+    <div class="head"><h3>memU-lite 记忆图谱 / Memory Graph</h3><span class="pill">AUTO MEMORY</span></div>
+    <div class="grid" style="margin:0;padding:12px;grid-template-columns:1fr 1fr">
+      <div class="card"><div class="head"><h3>同步报告 / Sync Report</h3></div><pre id="memuReport" class="mono"></pre></div>
+      <div class="card"><div class="head"><h3>资源挂载统计 / Resource Mounts</h3></div><pre id="memuMounts" class="mono"></pre></div>
+      <div class="card"><div class="head"><h3>意图候选 / Intent Candidates</h3></div><pre id="memuIntent" class="mono"></pre></div>
+      <div class="card"><div class="head"><h3>关系图谱 / Graph Edges</h3></div><pre id="memuGraph" class="mono"></pre></div>
+    </div>
+    <div style="padding:12px"><canvas id="memuGraphCanvas" width="1200" height="360" style="width:100%;height:auto;background:#0a132e;border:1px solid #243e75;border-radius:8px"></canvas></div>
+  </section>
+
 </main>
 <script>
 function fmtTs(v){ if(!v) return '-'; const n=Number(v); return Number.isNaN(n)?String(v):new Date(n).toLocaleString(); }
@@ -201,6 +213,27 @@ function drawRadar(id, vals){
   for(let ring=1;ring<=4;ring++){ctx.beginPath(); for(let i=0;i<3;i++){const a=-Math.PI/2+i*2*Math.PI/3; const rr=r*ring/4; const x=cx+Math.cos(a)*rr, y=cy+Math.sin(a)*rr; if(i===0)ctx.moveTo(x,y); else ctx.lineTo(x,y);} ctx.closePath(); ctx.strokeStyle='rgba(130,170,255,.25)'; ctx.stroke();}
   ctx.beginPath(); vals.forEach((v,i)=>{const a=-Math.PI/2+i*2*Math.PI/3; const rr=r*(v/100); const x=cx+Math.cos(a)*rr,y=cy+Math.sin(a)*rr; if(i===0)ctx.moveTo(x,y); else ctx.lineTo(x,y);}); ctx.closePath(); ctx.fillStyle='rgba(91,200,255,.25)'; ctx.fill(); ctx.strokeStyle='#67c8ff'; ctx.stroke();
   labels.forEach((l,i)=>{const a=-Math.PI/2+i*2*Math.PI/3; const x=cx+Math.cos(a)*(r+16), y=cy+Math.sin(a)*(r+16); ctx.fillStyle='#9eb3e4'; ctx.font='12px Inter'; ctx.fillText(l,x-18,y);});
+}
+
+
+function drawMemuGraph(data){
+  const c=document.getElementById('memuGraphCanvas'); if(!c) return; const ctx=c.getContext('2d');
+  const W=c.width,H=c.height; ctx.clearRect(0,0,W,H);
+  const nodes=[
+    {id:'Project',x:140,y:180,color:'#67c8ff'},
+    {id:'Task',x:360,y:90,color:'#51e3a8'},
+    {id:'Document',x:360,y:270,color:'#ffc76a'},
+    {id:'Decision',x:600,y:90,color:'#ff7d88'},
+    {id:'Event',x:600,y:270,color:'#b392ff'},
+    {id:'Cron',x:860,y:180,color:'#7de2ff'},
+    {id:'Intent',x:1040,y:180,color:'#9df0b4'}
+  ];
+  const edges=[[0,1],[0,2],[1,3],[4,5],[5,6],[2,6]];
+  ctx.strokeStyle='rgba(140,180,255,.45)'; ctx.lineWidth=2;
+  edges.forEach(([a,b])=>{ctx.beginPath();ctx.moveTo(nodes[a].x,nodes[a].y);ctx.lineTo(nodes[b].x,nodes[b].y);ctx.stroke();});
+  nodes.forEach(n=>{ctx.beginPath();ctx.arc(n.x,n.y,26,0,Math.PI*2);ctx.fillStyle=n.color;ctx.fill();ctx.fillStyle='#071023';ctx.font='bold 12px Inter';ctx.textAlign='center';ctx.fillText(n.id,n.x,n.y+4)});
+  ctx.fillStyle='#9eb3e4';ctx.textAlign='left';ctx.font='12px Inter';
+  ctx.fillText('memU-lite Graph (示意)',14,20);
 }
 
 function drawTrend(hist){

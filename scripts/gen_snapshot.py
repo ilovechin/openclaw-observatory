@@ -102,6 +102,26 @@ def workspace_tree(depth=3):
     return run(f"cd /root/.openclaw/workspace && find . -maxdepth {depth} | sort", "")
 
 
+
+
+def read_json(path):
+    p=Path(path)
+    if not p.exists():
+        return {}
+    try:
+        return json.loads(p.read_text(encoding='utf-8'))
+    except Exception:
+        return {}
+
+def read_text(path,limit=12000):
+    p=Path(path)
+    if not p.exists():
+        return ''
+    try:
+        return p.read_text(encoding='utf-8')[:limit]
+    except Exception:
+        return ''
+
 def load_clawd_index():
     p=Path('/root/.openclaw/workspace/openclaw-observatory/data/clawd_index.json')
     if not p.exists():
@@ -199,6 +219,13 @@ def main():
         'websites': {'urls': websites, 'httpStatus': {k: ping_url(v) for k, v in websites.items()}},
         'knowledgeBase': {
             'clawd': load_clawd_index()
+        },
+        'memuLite': {
+            'documentsIndex': read_json('/root/.openclaw/workspace/memory/fs/resources/documents/index.json'),
+            'conversationsIndex': read_json('/root/.openclaw/workspace/memory/fs/resources/conversations/index.json'),
+            'syncReport': read_json('/root/.openclaw/workspace/memory/fs/links/sync-report.json'),
+            'intentCandidates': read_text('/root/.openclaw/workspace/memory/fs/context/pending/intent-candidates.md', 8000),
+            'graph': read_text('/root/.openclaw/workspace/memory/fs/links/graph.md', 12000)
         },
         'raw': {
             'statusUsageJson': status,
