@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-02-28T10:00:36.217437Z",
+  "generatedAt": "2026-02-28T10:10:36.682907Z",
   "identity": {
     "name": "锦的虾🦐",
     "model": "openai-codex/gpt-5.3-codex",
     "provider": "openai-codex"
   },
   "usage": {
-    "updatedAt": 1772272841658,
+    "updatedAt": 1772273441948,
     "providers": [
       {
         "provider": "openai-codex",
@@ -14,12 +14,12 @@
         "windows": [
           {
             "label": "5h",
-            "usedPercent": 22,
+            "usedPercent": 25,
             "resetAt": 1772276999000
           },
           {
             "label": "Day",
-            "usedPercent": 28,
+            "usedPercent": 29,
             "resetAt": 1772764474000
           }
         ],
@@ -28,23 +28,23 @@
     ]
   },
   "usageQuick": {
-    "fiveHourUsedPct": 22,
-    "dayUsedPct": 28,
+    "fiveHourUsedPct": 25,
+    "dayUsedPct": 29,
     "plan": "plus ($0.00)"
   },
   "system": {
-    "uptime": "up 21 hours, 46 minutes",
+    "uptime": "up 21 hours, 56 minutes",
     "load": {
-      "1m": "0.22",
-      "5m": "0.22",
-      "15m": "0.15"
+      "1m": "0.15",
+      "5m": "0.11",
+      "15m": "0.13"
     },
     "memory": {
       "totalMB": 3655,
-      "usedMB": 1388,
-      "freeMB": 759,
-      "availableMB": 2267,
-      "usedPct": 38.0
+      "usedMB": 1429,
+      "freeMB": 710,
+      "availableMB": 2226,
+      "usedPct": 39.1
     },
     "diskRoot": {
       "size": "60G",
@@ -66,9 +66,9 @@
       {
         "id": "9f1f6c80-8420-48af-a5b3-4e8fbf2341be",
         "name": "observability-snapshot-publish",
-        "status": "idle",
-        "next": 1772272832159,
-        "last": null,
+        "status": "ok",
+        "next": 1772273432166,
+        "last": 1772272832166,
         "errors": 0,
         "schedule": {
           "kind": "every",
