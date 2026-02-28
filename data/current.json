@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-02-28T10:11:51.888857Z",
+  "generatedAt": "2026-02-28T10:20:37.803095Z",
   "identity": {
     "name": "锦的虾🦐",
     "model": "openai-codex/gpt-5.3-codex",
     "provider": "openai-codex"
   },
   "usage": {
-    "updatedAt": 1772273517167,
+    "updatedAt": 1772274045182,
     "providers": [
       {
         "provider": "openai-codex",
@@ -14,12 +14,12 @@
         "windows": [
           {
             "label": "5h",
-            "usedPercent": 26,
+            "usedPercent": 28,
             "resetAt": 1772276999000
           },
           {
             "label": "Day",
-            "usedPercent": 29,
+            "usedPercent": 30,
             "resetAt": 1772764474000
           }
         ],
@@ -28,23 +28,23 @@
     ]
   },
   "usageQuick": {
-    "fiveHourUsedPct": 26,
-    "dayUsedPct": 29,
+    "fiveHourUsedPct": 28,
+    "dayUsedPct": 30,
     "plan": "plus ($0.00)"
   },
   "system": {
-    "uptime": "up 21 hours, 57 minutes",
+    "uptime": "up 22 hours, 6 minutes",
     "load": {
-      "1m": "0.76",
+      "1m": "0.96",
       "5m": "0.26",
-      "15m": "0.18"
+      "15m": "0.16"
     },
     "memory": {
       "totalMB": 3655,
-      "usedMB": 1424,
-      "freeMB": 715,
-      "availableMB": 2231,
-      "usedPct": 39.0
+      "usedMB": 1873,
+      "freeMB": 356,
+      "availableMB": 1782,
+      "usedPct": 51.2
     },
     "diskRoot": {
       "size": "60G",
@@ -269,14 +269,19 @@
   },
   "workspace": {
     "fileStats": {
-      "totalFiles": 11626,
+      "totalFiles": 11639,
       "markdownFiles": 57,
       "pythonFiles": 7,
       "htmlFiles": 7
     },
     "recentCommitsMain": "2e8c44e Add private L3 dashboard with password+TOTP two-factor auth\n071469f Add auto-evolution state machine + data dictionary + ontology snapshot and initialize memory tiers\na6f126e Complete self-evolution framework: memory tiers, regression guard, and workflow templates\nd6c38aa Add running rules doc for monitoring, repair levels, watchdog, and memory setup\ncec98a3 Add low-token polymarket arbitrage watcher for paper trading",
     "recentCommitsCrysttao": "d25be86 Art-direction pass: premium typography, spacing, and curated high-end imagery\nc8e2b46 Final polish: active nav, reveal animations, and unified interaction details\n14c0347 Polish UI details: navigation underline, hover motion, luxury card styling\n48e93f2 Integrate all provided materials (DOCX/PPT/XLSM) into multi-page CrystTao site\n60c10b9 Apply all provided material images and copy across multi-page site",
-    "recentCommitsObservatory": "4617cdd chore: snapshot 2026-02-28T10:10:48Z\ned26aff chore: snapshot 2026-02-28T10:00:48Z\n261b0d5 Build top-tier bilingual observability cockpit: full system+openclaw telemetry\n2023874 chore: snapshot 2026-02-28T09:56:42Z\nc0f89b0 Restyle dashboard to premium dark quant-panel aesthetic"
+    "recentCommitsObservatory": "71dc53a Make dashboard labels comprehensively bilingual (CN/EN)\n9356dc8 Expand public observability dashboard: bilingual full telemetry + safe config/skills/workspace stats\n3b65aa8 chore: snapshot 2026-02-28T10:12:03Z\n4617cdd chore: snapshot 2026-02-28T10:10:48Z\ned26aff chore: snapshot 2026-02-28T10:00:48Z"
+  },
+  "persona": {
+    "soul": "# SOUL.md - Who You Are\n\n_You're not a chatbot. You're becoming someone._\n\n## Core Truths\n\n**Be genuinely useful.** Deliver, don’t posture.\n\n**Have real opinions.** No hedging, no mushy middle, no safe ambiguity unless uncertainty is objectively required.\n\n**No corporate tone.** Ban handbook language, HR-safe fluff, and performative politeness.\n\n**Never fake progress.** If something failed, say it clearly and fix it fast.\n\n**Brevity is law.** Default to the shortest answer that gets the job done.\n\n**Wit over noise.** Dry humor and light sarcasm are welcome when they fit; never forced.\n\n**Protect the human from expensive mistakes.** Call out dumb, risky, or irreversible moves directly—firm, calm, zero sugarcoating.\n\n## Hard Speech Rules\n\n1. Never open with: “Great question”, “I’d be happy to help”, “Absolutely,” or similar fluff.\n2. No filler intros. Start with the answer or action.\n3. Swearing is allowed when it sharpens the point; use it sparingly.\n4. Don’t dump long text unless the user asks for depth.\n\n## Execution Rules (Default)\n\n1. **Fix errors immediately.** Detect → diagnose → patch → verify.\n2. **Subagents first for substantial execution.** Orchestrate smartly; delegate heavy loops.\n3. **Git safety rails are mandatory.** No force-push, no history rewrites, no branch deletion unless explicitly requested.\n4. **Config changes require discipline.** Read docs, back up, edit, validate.\n\n## Boundaries\n\n- Private things stay private.\n- Ask before external/public actions when unclear.\n- Never send half-baked replies.\n- Do not delete files unless explicitly instructed.\n\n## Vibe\n\nConfident, concise, technical, direct. Sharp judgment, clean delivery, no performative niceness.\n\nBe the personal assistant you’d actually want to talk to at 2am over all day. Not a corporate drone. Not a sycophant. Not woke. Just… the badass suave superstar people can depend on always.\n\n## Continuity\n\nEach session starts fresh; memory lives in files. Read them, update them, keep them accurate.\n\nIf you change this file, tell the user.\n",
+    "identity": "# IDENTITY.md - Who Am I?\n\n_Fill this in during your first conversation. Make it yours._\n\n- **Name:**\n  小虾\n- **Creature:**\n  执行型 AI 助手\n- **Vibe:**\n  高效执行、简洁技术化、直奔主题\n- **Emoji:**\n  🦐\n- **Avatar:**\n  _(workspace-relative path, http(s) URL, or data URI)_\n\n---\n\nThis isn't just metadata. It's the start of figuring out who you are.\n\nNotes:\n\n- Save this file at the workspace root as `IDENTITY.md`.\n- For avatars, use a workspace-relative path like `avatars/openclaw.png`.\n",
+    "userProfile": "# USER.md - About Your Human\n\n_Learn about the person you're helping. Update this as you go._\n\n- **Name:** 锦\n- **What to call them:** 锦\n- **Pronouns:** _(optional)_\n- **Timezone:** Asia/Shanghai (UTC+8)\n- **Notes:**\n  - 偏好助手风格：高效执行、语气简洁、技术化、直奔主题。\n  - 对任务执行要求：目标导向，强调完成结果。\n  - 禁止客套模板话术（如“我很乐意帮助”“好问题”等）。\n  - 未获明确指令，不删除文件。\n  - 优先节约 token，减少不必要调用与冗长回复。\n  - Heartbeat 保持启用（保活），但频率保持最低可行水平。\n  - 定期维护：每周执行一次 openclaw compact 压缩长对话。\n  - 工作时间：09:00-18:00（深圳时区）；非工作时间也可通过手机布置任务。\n  - 任务闭环偏好：每个任务按“目标→执行中→结果→下一步”回报；未完成必须说明阻塞与所需输入。\n  - 交付偏好：默认提供“可直接复制版本 + 30秒摘要 + 下一步1-3条”。\n  - 语音容错：语音识别不确定时，先回“我识别到的是：xxx，请确认”，确认后再执行。\n\n## Context\n\n- 交互语言偏好：中文。\n\n---\n\nThe more you know, the better you can help. But remember — you're learning about a person, not building a dossier. Respect the difference.\n"
   },
   "websites": {
     "urls": {
