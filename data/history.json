@@ -10,5 +10,23 @@
     "model": "openai-codex/gpt-5.3-codex",
     "w5": 21,
     "day": 28
+  },
+  {
+    "generatedAt": "2026-02-28T09:56:18.548557Z",
+    "model": "openai-codex/gpt-5.3-codex",
+    "w5": 22,
+    "day": 28,
+    "gatewayOk": true,
+    "memUsedPct": 37.8,
+    "diskUsedPct": "56%"
+  },
+  {
+    "generatedAt": "2026-02-28T09:56:32.392374Z",
+    "model": "openai-codex/gpt-5.3-codex",
+    "w5": 22,
+    "day": 28,
+    "gatewayOk": true,
+    "memUsedPct": 37.9,
+    "diskUsedPct": "56%"
   }
 ]

@@ -1,8 +1,12 @@
 {
-  "generatedAt": "2026-02-28T09:50:05.471109Z",
-  "model": "openai-codex/gpt-5.3-codex",
+  "generatedAt": "2026-02-28T09:56:32.392374Z",
+  "identity": {
+    "name": "锦的虾🦐",
+    "model": "openai-codex/gpt-5.3-codex",
+    "provider": "openai-codex"
+  },
   "usage": {
-    "updatedAt": 1772272210857,
+    "updatedAt": 1772272597781,
     "providers": [
       {
         "provider": "openai-codex",
@@ -10,7 +14,7 @@
         "windows": [
           {
             "label": "5h",
-            "usedPercent": 21,
+            "usedPercent": 22,
             "resetAt": 1772276999000
           },
           {
@@ -23,64 +27,218 @@
       }
     ]
   },
-  "gatewayOk": true,
-  "memoryReady": true,
-  "agentCount": 0,
-  "cronJobs": [
-    {
-      "name": "daily-evolution-scan",
-      "status": "idle",
-      "next": 1772274600000
+  "usageQuick": {
+    "fiveHourUsedPct": 22,
+    "dayUsedPct": 28,
+    "plan": "plus ($0.00)"
+  },
+  "system": {
+    "uptime": "up 21 hours, 42 minutes",
+    "load": {
+      "1m": "1.10",
+      "5m": "0.39",
+      "15m": "0.17"
     },
-    {
-      "name": "daily-change-report-19",
-      "status": "idle",
-      "next": 1772276400000
+    "memory": {
+      "totalMB": 3655,
+      "usedMB": 1384,
+      "freeMB": 764,
+      "availableMB": 2271,
+      "usedPct": 37.9
     },
-    {
-      "name": "mira-hourly-check",
-      "status": "ok",
-      "next": 1772284641831
+    "diskRoot": {
+      "size": "60G",
+      "used": "34G",
+      "avail": "27G",
+      "usedPct": "56%",
+      "mount": "/"
     },
-    {
-      "name": "daily-task-digest",
-      "status": "idle",
-      "next": 1772286600000
-    },
-    {
-      "name": "nightly-memory-reflect",
-      "status": "idle",
-      "next": 1772289000000
-    },
-    {
-      "name": "watchdog-mira-run",
-      "status": "idle",
-      "next": 1772290769200
-    },
-    {
-      "name": "weekly-health-trend",
-      "status": "idle",
-      "next": 1772366400000
-    },
-    {
-      "name": "monthly-architecture-review",
-      "status": "idle",
-      "next": 1772366400000
-    },
-    {
-      "name": "weekly-memory-gc-tier",
-      "status": "idle",
-      "next": 1772373600000
-    },
-    {
-      "name": "weekly-regression-guard",
-      "status": "idle",
-      "next": 1772374500000
-    },
-    {
-      "name": "daily-morning-brief",
-      "status": "idle",
-      "next": 1772412600000
+    "processCounts": {
+      "openclawGateway": 1,
+      "arbWatcher": 0
     }
-  ]
+  },
+  "openclaw": {
+    "gatewayOk": true,
+    "memoryReady": true,
+    "agentCount": 0,
+    "cronJobs": [
+      {
+        "id": "9f1f6c80-8420-48af-a5b3-4e8fbf2341be",
+        "name": "observability-snapshot-publish",
+        "status": "idle",
+        "next": 1772272832159,
+        "last": null,
+        "errors": 0,
+        "schedule": {
+          "kind": "every",
+          "everyMs": 600000,
+          "anchorMs": 1772272232159
+        }
+      },
+      {
+        "id": "f32169f4-efc8-44aa-a9ad-b30196370b7d",
+        "name": "daily-evolution-scan",
+        "status": "idle",
+        "next": 1772274600000,
+        "last": null,
+        "errors": 0,
+        "schedule": {
+          "kind": "cron",
+          "expr": "30 18 * * *",
+          "tz": "Asia/Shanghai"
+        }
+      },
+      {
+        "id": "841177e9-ae9a-4c91-a7a7-5d6b9f205253",
+        "name": "daily-change-report-19",
+        "status": "idle",
+        "next": 1772276400000,
+        "last": null,
+        "errors": 0,
+        "schedule": {
+          "kind": "cron",
+          "expr": "0 19 * * *",
+          "tz": "Asia/Shanghai"
+        }
+      },
+      {
+        "id": "e3adb635-19c7-48a0-8ef5-538f94915ba0",
+        "name": "mira-hourly-check",
+        "status": "ok",
+        "next": 1772284641831,
+        "last": 1772255841831,
+        "errors": 0,
+        "schedule": {
+          "kind": "every",
+          "everyMs": 28800000,
+          "anchorMs": 1772257813531
+        }
+      },
+      {
+        "id": "df44566f-fdf2-4732-a2c4-be5eea701a3a",
+        "name": "daily-task-digest",
+        "status": "idle",
+        "next": 1772286600000,
+        "last": null,
+        "errors": 0,
+        "schedule": {
+          "kind": "cron",
+          "expr": "50 21 * * *",
+          "tz": "Asia/Shanghai"
+        }
+      },
+      {
+        "id": "d8fe865c-5be6-4b07-bc71-d4df072c4651",
+        "name": "nightly-memory-reflect",
+        "status": "idle",
+        "next": 1772289000000,
+        "last": null,
+        "errors": 0,
+        "schedule": {
+          "kind": "cron",
+          "expr": "30 22 * * *",
+          "tz": "Asia/Shanghai"
+        }
+      },
+      {
+        "id": "311af66b-fe1c-400e-b95c-4cade9b704e5",
+        "name": "watchdog-mira-run",
+        "status": "idle",
+        "next": 1772290769200,
+        "last": null,
+        "errors": 0,
+        "schedule": {
+          "kind": "every",
+          "everyMs": 28800000,
+          "anchorMs": 1772261969200
+        }
+      },
+      {
+        "id": "7563043b-f453-4516-9909-3768d75eb44d",
+        "name": "weekly-health-trend",
+        "status": "idle",
+        "next": 1772366400000,
+        "last": null,
+        "errors": 0,
+        "schedule": {
+          "kind": "cron",
+          "expr": "0 20 * * 0",
+          "tz": "Asia/Shanghai"
+        }
+      },
+      {
+        "id": "ecf1af51-ca94-47ab-bdd3-d94427e572b3",
+        "name": "monthly-architecture-review",
+        "status": "idle",
+        "next": 1772366400000,
+        "last": null,
+        "errors": 0,
+        "schedule": {
+          "kind": "cron",
+          "expr": "0 20 1 * *",
+          "tz": "Asia/Shanghai"
+        }
+      },
+      {
+        "id": "7b8ce2fa-d948-4c0f-bf0f-65d402ee861e",
+        "name": "weekly-memory-gc-tier",
+        "status": "idle",
+        "next": 1772373600000,
+        "last": null,
+        "errors": 0,
+        "schedule": {
+          "kind": "cron",
+          "expr": "0 22 * * 0",
+          "tz": "Asia/Shanghai"
+        }
+      },
+      {
+        "id": "a765087f-ddb2-4c2f-bfef-a4156baef349",
+        "name": "weekly-regression-guard",
+        "status": "idle",
+        "next": 1772374500000,
+        "last": null,
+        "errors": 0,
+        "schedule": {
+          "kind": "cron",
+          "expr": "15 22 * * 0",
+          "tz": "Asia/Shanghai"
+        }
+      },
+      {
+        "id": "1cfbdedc-1274-4982-9b99-fc3a4e4262ea",
+        "name": "daily-morning-brief",
+        "status": "idle",
+        "next": 1772412600000,
+        "last": null,
+        "errors": 0,
+        "schedule": {
+          "kind": "cron",
+          "expr": "50 8 * * 1-5",
+          "tz": "Asia/Shanghai"
+        }
+      }
+    ],
+    "channelSummary": [
+      "Telegram: configured",
+      "  - default (token:config)",
+      "QQ Bot: not configured",
+      "WeCom: not configured",
+      "ADP OpenClaw: not configured",
+      "DingTalk: disabled"
+    ]
+  },
+  "websites": {
+    "urls": {
+      "personal": "https://ilovechin.github.io/",
+      "crysttao": "https://ilovechin.github.io/crysttao-site/",
+      "observatory": "https://ilovechin.github.io/openclaw-observatory/"
+    },
+    "httpStatus": {
+      "personal": 200,
+      "crysttao": 200,
+      "observatory": 200
+    }
+  }
 }
