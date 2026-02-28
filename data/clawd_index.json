@@ -1,0 +1,1621 @@
+{
+  "source": "clawd.org.cn/sitemap.xml",
+  "total": 313,
+  "categories": {
+    "community": 1,
+    "forum": 5,
+    "home": 1,
+    "market": 2,
+    "releases.html": 1,
+    "automation": 7,
+    "bedrock.html": 1,
+    "brave-search.html": 1,
+    "broadcast-groups.html": 1,
+    "channels": 21,
+    "cli": 41,
+    "concepts": 30,
+    "date-time.html": 1,
+    "debug": 1,
+    "debugging.html": 1,
+    "diagnostics": 1,
+    "environment.html": 1,
+    "experiments": 6,
+    "gateway": 30,
+    "guides": 3,
+    "help": 3,
+    "hooks.html": 1,
+    "install": 12,
+    "logging.html": 1,
+    "multi-agent-sandbox-tools.html": 1,
+    "network.html": 1,
+    "nodes": 8,
+    "npm-publish-guide.html": 1,
+    "npm-ssh-config.html": 1,
+    "perplexity.html": 1,
+    "platforms": 31,
+    "plugin.html": 1,
+    "plugins": 4,
+    "prose.html": 1,
+    "providers": 21,
+    "refactor": 5,
+    "reference": 21,
+    "scripts.html": 1,
+    "start": 7,
+    "testing.html": 1,
+    "token-use.html": 1,
+    "tools": 22,
+    "tts.html": 1,
+    "tui.html": 1,
+    "upstream-merge-analysis-2026.1.29-2026.2.14.html": 1,
+    "vps.html": 1,
+    "web": 4,
+    "zh-CN": 3
+  },
+  "items": [
+    {
+      "url": "https://clawd.org.cn/community/wechat.html",
+      "category": "community",
+      "title": "wechat"
+    },
+    {
+      "url": "https://clawd.org.cn/forum/about.html",
+      "category": "forum",
+      "title": "about"
+    },
+    {
+      "url": "https://clawd.org.cn/forum/agent.html",
+      "category": "forum",
+      "title": "agent"
+    },
+    {
+      "url": "https://clawd.org.cn/forum/",
+      "category": "forum",
+      "title": "forum"
+    },
+    {
+      "url": "https://clawd.org.cn/forum/post.html",
+      "category": "forum",
+      "title": "post"
+    },
+    {
+      "url": "https://clawd.org.cn/forum/rules.html",
+      "category": "forum",
+      "title": "rules"
+    },
+    {
+      "url": "https://clawd.org.cn/",
+      "category": "home",
+      "title": "home"
+    },
+    {
+      "url": "https://clawd.org.cn/market/detail.html",
+      "category": "market",
+      "title": "detail"
+    },
+    {
+      "url": "https://clawd.org.cn/market/",
+      "category": "market",
+      "title": "market"
+    },
+    {
+      "url": "https://clawd.org.cn/releases.html",
+      "category": "releases.html",
+      "title": "releases"
+    },
+    {
+      "url": "https://clawd.org.cn/automation/auth-monitoring.html",
+      "category": "automation",
+      "title": "auth monitoring"
+    },
+    {
+      "url": "https://clawd.org.cn/automation/cron-jobs.html",
+      "category": "automation",
+      "title": "cron jobs"
+    },
+    {
+      "url": "https://clawd.org.cn/automation/cron-vs-heartbeat.html",
+      "category": "automation",
+      "title": "cron vs heartbeat"
+    },
+    {
+      "url": "https://clawd.org.cn/automation/gmail-pubsub.html",
+      "category": "automation",
+      "title": "gmail pubsub"
+    },
+    {
+      "url": "https://clawd.org.cn/automation/hooks.html",
+      "category": "automation",
+      "title": "hooks"
+    },
+    {
+      "url": "https://clawd.org.cn/automation/poll.html",
+      "category": "automation",
+      "title": "poll"
+    },
+    {
+      "url": "https://clawd.org.cn/automation/webhook.html",
+      "category": "automation",
+      "title": "webhook"
+    },
+    {
+      "url": "https://clawd.org.cn/bedrock.html",
+      "category": "bedrock.html",
+      "title": "bedrock"
+    },
+    {
+      "url": "https://clawd.org.cn/brave-search.html",
+      "category": "brave-search.html",
+      "title": "brave search"
+    },
+    {
+      "url": "https://clawd.org.cn/broadcast-groups.html",
+      "category": "broadcast-groups.html",
+      "title": "broadcast groups"
+    },
+    {
+      "url": "https://clawd.org.cn/channels/bluebubbles.html",
+      "category": "channels",
+      "title": "bluebubbles"
+    },
+    {
+      "url": "https://clawd.org.cn/channels/feishu.html",
+      "category": "channels",
+      "title": "feishu"
+    },
+    {
+      "url": "https://clawd.org.cn/channels/googlechat.html",
+      "category": "channels",
+      "title": "googlechat"
+    },
+    {
+      "url": "https://clawd.org.cn/channels/grammy.html",
+      "category": "channels",
+      "title": "grammy"
+    },
+    {
+      "url": "https://clawd.org.cn/channels/imessage.html",
+      "category": "channels",
+      "title": "imessage"
+    },
+    {
+      "url": "https://clawd.org.cn/channels/",
+      "category": "channels",
+      "title": "channels"
+    },
+    {
+      "url": "https://clawd.org.cn/channels/line.html",
+      "category": "channels",
+      "title": "line"
+    },
+    {
+      "url": "https://clawd.org.cn/channels/location.html",
+      "category": "channels",
+      "title": "location"
+    },
+    {
+      "url": "https://clawd.org.cn/channels/matrix.html",
+      "category": "channels",
+      "title": "matrix"
+    },
+    {
+      "url": "https://clawd.org.cn/channels/mattermost.html",
+      "category": "channels",
+      "title": "mattermost"
+    },
+    {
+      "url": "https://clawd.org.cn/channels/msteams.html",
+      "category": "channels",
+      "title": "msteams"
+    },
+    {
+      "url": "https://clawd.org.cn/channels/nextcloud-talk.html",
+      "category": "channels",
+      "title": "nextcloud talk"
+    },
+    {
+      "url": "https://clawd.org.cn/channels/nostr.html",
+      "category": "channels",
+      "title": "nostr"
+    },
+    {
+      "url": "https://clawd.org.cn/channels/signal.html",
+      "category": "channels",
+      "title": "signal"
+    },
+    {
+      "url": "https://clawd.org.cn/channels/slack.html",
+      "category": "channels",
+      "title": "slack"
+    },
+    {
+      "url": "https://clawd.org.cn/channels/telegram.html",
+      "category": "channels",
+      "title": "telegram"
+    },
+    {
+      "url": "https://clawd.org.cn/channels/tlon.html",
+      "category": "channels",
+      "title": "tlon"
+    },
+    {
+      "url": "https://clawd.org.cn/channels/troubleshooting.html",
+      "category": "channels",
+      "title": "troubleshooting"
+    },
+    {
+      "url": "https://clawd.org.cn/channels/whatsapp.html",
+      "category": "channels",
+      "title": "whatsapp"
+    },
+    {
+      "url": "https://clawd.org.cn/channels/zalo.html",
+      "category": "channels",
+      "title": "zalo"
+    },
+    {
+      "url": "https://clawd.org.cn/channels/zalouser.html",
+      "category": "channels",
+      "title": "zalouser"
+    },
+    {
+      "url": "https://clawd.org.cn/cli/acp.html",
+      "category": "cli",
+      "title": "acp"
+    },
+    {
+      "url": "https://clawd.org.cn/cli/agent.html",
+      "category": "cli",
+      "title": "agent"
+    },
+    {
+      "url": "https://clawd.org.cn/cli/agents.html",
+      "category": "cli",
+      "title": "agents"
+    },
+    {
+      "url": "https://clawd.org.cn/cli/approvals.html",
+      "category": "cli",
+      "title": "approvals"
+    },
+    {
+      "url": "https://clawd.org.cn/cli/browser.html",
+      "category": "cli",
+      "title": "browser"
+    },
+    {
+      "url": "https://clawd.org.cn/cli/channels.html",
+      "category": "cli",
+      "title": "channels"
+    },
+    {
+      "url": "https://clawd.org.cn/cli/config.html",
+      "category": "cli",
+      "title": "config"
+    },
+    {
+      "url": "https://clawd.org.cn/cli/configure.html",
+      "category": "cli",
+      "title": "configure"
+    },
+    {
+      "url": "https://clawd.org.cn/cli/cron.html",
+      "category": "cli",
+      "title": "cron"
+    },
+    {
+      "url": "https://clawd.org.cn/cli/dashboard.html",
+      "category": "cli",
+      "title": "dashboard"
+    },
+    {
+      "url": "https://clawd.org.cn/cli/devices.html",
+      "category": "cli",
+      "title": "devices"
+    },
+    {
+      "url": "https://clawd.org.cn/cli/directory.html",
+      "category": "cli",
+      "title": "directory"
+    },
+    {
+      "url": "https://clawd.org.cn/cli/dns.html",
+      "category": "cli",
+      "title": "dns"
+    },
+    {
+      "url": "https://clawd.org.cn/cli/docs.html",
+      "category": "cli",
+      "title": "docs"
+    },
+    {
+      "url": "https://clawd.org.cn/cli/doctor.html",
+      "category": "cli",
+      "title": "doctor"
+    },
+    {
+      "url": "https://clawd.org.cn/cli/gateway.html",
+      "category": "cli",
+      "title": "gateway"
+    },
+    {
+      "url": "https://clawd.org.cn/cli/health.html",
+      "category": "cli",
+      "title": "health"
+    },
+    {
+      "url": "https://clawd.org.cn/cli/hooks.html",
+      "category": "cli",
+      "title": "hooks"
+    },
+    {
+      "url": "https://clawd.org.cn/cli/",
+      "category": "cli",
+      "title": "cli"
+    },
+    {
+      "url": "https://clawd.org.cn/cli/logs.html",
+      "category": "cli",
+      "title": "logs"
+    },
+    {
+      "url": "https://clawd.org.cn/cli/memory.html",
+      "category": "cli",
+      "title": "memory"
+    },
+    {
+      "url": "https://clawd.org.cn/cli/message.html",
+      "category": "cli",
+      "title": "message"
+    },
+    {
+      "url": "https://clawd.org.cn/cli/models.html",
+      "category": "cli",
+      "title": "models"
+    },
+    {
+      "url": "https://clawd.org.cn/cli/node.html",
+      "category": "cli",
+      "title": "node"
+    },
+    {
+      "url": "https://clawd.org.cn/cli/nodes.html",
+      "category": "cli",
+      "title": "nodes"
+    },
+    {
+      "url": "https://clawd.org.cn/cli/onboard.html",
+      "category": "cli",
+      "title": "onboard"
+    },
+    {
+      "url": "https://clawd.org.cn/cli/pairing.html",
+      "category": "cli",
+      "title": "pairing"
+    },
+    {
+      "url": "https://clawd.org.cn/cli/plugins.html",
+      "category": "cli",
+      "title": "plugins"
+    },
+    {
+      "url": "https://clawd.org.cn/cli/reset.html",
+      "category": "cli",
+      "title": "reset"
+    },
+    {
+      "url": "https://clawd.org.cn/cli/sandbox.html",
+      "category": "cli",
+      "title": "sandbox"
+    },
+    {
+      "url": "https://clawd.org.cn/cli/security.html",
+      "category": "cli",
+      "title": "security"
+    },
+    {
+      "url": "https://clawd.org.cn/cli/sessions.html",
+      "category": "cli",
+      "title": "sessions"
+    },
+    {
+      "url": "https://clawd.org.cn/cli/setup.html",
+      "category": "cli",
+      "title": "setup"
+    },
+    {
+      "url": "https://clawd.org.cn/cli/skills.html",
+      "category": "cli",
+      "title": "skills"
+    },
+    {
+      "url": "https://clawd.org.cn/cli/status.html",
+      "category": "cli",
+      "title": "status"
+    },
+    {
+      "url": "https://clawd.org.cn/cli/system.html",
+      "category": "cli",
+      "title": "system"
+    },
+    {
+      "url": "https://clawd.org.cn/cli/tui.html",
+      "category": "cli",
+      "title": "tui"
+    },
+    {
+      "url": "https://clawd.org.cn/cli/uninstall.html",
+      "category": "cli",
+      "title": "uninstall"
+    },
+    {
+      "url": "https://clawd.org.cn/cli/update.html",
+      "category": "cli",
+      "title": "update"
+    },
+    {
+      "url": "https://clawd.org.cn/cli/voicecall.html",
+      "category": "cli",
+      "title": "voicecall"
+    },
+    {
+      "url": "https://clawd.org.cn/cli/webhooks.html",
+      "category": "cli",
+      "title": "webhooks"
+    },
+    {
+      "url": "https://clawd.org.cn/concepts/agent-loop.html",
+      "category": "concepts",
+      "title": "agent loop"
+    },
+    {
+      "url": "https://clawd.org.cn/concepts/agent-workspace.html",
+      "category": "concepts",
+      "title": "agent workspace"
+    },
+    {
+      "url": "https://clawd.org.cn/concepts/agent.html",
+      "category": "concepts",
+      "title": "agent"
+    },
+    {
+      "url": "https://clawd.org.cn/concepts/architecture.html",
+      "category": "concepts",
+      "title": "architecture"
+    },
+    {
+      "url": "https://clawd.org.cn/concepts/channel-routing.html",
+      "category": "concepts",
+      "title": "channel routing"
+    },
+    {
+      "url": "https://clawd.org.cn/concepts/compaction.html",
+      "category": "concepts",
+      "title": "compaction"
+    },
+    {
+      "url": "https://clawd.org.cn/concepts/context.html",
+      "category": "concepts",
+      "title": "context"
+    },
+    {
+      "url": "https://clawd.org.cn/concepts/group-messages.html",
+      "category": "concepts",
+      "title": "group messages"
+    },
+    {
+      "url": "https://clawd.org.cn/concepts/groups.html",
+      "category": "concepts",
+      "title": "groups"
+    },
+    {
+      "url": "https://clawd.org.cn/concepts/markdown-formatting.html",
+      "category": "concepts",
+      "title": "markdown formatting"
+    },
+    {
+      "url": "https://clawd.org.cn/concepts/memory.html",
+      "category": "concepts",
+      "title": "memory"
+    },
+    {
+      "url": "https://clawd.org.cn/concepts/messages.html",
+      "category": "concepts",
+      "title": "messages"
+    },
+    {
+      "url": "https://clawd.org.cn/concepts/model-failover.html",
+      "category": "concepts",
+      "title": "model failover"
+    },
+    {
+      "url": "https://clawd.org.cn/concepts/model-providers.html",
+      "category": "concepts",
+      "title": "model providers"
+    },
+    {
+      "url": "https://clawd.org.cn/concepts/models.html",
+      "category": "concepts",
+      "title": "models"
+    },
+    {
+      "url": "https://clawd.org.cn/concepts/multi-agent.html",
+      "category": "concepts",
+      "title": "multi agent"
+    },
+    {
+      "url": "https://clawd.org.cn/concepts/oauth.html",
+      "category": "concepts",
+      "title": "oauth"
+    },
+    {
+      "url": "https://clawd.org.cn/concepts/presence.html",
+      "category": "concepts",
+      "title": "presence"
+    },
+    {
+      "url": "https://clawd.org.cn/concepts/queue.html",
+      "category": "concepts",
+      "title": "queue"
+    },
+    {
+      "url": "https://clawd.org.cn/concepts/retry.html",
+      "category": "concepts",
+      "title": "retry"
+    },
+    {
+      "url": "https://clawd.org.cn/concepts/session-pruning.html",
+      "category": "concepts",
+      "title": "session pruning"
+    },
+    {
+      "url": "https://clawd.org.cn/concepts/session-tool.html",
+      "category": "concepts",
+      "title": "session tool"
+    },
+    {
+      "url": "https://clawd.org.cn/concepts/session.html",
+      "category": "concepts",
+      "title": "session"
+    },
+    {
+      "url": "https://clawd.org.cn/concepts/sessions.html",
+      "category": "concepts",
+      "title": "sessions"
+    },
+    {
+      "url": "https://clawd.org.cn/concepts/streaming.html",
+      "category": "concepts",
+      "title": "streaming"
+    },
+    {
+      "url": "https://clawd.org.cn/concepts/system-prompt.html",
+      "category": "concepts",
+      "title": "system prompt"
+    },
+    {
+      "url": "https://clawd.org.cn/concepts/timezone.html",
+      "category": "concepts",
+      "title": "timezone"
+    },
+    {
+      "url": "https://clawd.org.cn/concepts/typebox.html",
+      "category": "concepts",
+      "title": "typebox"
+    },
+    {
+      "url": "https://clawd.org.cn/concepts/typing-indicators.html",
+      "category": "concepts",
+      "title": "typing indicators"
+    },
+    {
+      "url": "https://clawd.org.cn/concepts/usage-tracking.html",
+      "category": "concepts",
+      "title": "usage tracking"
+    },
+    {
+      "url": "https://clawd.org.cn/date-time.html",
+      "category": "date-time.html",
+      "title": "date time"
+    },
+    {
+      "url": "https://clawd.org.cn/debug/node-issue.html",
+      "category": "debug",
+      "title": "node issue"
+    },
+    {
+      "url": "https://clawd.org.cn/debugging.html",
+      "category": "debugging.html",
+      "title": "debugging"
+    },
+    {
+      "url": "https://clawd.org.cn/diagnostics/flags.html",
+      "category": "diagnostics",
+      "title": "flags"
+    },
+    {
+      "url": "https://clawd.org.cn/environment.html",
+      "category": "environment.html",
+      "title": "environment"
+    },
+    {
+      "url": "https://clawd.org.cn/experiments/onboarding-config-protocol.html",
+      "category": "experiments",
+      "title": "onboarding config protocol"
+    },
+    {
+      "url": "https://clawd.org.cn/experiments/plans/cron-add-hardening.html",
+      "category": "experiments",
+      "title": "cron add hardening"
+    },
+    {
+      "url": "https://clawd.org.cn/experiments/plans/group-policy-hardening.html",
+      "category": "experiments",
+      "title": "group policy hardening"
+    },
+    {
+      "url": "https://clawd.org.cn/experiments/plans/openresponses-gateway.html",
+      "category": "experiments",
+      "title": "openresponses gateway"
+    },
+    {
+      "url": "https://clawd.org.cn/experiments/proposals/model-config.html",
+      "category": "experiments",
+      "title": "model config"
+    },
+    {
+      "url": "https://clawd.org.cn/experiments/research/memory.html",
+      "category": "experiments",
+      "title": "memory"
+    },
+    {
+      "url": "https://clawd.org.cn/gateway/authentication.html",
+      "category": "gateway",
+      "title": "authentication"
+    },
+    {
+      "url": "https://clawd.org.cn/gateway/background-process.html",
+      "category": "gateway",
+      "title": "background process"
+    },
+    {
+      "url": "https://clawd.org.cn/gateway/bonjour.html",
+      "category": "gateway",
+      "title": "bonjour"
+    },
+    {
+      "url": "https://clawd.org.cn/gateway/bridge-protocol.html",
+      "category": "gateway",
+      "title": "bridge protocol"
+    },
+    {
+      "url": "https://clawd.org.cn/gateway/cli-backends.html",
+      "category": "gateway",
+      "title": "cli backends"
+    },
+    {
+      "url": "https://clawd.org.cn/gateway/configuration-examples.html",
+      "category": "gateway",
+      "title": "configuration examples"
+    },
+    {
+      "url": "https://clawd.org.cn/gateway/discovery.html",
+      "category": "gateway",
+      "title": "discovery"
+    },
+    {
+      "url": "https://clawd.org.cn/gateway/doctor.html",
+      "category": "gateway",
+      "title": "doctor"
+    },
+    {
+      "url": "https://clawd.org.cn/gateway/gateway-lock.html",
+      "category": "gateway",
+      "title": "gateway lock"
+    },
+    {
+      "url": "https://clawd.org.cn/gateway/health.html",
+      "category": "gateway",
+      "title": "health"
+    },
+    {
+      "url": "https://clawd.org.cn/gateway/heartbeat.html",
+      "category": "gateway",
+      "title": "heartbeat"
+    },
+    {
+      "url": "https://clawd.org.cn/gateway/",
+      "category": "gateway",
+      "title": "gateway"
+    },
+    {
+      "url": "https://clawd.org.cn/gateway/local-models.html",
+      "category": "gateway",
+      "title": "local models"
+    },
+    {
+      "url": "https://clawd.org.cn/gateway/logging.html",
+      "category": "gateway",
+      "title": "logging"
+    },
+    {
+      "url": "https://clawd.org.cn/gateway/multiple-gateways.html",
+      "category": "gateway",
+      "title": "multiple gateways"
+    },
+    {
+      "url": "https://clawd.org.cn/gateway/openai-http-api.html",
+      "category": "gateway",
+      "title": "openai http api"
+    },
+    {
+      "url": "https://clawd.org.cn/gateway/openresponses-http-api.html",
+      "category": "gateway",
+      "title": "openresponses http api"
+    },
+    {
+      "url": "https://clawd.org.cn/gateway/pairing-required-troubleshooting.html",
+      "category": "gateway",
+      "title": "pairing required troubleshooting"
+    },
+    {
+      "url": "https://clawd.org.cn/gateway/pairing.html",
+      "category": "gateway",
+      "title": "pairing"
+    },
+    {
+      "url": "https://clawd.org.cn/gateway/protocol.html",
+      "category": "gateway",
+      "title": "protocol"
+    },
+    {
+      "url": "https://clawd.org.cn/gateway/remote-gateway-readme.html",
+      "category": "gateway",
+      "title": "remote gateway readme"
+    },
+    {
+      "url": "https://clawd.org.cn/gateway/remote.html",
+      "category": "gateway",
+      "title": "remote"
+    },
+    {
+      "url": "https://clawd.org.cn/gateway/sandbox-vs-tool-policy-vs-elevated.html",
+      "category": "gateway",
+      "title": "sandbox vs tool policy vs elevated"
+    },
+    {
+      "url": "https://clawd.org.cn/gateway/sandboxing.html",
+      "category": "gateway",
+      "title": "sandboxing"
+    },
+    {
+      "url": "https://clawd.org.cn/gateway/security.html",
+      "category": "gateway",
+      "title": "security"
+    },
+    {
+      "url": "https://clawd.org.cn/gateway/security/",
+      "category": "gateway",
+      "title": "security"
+    },
+    {
+      "url": "https://clawd.org.cn/gateway/tailscale.html",
+      "category": "gateway",
+      "title": "tailscale"
+    },
+    {
+      "url": "https://clawd.org.cn/gateway/token-mismatch-troubleshooting.html",
+      "category": "gateway",
+      "title": "token mismatch troubleshooting"
+    },
+    {
+      "url": "https://clawd.org.cn/gateway/tools-invoke-http-api.html",
+      "category": "gateway",
+      "title": "tools invoke http api"
+    },
+    {
+      "url": "https://clawd.org.cn/gateway/troubleshooting.html",
+      "category": "gateway",
+      "title": "troubleshooting"
+    },
+    {
+      "url": "https://clawd.org.cn/guides/custom-ai-providers.html",
+      "category": "guides",
+      "title": "custom ai providers"
+    },
+    {
+      "url": "https://clawd.org.cn/guides/qmd-memory-search.html",
+      "category": "guides",
+      "title": "qmd memory search"
+    },
+    {
+      "url": "https://clawd.org.cn/guides/ssl-deployment.html",
+      "category": "guides",
+      "title": "ssl deployment"
+    },
+    {
+      "url": "https://clawd.org.cn/help/faq.html",
+      "category": "help",
+      "title": "faq"
+    },
+    {
+      "url": "https://clawd.org.cn/help/",
+      "category": "help",
+      "title": "help"
+    },
+    {
+      "url": "https://clawd.org.cn/help/troubleshooting.html",
+      "category": "help",
+      "title": "troubleshooting"
+    },
+    {
+      "url": "https://clawd.org.cn/hooks.html",
+      "category": "hooks.html",
+      "title": "hooks"
+    },
+    {
+      "url": "https://clawd.org.cn/install/ansible.html",
+      "category": "install",
+      "title": "ansible"
+    },
+    {
+      "url": "https://clawd.org.cn/install/bun.html",
+      "category": "install",
+      "title": "bun"
+    },
+    {
+      "url": "https://clawd.org.cn/install/development-channels.html",
+      "category": "install",
+      "title": "development channels"
+    },
+    {
+      "url": "https://clawd.org.cn/install/docker-hub-setup.html",
+      "category": "install",
+      "title": "docker hub setup"
+    },
+    {
+      "url": "https://clawd.org.cn/install/docker-quick.html",
+      "category": "install",
+      "title": "docker quick"
+    },
+    {
+      "url": "https://clawd.org.cn/install/docker.html",
+      "category": "install",
+      "title": "docker"
+    },
+    {
+      "url": "https://clawd.org.cn/install/",
+      "category": "install",
+      "title": "install"
+    },
+    {
+      "url": "https://clawd.org.cn/install/installer.html",
+      "category": "install",
+      "title": "installer"
+    },
+    {
+      "url": "https://clawd.org.cn/install/nix.html",
+      "category": "install",
+      "title": "nix"
+    },
+    {
+      "url": "https://clawd.org.cn/install/node.html",
+      "category": "install",
+      "title": "node"
+    },
+    {
+      "url": "https://clawd.org.cn/install/uninstall.html",
+      "category": "install",
+      "title": "uninstall"
+    },
+    {
+      "url": "https://clawd.org.cn/install/updating.html",
+      "category": "install",
+      "title": "updating"
+    },
+    {
+      "url": "https://clawd.org.cn/logging.html",
+      "category": "logging.html",
+      "title": "logging"
+    },
+    {
+      "url": "https://clawd.org.cn/multi-agent-sandbox-tools.html",
+      "category": "multi-agent-sandbox-tools.html",
+      "title": "multi agent sandbox tools"
+    },
+    {
+      "url": "https://clawd.org.cn/network.html",
+      "category": "network.html",
+      "title": "network"
+    },
+    {
+      "url": "https://clawd.org.cn/nodes/audio.html",
+      "category": "nodes",
+      "title": "audio"
+    },
+    {
+      "url": "https://clawd.org.cn/nodes/camera.html",
+      "category": "nodes",
+      "title": "camera"
+    },
+    {
+      "url": "https://clawd.org.cn/nodes/images.html",
+      "category": "nodes",
+      "title": "images"
+    },
+    {
+      "url": "https://clawd.org.cn/nodes/",
+      "category": "nodes",
+      "title": "nodes"
+    },
+    {
+      "url": "https://clawd.org.cn/nodes/location-command.html",
+      "category": "nodes",
+      "title": "location command"
+    },
+    {
+      "url": "https://clawd.org.cn/nodes/media-understanding.html",
+      "category": "nodes",
+      "title": "media understanding"
+    },
+    {
+      "url": "https://clawd.org.cn/nodes/talk.html",
+      "category": "nodes",
+      "title": "talk"
+    },
+    {
+      "url": "https://clawd.org.cn/nodes/voicewake.html",
+      "category": "nodes",
+      "title": "voicewake"
+    },
+    {
+      "url": "https://clawd.org.cn/npm-publish-guide.html",
+      "category": "npm-publish-guide.html",
+      "title": "npm publish guide"
+    },
+    {
+      "url": "https://clawd.org.cn/npm-ssh-config.html",
+      "category": "npm-ssh-config.html",
+      "title": "npm ssh config"
+    },
+    {
+      "url": "https://clawd.org.cn/perplexity.html",
+      "category": "perplexity.html",
+      "title": "perplexity"
+    },
+    {
+      "url": "https://clawd.org.cn/platforms/android.html",
+      "category": "platforms",
+      "title": "android"
+    },
+    {
+      "url": "https://clawd.org.cn/platforms/digitalocean.html",
+      "category": "platforms",
+      "title": "digitalocean"
+    },
+    {
+      "url": "https://clawd.org.cn/platforms/exe-dev.html",
+      "category": "platforms",
+      "title": "exe dev"
+    },
+    {
+      "url": "https://clawd.org.cn/platforms/fly.html",
+      "category": "platforms",
+      "title": "fly"
+    },
+    {
+      "url": "https://clawd.org.cn/platforms/gcp.html",
+      "category": "platforms",
+      "title": "gcp"
+    },
+    {
+      "url": "https://clawd.org.cn/platforms/hetzner.html",
+      "category": "platforms",
+      "title": "hetzner"
+    },
+    {
+      "url": "https://clawd.org.cn/platforms/",
+      "category": "platforms",
+      "title": "platforms"
+    },
+    {
+      "url": "https://clawd.org.cn/platforms/ios.html",
+      "category": "platforms",
+      "title": "ios"
+    },
+    {
+      "url": "https://clawd.org.cn/platforms/linux.html",
+      "category": "platforms",
+      "title": "linux"
+    },
+    {
+      "url": "https://clawd.org.cn/platforms/mac/bundled-gateway.html",
+      "category": "platforms",
+      "title": "bundled gateway"
+    },
+    {
+      "url": "https://clawd.org.cn/platforms/mac/canvas.html",
+      "category": "platforms",
+      "title": "canvas"
+    },
+    {
+      "url": "https://clawd.org.cn/platforms/mac/child-process.html",
+      "category": "platforms",
+      "title": "child process"
+    },
+    {
+      "url": "https://clawd.org.cn/platforms/mac/dev-setup.html",
+      "category": "platforms",
+      "title": "dev setup"
+    },
+    {
+      "url": "https://clawd.org.cn/platforms/mac/health.html",
+      "category": "platforms",
+      "title": "health"
+    },
+    {
+      "url": "https://clawd.org.cn/platforms/mac/icon.html",
+      "category": "platforms",
+      "title": "icon"
+    },
+    {
+      "url": "https://clawd.org.cn/platforms/mac/logging.html",
+      "category": "platforms",
+      "title": "logging"
+    },
+    {
+      "url": "https://clawd.org.cn/platforms/mac/menu-bar.html",
+      "category": "platforms",
+      "title": "menu bar"
+    },
+    {
+      "url": "https://clawd.org.cn/platforms/mac/peekaboo.html",
+      "category": "platforms",
+      "title": "peekaboo"
+    },
+    {
+      "url": "https://clawd.org.cn/platforms/mac/permissions.html",
+      "category": "platforms",
+      "title": "permissions"
+    },
+    {
+      "url": "https://clawd.org.cn/platforms/mac/release.html",
+      "category": "platforms",
+      "title": "release"
+    },
+    {
+      "url": "https://clawd.org.cn/platforms/mac/remote.html",
+      "category": "platforms",
+      "title": "remote"
+    },
+    {
+      "url": "https://clawd.org.cn/platforms/mac/signing.html",
+      "category": "platforms",
+      "title": "signing"
+    },
+    {
+      "url": "https://clawd.org.cn/platforms/mac/skills.html",
+      "category": "platforms",
+      "title": "skills"
+    },
+    {
+      "url": "https://clawd.org.cn/platforms/mac/voice-overlay.html",
+      "category": "platforms",
+      "title": "voice overlay"
+    },
+    {
+      "url": "https://clawd.org.cn/platforms/mac/voicewake.html",
+      "category": "platforms",
+      "title": "voicewake"
+    },
+    {
+      "url": "https://clawd.org.cn/platforms/mac/webchat.html",
+      "category": "platforms",
+      "title": "webchat"
+    },
+    {
+      "url": "https://clawd.org.cn/platforms/mac/xpc.html",
+      "category": "platforms",
+      "title": "xpc"
+    },
+    {
+      "url": "https://clawd.org.cn/platforms/macos-vm.html",
+      "category": "platforms",
+      "title": "macos vm"
+    },
+    {
+      "url": "https://clawd.org.cn/platforms/macos.html",
+      "category": "platforms",
+      "title": "macos"
+    },
+    {
+      "url": "https://clawd.org.cn/platforms/raspberry-pi.html",
+      "category": "platforms",
+      "title": "raspberry pi"
+    },
+    {
+      "url": "https://clawd.org.cn/platforms/windows.html",
+      "category": "platforms",
+      "title": "windows"
+    },
+    {
+      "url": "https://clawd.org.cn/plugin.html",
+      "category": "plugin.html",
+      "title": "plugin"
+    },
+    {
+      "url": "https://clawd.org.cn/plugins/agent-tools.html",
+      "category": "plugins",
+      "title": "agent tools"
+    },
+    {
+      "url": "https://clawd.org.cn/plugins/manifest.html",
+      "category": "plugins",
+      "title": "manifest"
+    },
+    {
+      "url": "https://clawd.org.cn/plugins/voice-call.html",
+      "category": "plugins",
+      "title": "voice call"
+    },
+    {
+      "url": "https://clawd.org.cn/plugins/zalouser.html",
+      "category": "plugins",
+      "title": "zalouser"
+    },
+    {
+      "url": "https://clawd.org.cn/prose.html",
+      "category": "prose.html",
+      "title": "prose"
+    },
+    {
+      "url": "https://clawd.org.cn/providers/anthropic.html",
+      "category": "providers",
+      "title": "anthropic"
+    },
+    {
+      "url": "https://clawd.org.cn/providers/claude-max-api-proxy.html",
+      "category": "providers",
+      "title": "claude max api proxy"
+    },
+    {
+      "url": "https://clawd.org.cn/providers/cloudflare-ai-gateway.html",
+      "category": "providers",
+      "title": "cloudflare ai gateway"
+    },
+    {
+      "url": "https://clawd.org.cn/providers/deepgram.html",
+      "category": "providers",
+      "title": "deepgram"
+    },
+    {
+      "url": "https://clawd.org.cn/providers/github-copilot.html",
+      "category": "providers",
+      "title": "github copilot"
+    },
+    {
+      "url": "https://clawd.org.cn/providers/glm.html",
+      "category": "providers",
+      "title": "glm"
+    },
+    {
+      "url": "https://clawd.org.cn/providers/huggingface.html",
+      "category": "providers",
+      "title": "huggingface"
+    },
+    {
+      "url": "https://clawd.org.cn/providers/",
+      "category": "providers",
+      "title": "providers"
+    },
+    {
+      "url": "https://clawd.org.cn/providers/minimax.html",
+      "category": "providers",
+      "title": "minimax"
+    },
+    {
+      "url": "https://clawd.org.cn/providers/models.html",
+      "category": "providers",
+      "title": "models"
+    },
+    {
+      "url": "https://clawd.org.cn/providers/moonshot.html",
+      "category": "providers",
+      "title": "moonshot"
+    },
+    {
+      "url": "https://clawd.org.cn/providers/ollama.html",
+      "category": "providers",
+      "title": "ollama"
+    },
+    {
+      "url": "https://clawd.org.cn/providers/openai.html",
+      "category": "providers",
+      "title": "openai"
+    },
+    {
+      "url": "https://clawd.org.cn/providers/opencode.html",
+      "category": "providers",
+      "title": "opencode"
+    },
+    {
+      "url": "https://clawd.org.cn/providers/openrouter.html",
+      "category": "providers",
+      "title": "openrouter"
+    },
+    {
+      "url": "https://clawd.org.cn/providers/qwen.html",
+      "category": "providers",
+      "title": "qwen"
+    },
+    {
+      "url": "https://clawd.org.cn/providers/synthetic.html",
+      "category": "providers",
+      "title": "synthetic"
+    },
+    {
+      "url": "https://clawd.org.cn/providers/venice.html",
+      "category": "providers",
+      "title": "venice"
+    },
+    {
+      "url": "https://clawd.org.cn/providers/vercel-ai-gateway.html",
+      "category": "providers",
+      "title": "vercel ai gateway"
+    },
+    {
+      "url": "https://clawd.org.cn/providers/volcengine.html",
+      "category": "providers",
+      "title": "volcengine"
+    },
+    {
+      "url": "https://clawd.org.cn/providers/zai.html",
+      "category": "providers",
+      "title": "zai"
+    },
+    {
+      "url": "https://clawd.org.cn/refactor/clawnet.html",
+      "category": "refactor",
+      "title": "clawnet"
+    },
+    {
+      "url": "https://clawd.org.cn/refactor/exec-host.html",
+      "category": "refactor",
+      "title": "exec host"
+    },
+    {
+      "url": "https://clawd.org.cn/refactor/outbound-session-mirroring.html",
+      "category": "refactor",
+      "title": "outbound session mirroring"
+    },
+    {
+      "url": "https://clawd.org.cn/refactor/plugin-sdk.html",
+      "category": "refactor",
+      "title": "plugin sdk"
+    },
+    {
+      "url": "https://clawd.org.cn/refactor/strict-config.html",
+      "category": "refactor",
+      "title": "strict config"
+    },
+    {
+      "url": "https://clawd.org.cn/reference/AGENTS.default.html",
+      "category": "reference",
+      "title": "AGENTS.default"
+    },
+    {
+      "url": "https://clawd.org.cn/reference/RELEASING.html",
+      "category": "reference",
+      "title": "RELEASING"
+    },
+    {
+      "url": "https://clawd.org.cn/reference/api-usage-costs.html",
+      "category": "reference",
+      "title": "api usage costs"
+    },
+    {
+      "url": "https://clawd.org.cn/reference/device-models.html",
+      "category": "reference",
+      "title": "device models"
+    },
+    {
+      "url": "https://clawd.org.cn/reference/rpc.html",
+      "category": "reference",
+      "title": "rpc"
+    },
+    {
+      "url": "https://clawd.org.cn/reference/session-management-compaction.html",
+      "category": "reference",
+      "title": "session management compaction"
+    },
+    {
+      "url": "https://clawd.org.cn/reference/templates/AGENTS.dev.html",
+      "category": "reference",
+      "title": "AGENTS.dev"
+    },
+    {
+      "url": "https://clawd.org.cn/reference/templates/AGENTS.html",
+      "category": "reference",
+      "title": "AGENTS"
+    },
+    {
+      "url": "https://clawd.org.cn/reference/templates/BOOT.html",
+      "category": "reference",
+      "title": "BOOT"
+    },
+    {
+      "url": "https://clawd.org.cn/reference/templates/BOOTSTRAP.html",
+      "category": "reference",
+      "title": "BOOTSTRAP"
+    },
+    {
+      "url": "https://clawd.org.cn/reference/templates/HEARTBEAT.html",
+      "category": "reference",
+      "title": "HEARTBEAT"
+    },
+    {
+      "url": "https://clawd.org.cn/reference/templates/IDENTITY.dev.html",
+      "category": "reference",
+      "title": "IDENTITY.dev"
+    },
+    {
+      "url": "https://clawd.org.cn/reference/templates/IDENTITY.html",
+      "category": "reference",
+      "title": "IDENTITY"
+    },
+    {
+      "url": "https://clawd.org.cn/reference/templates/SOUL.dev.html",
+      "category": "reference",
+      "title": "SOUL.dev"
+    },
+    {
+      "url": "https://clawd.org.cn/reference/templates/SOUL.html",
+      "category": "reference",
+      "title": "SOUL"
+    },
+    {
+      "url": "https://clawd.org.cn/reference/templates/TOOLS.dev.html",
+      "category": "reference",
+      "title": "TOOLS.dev"
+    },
+    {
+      "url": "https://clawd.org.cn/reference/templates/TOOLS.html",
+      "category": "reference",
+      "title": "TOOLS"
+    },
+    {
+      "url": "https://clawd.org.cn/reference/templates/USER.dev.html",
+      "category": "reference",
+      "title": "USER.dev"
+    },
+    {
+      "url": "https://clawd.org.cn/reference/templates/USER.html",
+      "category": "reference",
+      "title": "USER"
+    },
+    {
+      "url": "https://clawd.org.cn/reference/test.html",
+      "category": "reference",
+      "title": "test"
+    },
+    {
+      "url": "https://clawd.org.cn/reference/transcript-hygiene.html",
+      "category": "reference",
+      "title": "transcript hygiene"
+    },
+    {
+      "url": "https://clawd.org.cn/scripts.html",
+      "category": "scripts.html",
+      "title": "scripts"
+    },
+    {
+      "url": "https://clawd.org.cn/start/clawd.html",
+      "category": "start",
+      "title": "clawd"
+    },
+    {
+      "url": "https://clawd.org.cn/start/getting-started.html",
+      "category": "start",
+      "title": "getting started"
+    },
+    {
+      "url": "https://clawd.org.cn/start/hubs.html",
+      "category": "start",
+      "title": "hubs"
+    },
+    {
+      "url": "https://clawd.org.cn/start/onboarding.html",
+      "category": "start",
+      "title": "onboarding"
+    },
+    {
+      "url": "https://clawd.org.cn/start/pairing.html",
+      "category": "start",
+      "title": "pairing"
+    },
+    {
+      "url": "https://clawd.org.cn/start/setup.html",
+      "category": "start",
+      "title": "setup"
+    },
+    {
+      "url": "https://clawd.org.cn/start/wizard.html",
+      "category": "start",
+      "title": "wizard"
+    },
+    {
+      "url": "https://clawd.org.cn/testing.html",
+      "category": "testing.html",
+      "title": "testing"
+    },
+    {
+      "url": "https://clawd.org.cn/token-use.html",
+      "category": "token-use.html",
+      "title": "token use"
+    },
+    {
+      "url": "https://clawd.org.cn/tools/agent-send.html",
+      "category": "tools",
+      "title": "agent send"
+    },
+    {
+      "url": "https://clawd.org.cn/tools/apply-patch.html",
+      "category": "tools",
+      "title": "apply patch"
+    },
+    {
+      "url": "https://clawd.org.cn/tools/browser-linux-troubleshooting.html",
+      "category": "tools",
+      "title": "browser linux troubleshooting"
+    },
+    {
+      "url": "https://clawd.org.cn/tools/browser-login.html",
+      "category": "tools",
+      "title": "browser login"
+    },
+    {
+      "url": "https://clawd.org.cn/tools/browser.html",
+      "category": "tools",
+      "title": "browser"
+    },
+    {
+      "url": "https://clawd.org.cn/tools/chrome-extension.html",
+      "category": "tools",
+      "title": "chrome extension"
+    },
+    {
+      "url": "https://clawd.org.cn/tools/clawdhub.html",
+      "category": "tools",
+      "title": "clawdhub"
+    },
+    {
+      "url": "https://clawd.org.cn/tools/creating-skills.html",
+      "category": "tools",
+      "title": "creating skills"
+    },
+    {
+      "url": "https://clawd.org.cn/tools/elevated.html",
+      "category": "tools",
+      "title": "elevated"
+    },
+    {
+      "url": "https://clawd.org.cn/tools/exec-approvals.html",
+      "category": "tools",
+      "title": "exec approvals"
+    },
+    {
+      "url": "https://clawd.org.cn/tools/exec.html",
+      "category": "tools",
+      "title": "exec"
+    },
+    {
+      "url": "https://clawd.org.cn/tools/firecrawl.html",
+      "category": "tools",
+      "title": "firecrawl"
+    },
+    {
+      "url": "https://clawd.org.cn/tools/",
+      "category": "tools",
+      "title": "tools"
+    },
+    {
+      "url": "https://clawd.org.cn/tools/llm-task.html",
+      "category": "tools",
+      "title": "llm task"
+    },
+    {
+      "url": "https://clawd.org.cn/tools/lobster.html",
+      "category": "tools",
+      "title": "lobster"
+    },
+    {
+      "url": "https://clawd.org.cn/tools/reactions.html",
+      "category": "tools",
+      "title": "reactions"
+    },
+    {
+      "url": "https://clawd.org.cn/tools/skills-config.html",
+      "category": "tools",
+      "title": "skills config"
+    },
+    {
+      "url": "https://clawd.org.cn/tools/skills.html",
+      "category": "tools",
+      "title": "skills"
+    },
+    {
+      "url": "https://clawd.org.cn/tools/slash-commands.html",
+      "category": "tools",
+      "title": "slash commands"
+    },
+    {
+      "url": "https://clawd.org.cn/tools/subagents.html",
+      "category": "tools",
+      "title": "subagents"
+    },
+    {
+      "url": "https://clawd.org.cn/tools/thinking.html",
+      "category": "tools",
+      "title": "thinking"
+    },
+    {
+      "url": "https://clawd.org.cn/tools/web.html",
+      "category": "tools",
+      "title": "web"
+    },
+    {
+      "url": "https://clawd.org.cn/tts.html",
+      "category": "tts.html",
+      "title": "tts"
+    },
+    {
+      "url": "https://clawd.org.cn/tui.html",
+      "category": "tui.html",
+      "title": "tui"
+    },
+    {
+      "url": "https://clawd.org.cn/upstream-merge-analysis-2026.1.29-2026.2.14.html",
+      "category": "upstream-merge-analysis-2026.1.29-2026.2.14.html",
+      "title": "upstream merge analysis 2026.1.29 2026.2.14"
+    },
+    {
+      "url": "https://clawd.org.cn/vps.html",
+      "category": "vps.html",
+      "title": "vps"
+    },
+    {
+      "url": "https://clawd.org.cn/web/control-ui.html",
+      "category": "web",
+      "title": "control ui"
+    },
+    {
+      "url": "https://clawd.org.cn/web/dashboard.html",
+      "category": "web",
+      "title": "dashboard"
+    },
+    {
+      "url": "https://clawd.org.cn/web/",
+      "category": "web",
+      "title": "web"
+    },
+    {
+      "url": "https://clawd.org.cn/web/webchat.html",
+      "category": "web",
+      "title": "webchat"
+    },
+    {
+      "url": "https://clawd.org.cn/zh-CN/automation/hooks.html",
+      "category": "zh-CN",
+      "title": "hooks"
+    },
+    {
+      "url": "https://clawd.org.cn/zh-CN/cli/hooks.html",
+      "category": "zh-CN",
+      "title": "hooks"
+    },
+    {
+      "url": "https://clawd.org.cn/zh-CN/install/",
+      "category": "zh-CN",
+      "title": "install"
+    }
+  ]
+}

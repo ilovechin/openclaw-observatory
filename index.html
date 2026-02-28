@@ -77,6 +77,15 @@
     </div>
   </section>
 
+
+  <section class="card full">
+    <div class="head"><h3>知识库索引 / Knowledge Index（clawd.org.cn）</h3><span class="pill">SEARCHABLE</span></div>
+    <div class="grid" style="margin:0;padding:12px">
+      <div class="card"><div class="head"><h3>分类统计 Categories</h3></div><pre id="kbCats" class="mono"></pre></div>
+      <div class="card"><div class="head"><h3>页面列表 Top Pages</h3></div><pre id="kbItems" class="mono"></pre></div>
+    </div>
+  </section>
+
 </main>
 <script>
 function fmtTs(v){ if(!v) return '-'; const n=Number(v); return Number.isNaN(n)?String(v):new Date(n).toLocaleString(); }

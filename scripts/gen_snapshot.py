@@ -102,6 +102,16 @@ def workspace_tree(depth=3):
     return run(f"cd /root/.openclaw/workspace && find . -maxdepth {depth} | sort", "")
 
 
+def load_clawd_index():
+    p=Path('/root/.openclaw/workspace/openclaw-observatory/data/clawd_index.json')
+    if not p.exists():
+        return {}
+    try:
+        return json.loads(p.read_text(encoding='utf-8'))
+    except Exception:
+        return {}
+
+
 def main():
     now = datetime.datetime.utcnow().isoformat() + 'Z'
     status = run_json('openclaw status --usage --json', {})
@@ -187,6 +197,9 @@ def main():
             'userProfile': read_safe_text('/root/.openclaw/workspace/USER.md', 3000)
         },
         'websites': {'urls': websites, 'httpStatus': {k: ping_url(v) for k, v in websites.items()}},
+        'knowledgeBase': {
+            'clawd': load_clawd_index()
+        },
         'raw': {
             'statusUsageJson': status,
             'memoryStatusText': run('openclaw memory status', ''),
