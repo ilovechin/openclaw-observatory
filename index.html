@@ -49,6 +49,15 @@
     <div class="card"><div class="head"><h3>工作区统计 Workspace Stats</h3><span class="pill">FILES</span></div><table id="wsTable"><thead><tr><th>项 Item</th><th>值 Value</th></tr></thead><tbody></tbody></table></div>
     <div class="card"><div class="head"><h3>最近提交 Recent Commits</h3><span class="pill">GIT</span></div><pre id="commits" class="mono"></pre></div>
   </section>
+
+  <section class="card full">
+    <div class="head"><h3>人格与偏好 Persona & Profile</h3><span class="pill">SOUL / IDENTITY / USER</span></div>
+    <div class="grid" style="margin:0;padding:12px">
+      <div class="card"><div class="head"><h3>SOUL.md</h3></div><pre id="soul" class="mono"></pre></div>
+      <div class="card"><div class="head"><h3>IDENTITY.md + USER.md</h3></div><pre id="profile" class="mono"></pre></div>
+    </div>
+  </section>
+
 </main>
 <script>
 function fmtTs(v){ if(!v) return '-'; const n=Number(v); return Number.isNaN(n)?String(v):new Date(n).toLocaleString(); }
@@ -74,6 +83,14 @@ async function load(){
   const fs=c.workspace?.fileStats||{};
   document.querySelector('#wsTable tbody').innerHTML=[['总文件 Total',fs.totalFiles],['Markdown 文档',fs.markdownFiles],['Python 文件',fs.pythonFiles],['HTML 文件',fs.htmlFiles]].map(r=>`<tr><td>${r[0]}</td><td>${r[1]??'-'}</td></tr>`).join('');
   document.getElementById('commits').textContent=`[workspace]\n${c.workspace?.recentCommitsMain||''}\n\n[crysttao-site]\n${c.workspace?.recentCommitsCrysttao||''}\n\n[observatory]\n${c.workspace?.recentCommitsObservatory||''}`;
+
+  document.getElementById('soul').textContent = c.persona?.soul || '暂无';
+  document.getElementById('profile').textContent = `=== IDENTITY.md ===
+${c.persona?.identity||''}
+
+=== USER.md ===
+${c.persona?.userProfile||''}`;
+
 }
 load(); setInterval(load,30000);
 </script>

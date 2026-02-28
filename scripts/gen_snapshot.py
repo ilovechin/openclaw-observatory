@@ -51,6 +51,16 @@ def parse_load():
     return {}
 
 
+
+
+def read_safe_text(path, limit=4000):
+    try:
+        t = Path(path).read_text(encoding='utf-8')
+        return t[:limit]
+    except Exception:
+        return ''
+
+
 def ping_url(url):
     code = run(f"curl -L -s -o /dev/null -w '%{{http_code}}' --max-time 8 '{url}'", '000')
     return int(code) if code.isdigit() else 0
@@ -155,6 +165,11 @@ def main():
             'recentCommitsMain': recent_commits('/root/.openclaw/workspace'),
             'recentCommitsCrysttao': recent_commits('/root/.openclaw/workspace/crysttao-site'),
             'recentCommitsObservatory': recent_commits('/root/.openclaw/workspace/openclaw-observatory')
+        },
+        'persona': {
+            'soul': read_safe_text('/root/.openclaw/workspace/SOUL.md', 5000),
+            'identity': read_safe_text('/root/.openclaw/workspace/IDENTITY.md', 2000),
+            'userProfile': read_safe_text('/root/.openclaw/workspace/USER.md', 3000)
         },
         'websites': {'urls': websites, 'httpStatus': {k: ping_url(v) for k, v in websites.items()}}
     }
