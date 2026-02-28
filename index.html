@@ -30,24 +30,24 @@
   </style>
 </head>
 <body>
-<header><div class="wrap bar"><div><div class="title">锦的虾🦐 监控中枢</div><div class="sub">公网公开版（敏感字段自动脱敏） · 更新时间：<span id="ts">-</span></div></div><div><a class="btn" href="./data/current.json" target="_blank">原始JSON</a><a class="btn" href="https://ilovechin.github.io/" target="_blank">个人站</a><a class="btn" href="https://ilovechin.github.io/crysttao-site/" target="_blank">CrystTao站</a></div></div></header>
+<header><div class="wrap bar"><div><div class="title">锦的虾🦐 监控中枢</div><div class="sub">公网公开版（敏感字段自动脱敏） · 更新时间：<span id="ts">-</span></div></div><div><a class="btn" href="./data/current.json" target="_blank">原始JSON / Raw JSON</a><a class="btn" href="https://ilovechin.github.io/" target="_blank">个人站 / Personal Site</a><a class="btn" href="https://ilovechin.github.io/crysttao-site/" target="_blank">CrystTao站 / CrystTao Site</a></div></div></header>
 <main class="wrap">
   <section class="kpi-grid" id="kpis"></section>
   <section class="grid">
-    <div class="card"><div class="head"><h3>任务运行看板 / Cron Board</h3><span class="pill">AUTO JOBS</span></div><table id="cronTable"><thead><tr><th>任务</th><th>状态</th><th>错误</th><th>下次运行</th></tr></thead><tbody></tbody></table></div>
-    <div class="card"><div class="head"><h3>Token 历史 / Usage History</h3><span class="pill">LAST 20</span></div><table id="histTable"><thead><tr><th>时间</th><th>5h%</th><th>Day%</th><th>Gateway</th></tr></thead><tbody></tbody></table></div>
+    <div class="card"><div class="head"><h3>任务运行看板 / Cron Board</h3><span class="pill">AUTO JOBS</span></div><table id="cronTable"><thead><tr><th>任务 Task</th><th>状态 Status</th><th>错误 Errors</th><th>下次运行 Next Run</th></tr></thead><tbody></tbody></table></div>
+    <div class="card"><div class="head"><h3>Token 历史 / Usage History</h3><span class="pill">LAST 20</span></div><table id="histTable"><thead><tr><th>时间 Time</th><th>5h%</th><th>Day%</th><th>网关 Gateway</th></tr></thead><tbody></tbody></table></div>
   </section>
   <section class="grid">
-    <div class="card"><div class="head"><h3>系统健康 / System Health</h3><span class="pill">SERVER</span></div><table id="summaryTable"><thead><tr><th>项目</th><th>值</th><th>说明</th></tr></thead><tbody></tbody></table></div>
-    <div class="card"><div class="head"><h3>网站状态 / Website Status</h3><span class="pill">HTTP</span></div><table id="siteTable"><thead><tr><th>站点</th><th>状态</th><th>URL</th></tr></thead><tbody></tbody></table></div>
+    <div class="card"><div class="head"><h3>系统健康 / System Health</h3><span class="pill">SERVER</span></div><table id="summaryTable"><thead><tr><th>项目 Item</th><th>值 Value</th><th>说明 Notes</th></tr></thead><tbody></tbody></table></div>
+    <div class="card"><div class="head"><h3>网站状态 / Website Status</h3><span class="pill">HTTP</span></div><table id="siteTable"><thead><tr><th>站点 Site</th><th>状态 Status</th><th>URL</th></tr></thead><tbody></tbody></table></div>
   </section>
   <section class="grid">
-    <div class="card"><div class="head"><h3>技能库 / Installed Skills</h3><span class="pill">SAFE</span></div><pre id="skills" class="mono"></pre></div>
-    <div class="card"><div class="head"><h3>模型与配置（脱敏）/ Model+Config</h3><span class="pill">REDACTED</span></div><pre id="config" class="mono"></pre></div>
+    <div class="card"><div class="head"><h3>技能库 Skills / Installed Skills</h3><span class="pill">SAFE</span></div><pre id="skills" class="mono"></pre></div>
+    <div class="card"><div class="head"><h3>模型与配置（脱敏） Model+Config (Redacted)</h3><span class="pill">REDACTED</span></div><pre id="config" class="mono"></pre></div>
   </section>
   <section class="grid">
-    <div class="card"><div class="head"><h3>工作区统计 / Workspace Stats</h3><span class="pill">FILES</span></div><table id="wsTable"><thead><tr><th>项</th><th>值</th></tr></thead><tbody></tbody></table></div>
-    <div class="card"><div class="head"><h3>最近提交 / Recent Commits</h3><span class="pill">GIT</span></div><pre id="commits" class="mono"></pre></div>
+    <div class="card"><div class="head"><h3>工作区统计 Workspace Stats</h3><span class="pill">FILES</span></div><table id="wsTable"><thead><tr><th>项 Item</th><th>值 Value</th></tr></thead><tbody></tbody></table></div>
+    <div class="card"><div class="head"><h3>最近提交 Recent Commits</h3><span class="pill">GIT</span></div><pre id="commits" class="mono"></pre></div>
   </section>
 </main>
 <script>
@@ -61,18 +61,18 @@ async function load(){
   const provider=(c.usage?.providers||[])[0]||{}; const wins=provider.windows||[];
   const w5=wins[0]?.usedPercent, day=wins[1]?.usedPercent;
   const mem=c.system?.memory||{}, disk=c.system?.diskRoot||{}, loadv=c.system?.load||{};
-  const kpis=[['模型 / Model',c.identity?.model||'-'],['5h已用',w5!=null?`${w5}%`:'-'],['Day已用',day!=null?`${day}%`:'-'],['Gateway',c.openclaw?.gatewayOk?'OK':'ERR'],['RAM',mem.usedPct!=null?`${mem.usedPct}%`:'-'],['Disk',disk.usedPct||'-']];
+  const kpis=[['模型 Model',c.identity?.model||'-'],['5h已用 5h Used',w5!=null?`${w5}%`:'-'],['Day已用 Day Used',day!=null?`${day}%`:'-'],['网关 Gateway',c.openclaw?.gatewayOk?'OK':'ERR'],['内存 RAM',mem.usedPct!=null?`${mem.usedPct}%`:'-'],['磁盘 Disk',disk.usedPct||'-']];
   document.getElementById('kpis').innerHTML=kpis.map(([k,v])=>`<div class='kpi'><div class='k'>${k}</div><div class='v'>${v}</div></div>`).join('');
   document.querySelector('#cronTable tbody').innerHTML=(c.openclaw?.cronJobs||[]).map(j=>`<tr><td>${j.name}</td><td class='${clsStatus(j.status)}'>${j.status||'idle'}</td><td>${j.errors??0}</td><td>${fmtTs(j.next)}</td></tr>`).join('');
   document.querySelector('#histTable tbody').innerHTML=(h.slice(-20).reverse()).map(r=>`<tr><td>${new Date(r.generatedAt).toLocaleString()}</td><td>${r.w5??'-'}</td><td>${r.day??'-'}</td><td class='${r.gatewayOk?'ok':'bad'}'>${r.gatewayOk?'OK':'ERR'}</td></tr>`).join('');
-  const summary=[['Provider',c.identity?.provider||'-','模型提供方'],['Plan',c.usageQuick?.plan||'-','套餐信息'],['Uptime',c.system?.uptime||'-','系统运行时长'],['Load',`${loadv['1m']||'-'} / ${loadv['5m']||'-'} / ${loadv['15m']||'-'}`,'系统负载'],['RAM MB',`${mem.usedMB||'-'} / ${mem.totalMB||'-'}`,'内存占用'],['Disk /',`${disk.used||'-'} / ${disk.size||'-'}`,'磁盘占用'],['Agent Count',String(c.openclaw?.agentCount??'-'),'Agent数量'],['Memory Search',c.openclaw?.memoryReady?'READY':'NOT READY','语义检索状态']];
+  const summary=[['服务商 Provider',c.identity?.provider||'-','模型提供方'],['套餐 Plan',c.usageQuick?.plan||'-','套餐信息'],['运行时长 Uptime',c.system?.uptime||'-','系统运行时长'],['负载 Load',`${loadv['1m']||'-'} / ${loadv['5m']||'-'} / ${loadv['15m']||'-'}`,'系统负载'],['内存 MB RAM',`${mem.usedMB||'-'} / ${mem.totalMB||'-'}`,'内存占用'],['磁盘 / Disk',`${disk.used||'-'} / ${disk.size||'-'}`,'磁盘占用'],['Agent数量 Agent Count',String(c.openclaw?.agentCount??'-'),'Agent数量'],['语义检索 Memory Search',c.openclaw?.memoryReady?'READY':'NOT READY','语义检索状态']];
   document.querySelector('#summaryTable tbody').innerHTML=summary.map(s=>`<tr><td>${s[0]}</td><td>${s[1]}</td><td>${s[2]}</td></tr>`).join('');
   const sites=c.websites?.urls||{}, codes=c.websites?.httpStatus||{};
   document.querySelector('#siteTable tbody').innerHTML=Object.keys(sites).map(k=>`<tr><td>${k}</td><td>${codeStatus(codes[k])}</td><td class='mono'><a href='${sites[k]}' target='_blank'>${sites[k]}</a></td></tr>`).join('');
   document.getElementById('skills').textContent=c.openclaw?.skills||'暂无';
   document.getElementById('config').textContent=JSON.stringify(c.openclaw?.safeConfig||{},null,2).slice(0,7000);
   const fs=c.workspace?.fileStats||{};
-  document.querySelector('#wsTable tbody').innerHTML=[['总文件',fs.totalFiles],['Markdown',fs.markdownFiles],['Python',fs.pythonFiles],['HTML',fs.htmlFiles]].map(r=>`<tr><td>${r[0]}</td><td>${r[1]??'-'}</td></tr>`).join('');
+  document.querySelector('#wsTable tbody').innerHTML=[['总文件 Total',fs.totalFiles],['Markdown 文档',fs.markdownFiles],['Python 文件',fs.pythonFiles],['HTML 文件',fs.htmlFiles]].map(r=>`<tr><td>${r[0]}</td><td>${r[1]??'-'}</td></tr>`).join('');
   document.getElementById('commits').textContent=`[workspace]\n${c.workspace?.recentCommitsMain||''}\n\n[crysttao-site]\n${c.workspace?.recentCommitsCrysttao||''}\n\n[observatory]\n${c.workspace?.recentCommitsObservatory||''}`;
 }
 load(); setInterval(load,30000);
