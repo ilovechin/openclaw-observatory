@@ -93,6 +93,15 @@ def recent_commits(path):
     return run(f"cd {path} && git log --oneline -n 5", '')
 
 
+def cron_recent_runs(job_id, limit=2):
+    out = run_json(f"openclaw cron runs --id {job_id} --limit {limit}", {})
+    return out.get("entries", []) if isinstance(out, dict) else []
+
+
+def workspace_tree(depth=3):
+    return run(f"cd /root/.openclaw/workspace && find . -maxdepth {depth} | sort", "")
+
+
 def main():
     now = datetime.datetime.utcnow().isoformat() + 'Z'
     status = run_json('openclaw status --usage --json', {})
@@ -177,7 +186,20 @@ def main():
             'identity': read_safe_text('/root/.openclaw/workspace/IDENTITY.md', 2000),
             'userProfile': read_safe_text('/root/.openclaw/workspace/USER.md', 3000)
         },
-        'websites': {'urls': websites, 'httpStatus': {k: ping_url(v) for k, v in websites.items()}}
+        'websites': {'urls': websites, 'httpStatus': {k: ping_url(v) for k, v in websites.items()}},
+        'raw': {
+            'statusUsageJson': status,
+            'memoryStatusText': run('openclaw memory status', ''),
+            'cronListJson': cron,
+            'doctorText': run('openclaw doctor', ''),
+            'healthText': run('openclaw health', ''),
+            'gatewayStatusText': run('openclaw gateway status', ''),
+            'sessionsText': run('openclaw sessions', ''),
+            'pluginsWarnings': run("openclaw status --usage --json 2>&1 | grep -i '\[plugins\]'", ''),
+            'workspaceTree': workspace_tree(3),
+            'modelConfigRaw': ((cfg.get('agents') or {}).get('defaults') or {}).get('model'),
+            'cronRecentRuns': {j.get('name','unknown'): cron_recent_runs(j.get('id'), 2) for j in cron.get('jobs', []) if j.get('id')}
+        }
     }
 
     os.makedirs(BASE + '/data', exist_ok=True)

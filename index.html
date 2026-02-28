@@ -64,6 +64,19 @@
     <div class="card"><div class="head"><h3>会话策略 / Session Policy</h3><span class="pill">TTL + IDLE</span></div><pre id="sessionPolicy" class="mono"></pre></div>
   </section>
 
+
+  <section class="card full">
+    <div class="head"><h3>全量原始明细 / Full Raw Details</h3><span class="pill">EVERY PUBLIC DETAIL</span></div>
+    <div class="grid" style="margin:0;padding:12px">
+      <div class="card"><div class="head"><h3>Status Usage JSON</h3></div><pre id="rawStatus" class="mono"></pre></div>
+      <div class="card"><div class="head"><h3>Cron List JSON</h3></div><pre id="rawCron" class="mono"></pre></div>
+      <div class="card"><div class="head"><h3>Cron Recent Runs</h3></div><pre id="rawRuns" class="mono"></pre></div>
+      <div class="card"><div class="head"><h3>Memory Status</h3></div><pre id="rawMem" class="mono"></pre></div>
+      <div class="card"><div class="head"><h3>Doctor / Health / Gateway</h3></div><pre id="rawDiag" class="mono"></pre></div>
+      <div class="card"><div class="head"><h3>Sessions + Workspace Tree</h3></div><pre id="rawWs" class="mono"></pre></div>
+    </div>
+  </section>
+
 </main>
 <script>
 function fmtTs(v){ if(!v) return '-'; const n=Number(v); return Number.isNaN(n)?String(v):new Date(n).toLocaleString(); }
@@ -91,6 +104,25 @@ async function load(){
   document.getElementById('commits').textContent=`[workspace]\n${c.workspace?.recentCommitsMain||''}\n\n[crysttao-site]\n${c.workspace?.recentCommitsCrysttao||''}\n\n[observatory]\n${c.workspace?.recentCommitsObservatory||''}`;
   document.getElementById('modelLib').textContent = JSON.stringify(c.openclaw?.modelLibrary||{}, null, 2);
   document.getElementById('sessionPolicy').textContent = JSON.stringify(c.openclaw?.sessionPolicy||{}, null, 2);
+
+  document.getElementById('rawStatus').textContent = JSON.stringify(c.raw?.statusUsageJson||{}, null, 2).slice(0,12000);
+  document.getElementById('rawCron').textContent = JSON.stringify(c.raw?.cronListJson||{}, null, 2).slice(0,12000);
+  document.getElementById('rawRuns').textContent = JSON.stringify(c.raw?.cronRecentRuns||{}, null, 2).slice(0,12000);
+  document.getElementById('rawMem').textContent = (c.raw?.memoryStatusText||'').slice(0,12000);
+  document.getElementById('rawDiag').textContent = `=== doctor ===
+${(c.raw?.doctorText||'').slice(0,3500)}
+
+=== health ===
+${(c.raw?.healthText||'').slice(0,2500)}
+
+=== gateway ===
+${(c.raw?.gatewayStatusText||'').slice(0,2500)}`;
+  document.getElementById('rawWs').textContent = `=== sessions ===
+${(c.raw?.sessionsText||'').slice(0,3500)}
+
+=== workspace tree ===
+${(c.raw?.workspaceTree||'').slice(0,7000)}`;
+
 
   document.getElementById('soul').textContent = c.persona?.soul || '暂无';
   document.getElementById('profile').textContent = `=== IDENTITY.md ===
