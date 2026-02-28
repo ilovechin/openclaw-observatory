@@ -26,7 +26,9 @@
     .full{margin-top:14px} pre{margin:0;padding:12px;max-height:280px;overflow:auto;background:rgba(6,13,32,.6);border-top:1px solid #203562;color:#d7e4ff;font-size:12px}
     .mono{font-family:ui-monospace,Menlo,Consolas,monospace}
     @media(max-width:1200px){.kpi-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.grid{grid-template-columns:1fr}}
-    @media(max-width:760px){.kpi-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.title{font-size:26px}}
+    @media(max-width:760px){.kpi-grid{grid-template-columns:1fr 1fr}.title{font-size:24px}.wrap{padding:12px}.head h3{font-size:14px}th,td{font-size:12px;padding:8px}.v{font-size:20px}}
+/* mobile-ux */
+@media(max-width:520px){.kpi-grid{grid-template-columns:1fr}.btn{padding:6px 8px;font-size:11px}.bar{align-items:flex-start}.title{font-size:21px}.sub{font-size:12px}}
   </style>
 </head>
 <body>
@@ -95,6 +97,26 @@
     </div>
   </section>
 
+
+  <section class="card full">
+    <div class="head"><h3>API Token 可视化中心 / API Token Visual Center</h3><span class="pill">REALTIME + TREND</span></div>
+    <div class="grid" style="margin:0;padding:12px;grid-template-columns:1fr 1fr">
+      <div class="card"><div class="head"><h3>实时用量 / Live Usage</h3></div>
+        <div style="padding:12px">
+          <div class="sub">5小时窗口 / 5h window</div>
+          <div style="background:#0a1532;border:1px solid #29427d;border-radius:999px;height:14px;overflow:hidden"><div id="bar5" style="height:100%;width:0;background:linear-gradient(90deg,#63d7ff,#5ae5a8)"></div></div>
+          <div id="txt5" class="mono" style="margin-top:6px">-</div>
+          <div class="sub" style="margin-top:10px">当日窗口 / Day window</div>
+          <div style="background:#0a1532;border:1px solid #29427d;border-radius:999px;height:14px;overflow:hidden"><div id="barDay" style="height:100%;width:0;background:linear-gradient(90deg,#ffc76a,#ff7d88)"></div></div>
+          <div id="txtDay" class="mono" style="margin-top:6px">-</div>
+        </div>
+      </div>
+      <div class="card"><div class="head"><h3>趋势曲线 / Trend</h3></div>
+        <div style="padding:12px"><canvas id="tokenTrend" width="600" height="220" style="width:100%;height:auto;background:#0a132e;border:1px solid #243e75;border-radius:8px"></canvas></div>
+      </div>
+    </div>
+  </section>
+
 </main>
 <script>
 function fmtTs(v){ if(!v) return '-'; const n=Number(v); return Number.isNaN(n)?String(v):new Date(n).toLocaleString(); }
@@ -148,6 +170,22 @@ function drawPixelAgents(cronJobs){
 }
 
 
+
+function drawTrend(hist){
+  const c=document.getElementById('tokenTrend'); if(!c) return; const ctx=c.getContext('2d');
+  const W=c.width,H=c.height; ctx.clearRect(0,0,W,H);
+  ctx.fillStyle='rgba(120,150,220,.08)';
+  for(let x=0;x<W;x+=40) ctx.fillRect(x,0,1,H);
+  for(let y=0;y<H;y+=40) ctx.fillRect(0,y,W,1);
+  const arr=(hist||[]).slice(-48);
+  const vals=arr.map(x=>Number(x.day||0));
+  const max=Math.max(10,...vals);
+  ctx.strokeStyle='#63d7ff'; ctx.lineWidth=2; ctx.beginPath();
+  vals.forEach((v,i)=>{ const x=20 + i*( (W-40)/Math.max(1,vals.length-1)); const y=H-20-(v/max)*(H-40); if(i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y); });
+  ctx.stroke();
+  ctx.fillStyle='#9eb3e4'; ctx.font='12px Inter'; ctx.fillText('Day % 趋势',12,16);
+}
+
 async function load(){
   const c=await fetch('./data/current.json?t='+Date.now()).then(r=>r.json());
   const h=await fetch('./data/history.json?t='+Date.now()).then(r=>r.json()).catch(()=>[]);
@@ -161,6 +199,16 @@ async function load(){
   document.querySelector('#cronTable tbody').innerHTML=cronJobs.map(j=>`<tr><td>${j.name}</td><td class='${clsStatus(j.status)}'>${j.status||'idle'}</td><td>${j.errors??0}</td><td>${fmtTs(j.next)}</td></tr>`).join('');
   drawPixelAgents(cronJobs);
   document.querySelector('#histTable tbody').innerHTML=(h.slice(-20).reverse()).map(r=>`<tr><td>${new Date(r.generatedAt).toLocaleString()}</td><td>${r.w5??'-'}</td><td>${r.day??'-'}</td><td class='${r.gatewayOk?'ok':'bad'}'>${r.gatewayOk?'OK':'ERR'}</td></tr>`).join('');
+
+  const p5 = Number(w5||0), pd = Number(day||0);
+  const bar5=document.getElementById('bar5'), barDay=document.getElementById('barDay');
+  if(bar5) bar5.style.width = Math.max(0,Math.min(100,p5))+'%';
+  if(barDay) barDay.style.width = Math.max(0,Math.min(100,pd))+'%';
+  const t5=document.getElementById('txt5'), td=document.getElementById('txtDay');
+  if(t5) t5.textContent = `5h 已用: ${p5||0}%`;
+  if(td) td.textContent = `Day 已用: ${pd||0}%`;
+  drawTrend(h);
+
   const summary=[['服务商 Provider',c.identity?.provider||'-','模型提供方'],['套餐 Plan',c.usageQuick?.plan||'-','套餐信息'],['运行时长 Uptime',c.system?.uptime||'-','系统运行时长'],['负载 Load',`${loadv['1m']||'-'} / ${loadv['5m']||'-'} / ${loadv['15m']||'-'}`,'系统负载'],['内存 MB RAM',`${mem.usedMB||'-'} / ${mem.totalMB||'-'}`,'内存占用'],['磁盘 / Disk',`${disk.used||'-'} / ${disk.size||'-'}`,'磁盘占用'],['Agent数量 Agent Count',String(c.openclaw?.agentCount??'-'),'Agent数量'],['语义检索 Memory Search',c.openclaw?.memoryReady?'READY':'NOT READY','语义检索状态']];
   document.querySelector('#summaryTable tbody').innerHTML=summary.map(s=>`<tr><td>${s[0]}</td><td>${s[1]}</td><td>${s[2]}</td></tr>`).join('');
   const sites=c.websites?.urls||{}, codes=c.websites?.httpStatus||{};
