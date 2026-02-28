@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-02-28T10:10:36.682907Z",
+  "generatedAt": "2026-02-28T10:11:51.888857Z",
   "identity": {
     "name": "锦的虾🦐",
     "model": "openai-codex/gpt-5.3-codex",
     "provider": "openai-codex"
   },
   "usage": {
-    "updatedAt": 1772273441948,
+    "updatedAt": 1772273517167,
     "providers": [
       {
         "provider": "openai-codex",
@@ -14,7 +14,7 @@
         "windows": [
           {
             "label": "5h",
-            "usedPercent": 25,
+            "usedPercent": 26,
             "resetAt": 1772276999000
           },
           {
@@ -28,23 +28,23 @@
     ]
   },
   "usageQuick": {
-    "fiveHourUsedPct": 25,
+    "fiveHourUsedPct": 26,
     "dayUsedPct": 29,
     "plan": "plus ($0.00)"
   },
   "system": {
-    "uptime": "up 21 hours, 56 minutes",
+    "uptime": "up 21 hours, 57 minutes",
     "load": {
-      "1m": "0.15",
-      "5m": "0.11",
-      "15m": "0.13"
+      "1m": "0.76",
+      "5m": "0.26",
+      "15m": "0.18"
     },
     "memory": {
       "totalMB": 3655,
-      "usedMB": 1429,
-      "freeMB": 710,
-      "availableMB": 2226,
-      "usedPct": 39.1
+      "usedMB": 1424,
+      "freeMB": 715,
+      "availableMB": 2231,
+      "usedPct": 39.0
     },
     "diskRoot": {
       "size": "60G",
@@ -67,14 +67,9 @@
         "id": "9f1f6c80-8420-48af-a5b3-4e8fbf2341be",
         "name": "observability-snapshot-publish",
         "status": "ok",
-        "next": 1772273432166,
-        "last": 1772272832166,
-        "errors": 0,
-        "schedule": {
-          "kind": "every",
-          "everyMs": 600000,
-          "anchorMs": 1772272232159
-        }
+        "next": 1772274032174,
+        "last": 1772273432174,
+        "errors": 0
       },
       {
         "id": "f32169f4-efc8-44aa-a9ad-b30196370b7d",
@@ -82,12 +77,7 @@
         "status": "idle",
         "next": 1772274600000,
         "last": null,
-        "errors": 0,
-        "schedule": {
-          "kind": "cron",
-          "expr": "30 18 * * *",
-          "tz": "Asia/Shanghai"
-        }
+        "errors": 0
       },
       {
         "id": "841177e9-ae9a-4c91-a7a7-5d6b9f205253",
@@ -95,12 +85,7 @@
         "status": "idle",
         "next": 1772276400000,
         "last": null,
-        "errors": 0,
-        "schedule": {
-          "kind": "cron",
-          "expr": "0 19 * * *",
-          "tz": "Asia/Shanghai"
-        }
+        "errors": 0
       },
       {
         "id": "e3adb635-19c7-48a0-8ef5-538f94915ba0",
@@ -108,12 +93,7 @@
         "status": "ok",
         "next": 1772284641831,
         "last": 1772255841831,
-        "errors": 0,
-        "schedule": {
-          "kind": "every",
-          "everyMs": 28800000,
-          "anchorMs": 1772257813531
-        }
+        "errors": 0
       },
       {
         "id": "df44566f-fdf2-4732-a2c4-be5eea701a3a",
@@ -121,12 +101,7 @@
         "status": "idle",
         "next": 1772286600000,
         "last": null,
-        "errors": 0,
-        "schedule": {
-          "kind": "cron",
-          "expr": "50 21 * * *",
-          "tz": "Asia/Shanghai"
-        }
+        "errors": 0
       },
       {
         "id": "d8fe865c-5be6-4b07-bc71-d4df072c4651",
@@ -134,12 +109,7 @@
         "status": "idle",
         "next": 1772289000000,
         "last": null,
-        "errors": 0,
-        "schedule": {
-          "kind": "cron",
-          "expr": "30 22 * * *",
-          "tz": "Asia/Shanghai"
-        }
+        "errors": 0
       },
       {
         "id": "311af66b-fe1c-400e-b95c-4cade9b704e5",
@@ -147,12 +117,7 @@
         "status": "idle",
         "next": 1772290769200,
         "last": null,
-        "errors": 0,
-        "schedule": {
-          "kind": "every",
-          "everyMs": 28800000,
-          "anchorMs": 1772261969200
-        }
+        "errors": 0
       },
       {
         "id": "7563043b-f453-4516-9909-3768d75eb44d",
@@ -160,12 +125,7 @@
         "status": "idle",
         "next": 1772366400000,
         "last": null,
-        "errors": 0,
-        "schedule": {
-          "kind": "cron",
-          "expr": "0 20 * * 0",
-          "tz": "Asia/Shanghai"
-        }
+        "errors": 0
       },
       {
         "id": "ecf1af51-ca94-47ab-bdd3-d94427e572b3",
@@ -173,12 +133,7 @@
         "status": "idle",
         "next": 1772366400000,
         "last": null,
-        "errors": 0,
-        "schedule": {
-          "kind": "cron",
-          "expr": "0 20 1 * *",
-          "tz": "Asia/Shanghai"
-        }
+        "errors": 0
       },
       {
         "id": "7b8ce2fa-d948-4c0f-bf0f-65d402ee861e",
@@ -186,12 +141,7 @@
         "status": "idle",
         "next": 1772373600000,
         "last": null,
-        "errors": 0,
-        "schedule": {
-          "kind": "cron",
-          "expr": "0 22 * * 0",
-          "tz": "Asia/Shanghai"
-        }
+        "errors": 0
       },
       {
         "id": "a765087f-ddb2-4c2f-bfef-a4156baef349",
@@ -199,12 +149,7 @@
         "status": "idle",
         "next": 1772374500000,
         "last": null,
-        "errors": 0,
-        "schedule": {
-          "kind": "cron",
-          "expr": "15 22 * * 0",
-          "tz": "Asia/Shanghai"
-        }
+        "errors": 0
       },
       {
         "id": "1cfbdedc-1274-4982-9b99-fc3a4e4262ea",
@@ -212,12 +157,7 @@
         "status": "idle",
         "next": 1772412600000,
         "last": null,
-        "errors": 0,
-        "schedule": {
-          "kind": "cron",
-          "expr": "50 8 * * 1-5",
-          "tz": "Asia/Shanghai"
-        }
+        "errors": 0
       }
     ],
     "channelSummary": [
@@ -227,7 +167,116 @@
       "WeCom: not configured",
       "ADP OpenClaw: not configured",
       "DingTalk: disabled"
-    ]
+    ],
+    "safeConfig": {
+      "meta": {
+        "lastTouchedVersion": "2026.2.26",
+        "lastTouchedAt": "2026-02-28T06:10:03.252Z"
+      },
+      "wizard": {
+        "lastRunAt": "2026-02-27T07:51:14.712Z",
+        "lastRunVersion": "2026.2.26",
+        "lastRunCommand": "configure",
+        "lastRunMode": "local"
+      },
+      "auth": {
+        "profiles": {
+          "openai-codex:default": {
+            "provider": "openai-codex",
+            "mode": "oauth"
+          }
+        }
+      },
+      "agents": {
+        "defaults": {
+          "model": {
+            "primary": "openai-codex/gpt-5.3-codex",
+            "fallbacks": [
+              "openai/gpt-5.3-codex"
+            ]
+          },
+          "models": {
+            "openai-codex/gpt-5.3-codex": {},
+            "openai/gpt-5.3-codex": {}
+          },
+          "memorySearch": {
+            "enabled": true,
+            "provider": "local"
+          },
+          "compaction": {
+            "mode": "safeguard"
+          },
+          "maxConcurrent": 4,
+          "subagents": {
+            "maxConcurrent": 8
+          }
+        },
+        "list": [
+          {
+            "id": "main"
+          },
+          {
+            "id": "mira",
+            "name": "mira",
+            "workspace": "/root/.openclaw/workspace",
+            "agentDir": "/root/.openclaw/agents/mira/agent",
+            "model": "openai-codex/gpt-5.3-codex"
+          }
+        ]
+      },
+      "messages": {
+        "ackReactionScope": "group-mentions"
+      },
+      "commands": {
+        "native": "auto",
+        "nativeSkills": "auto",
+        "restart": true,
+        "ownerDisplay": "raw"
+      },
+      "channels": {
+        "telegram": {
+          "enabled": true,
+          "dmPolicy": "pairing",
+          "botToken": "***REDACTED***",
+          "groupPolicy": "allowlist",
+          "streaming": "off"
+        }
+      },
+      "gateway": {
+        "mode": "local",
+        "auth": {
+          "mode": "token",
+          "token": "***REDACTED***"
+        }
+      },
+      "plugins": {
+        "allow": [
+          "telegram",
+          "adp-openclaw",
+          "camofox-browser",
+          "ddingtalk",
+          "qqbot",
+          "wecom"
+        ],
+        "entries": {
+          "telegram": {
+            "enabled": true
+          }
+        }
+      }
+    },
+    "skills": "tavily-search  1.0.0\nsummarize  1.0.0\nagent-browser  0.2.0\nfind-skills  0.1.0\ngithub  1.0.0\nobsidian  1.0.0\nnotion  1.0.0\nweather  1.0.0\nmodel-healthcheck  1.0.0\nontology  0.1.2\nself-improving-agent  1.0.11"
+  },
+  "workspace": {
+    "fileStats": {
+      "totalFiles": 11626,
+      "markdownFiles": 57,
+      "pythonFiles": 7,
+      "htmlFiles": 7
+    },
+    "recentCommitsMain": "2e8c44e Add private L3 dashboard with password+TOTP two-factor auth\n071469f Add auto-evolution state machine + data dictionary + ontology snapshot and initialize memory tiers\na6f126e Complete self-evolution framework: memory tiers, regression guard, and workflow templates\nd6c38aa Add running rules doc for monitoring, repair levels, watchdog, and memory setup\ncec98a3 Add low-token polymarket arbitrage watcher for paper trading",
+    "recentCommitsCrysttao": "d25be86 Art-direction pass: premium typography, spacing, and curated high-end imagery\nc8e2b46 Final polish: active nav, reveal animations, and unified interaction details\n14c0347 Polish UI details: navigation underline, hover motion, luxury card styling\n48e93f2 Integrate all provided materials (DOCX/PPT/XLSM) into multi-page CrystTao site\n60c10b9 Apply all provided material images and copy across multi-page site",
+    "recentCommitsObservatory": "4617cdd chore: snapshot 2026-02-28T10:10:48Z\ned26aff chore: snapshot 2026-02-28T10:00:48Z\n261b0d5 Build top-tier bilingual observability cockpit: full system+openclaw telemetry\n2023874 chore: snapshot 2026-02-28T09:56:42Z\nc0f89b0 Restyle dashboard to premium dark quant-panel aesthetic"
   },
   "websites": {
     "urls": {
