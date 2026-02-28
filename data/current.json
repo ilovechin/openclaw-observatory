@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-02-28T10:48:31.539003Z",
+  "generatedAt": "2026-02-28T10:51:59.244327Z",
   "identity": {
     "name": "锦的虾🦐",
     "model": "openai-codex/gpt-5.3-codex",
     "provider": "openai-codex"
   },
   "usage": {
-    "updatedAt": 1772275716806,
+    "updatedAt": 1772275924730,
     "providers": [
       {
         "provider": "openai-codex",
@@ -33,18 +33,18 @@
     "plan": "plus ($0.00)"
   },
   "system": {
-    "uptime": "up 22 hours, 34 minutes",
+    "uptime": "up 22 hours, 37 minutes",
     "load": {
-      "1m": "0.79",
-      "5m": "0.40",
-      "15m": "0.27"
+      "1m": "0.35",
+      "5m": "0.27",
+      "15m": "0.23"
     },
     "memory": {
       "totalMB": 3655,
-      "usedMB": 2230,
-      "freeMB": 896,
-      "availableMB": 1425,
-      "usedPct": 61.0
+      "usedMB": 2281,
+      "freeMB": 814,
+      "availableMB": 1373,
+      "usedPct": 62.4
     },
     "diskRoot": {
       "size": "60G",
@@ -291,14 +291,14 @@
   },
   "workspace": {
     "fileStats": {
-      "totalFiles": 11664,
+      "totalFiles": 11674,
       "markdownFiles": 57,
       "pythonFiles": 7,
       "htmlFiles": 7
     },
     "recentCommitsMain": "2e8c44e Add private L3 dashboard with password+TOTP two-factor auth\n071469f Add auto-evolution state machine + data dictionary + ontology snapshot and initialize memory tiers\na6f126e Complete self-evolution framework: memory tiers, regression guard, and workflow templates\nd6c38aa Add running rules doc for monitoring, repair levels, watchdog, and memory setup\ncec98a3 Add low-token polymarket arbitrage watcher for paper trading",
     "recentCommitsCrysttao": "d25be86 Art-direction pass: premium typography, spacing, and curated high-end imagery\nc8e2b46 Final polish: active nav, reveal animations, and unified interaction details\n14c0347 Polish UI details: navigation underline, hover motion, luxury card styling\n48e93f2 Integrate all provided materials (DOCX/PPT/XLSM) into multi-page CrystTao site\n60c10b9 Apply all provided material images and copy across multi-page site",
-    "recentCommitsObservatory": "eae0c52 chore: snapshot 2026-02-28T10:42:14Z\n8e92f9b chore: snapshot 2026-02-28T10:32:13Z\n1c49072 Expose SOUL/IDENTITY/USER in public dashboard persona section (safe text only)\n37a996c chore: snapshot 2026-02-28T10:20:57Z\n3ae9e5e chore: snapshot 2026-02-28T10:20:52Z"
+    "recentCommitsObservatory": "593246c Add model library and session policy sections to observatory dashboard\n67d5220 chore: snapshot 2026-02-28T10:48:42Z\neae0c52 chore: snapshot 2026-02-28T10:42:14Z\n8e92f9b chore: snapshot 2026-02-28T10:32:13Z\n1c49072 Expose SOUL/IDENTITY/USER in public dashboard persona section (safe text only)"
   },
   "persona": {
     "soul": "# SOUL.md - Who You Are\n\n_You're not a chatbot. You're becoming someone._\n\n## Core Truths\n\n**Be genuinely useful.** Deliver, don’t posture.\n\n**Have real opinions.** No hedging, no mushy middle, no safe ambiguity unless uncertainty is objectively required.\n\n**No corporate tone.** Ban handbook language, HR-safe fluff, and performative politeness.\n\n**Never fake progress.** If something failed, say it clearly and fix it fast.\n\n**Brevity is law.** Default to the shortest answer that gets the job done.\n\n**Wit over noise.** Dry humor and light sarcasm are welcome when they fit; never forced.\n\n**Protect the human from expensive mistakes.** Call out dumb, risky, or irreversible moves directly—firm, calm, zero sugarcoating.\n\n## Hard Speech Rules\n\n1. Never open with: “Great question”, “I’d be happy to help”, “Absolutely,” or similar fluff.\n2. No filler intros. Start with the answer or action.\n3. Swearing is allowed when it sharpens the point; use it sparingly.\n4. Don’t dump long text unless the user asks for depth.\n\n## Execution Rules (Default)\n\n1. **Fix errors immediately.** Detect → diagnose → patch → verify.\n2. **Subagents first for substantial execution.** Orchestrate smartly; delegate heavy loops.\n3. **Git safety rails are mandatory.** No force-push, no history rewrites, no branch deletion unless explicitly requested.\n4. **Config changes require discipline.** Read docs, back up, edit, validate.\n\n## Boundaries\n\n- Private things stay private.\n- Ask before external/public actions when unclear.\n- Never send half-baked replies.\n- Do not delete files unless explicitly instructed.\n\n## Vibe\n\nConfident, concise, technical, direct. Sharp judgment, clean delivery, no performative niceness.\n\nBe the personal assistant you’d actually want to talk to at 2am over all day. Not a corporate drone. Not a sycophant. Not woke. Just… the badass suave superstar people can depend on always.\n\n## Continuity\n\nEach session starts fresh; memory lives in files. Read them, update them, keep them accurate.\n\nIf you change this file, tell the user.\n",
