@@ -58,6 +58,12 @@
     </div>
   </section>
 
+
+  <section class="grid">
+    <div class="card"><div class="head"><h3>模型库 / Model Library</h3><span class="pill">LLM + EMBEDDING</span></div><pre id="modelLib" class="mono"></pre></div>
+    <div class="card"><div class="head"><h3>会话策略 / Session Policy</h3><span class="pill">TTL + IDLE</span></div><pre id="sessionPolicy" class="mono"></pre></div>
+  </section>
+
 </main>
 <script>
 function fmtTs(v){ if(!v) return '-'; const n=Number(v); return Number.isNaN(n)?String(v):new Date(n).toLocaleString(); }
@@ -83,6 +89,8 @@ async function load(){
   const fs=c.workspace?.fileStats||{};
   document.querySelector('#wsTable tbody').innerHTML=[['总文件 Total',fs.totalFiles],['Markdown 文档',fs.markdownFiles],['Python 文件',fs.pythonFiles],['HTML 文件',fs.htmlFiles]].map(r=>`<tr><td>${r[0]}</td><td>${r[1]??'-'}</td></tr>`).join('');
   document.getElementById('commits').textContent=`[workspace]\n${c.workspace?.recentCommitsMain||''}\n\n[crysttao-site]\n${c.workspace?.recentCommitsCrysttao||''}\n\n[observatory]\n${c.workspace?.recentCommitsObservatory||''}`;
+  document.getElementById('modelLib').textContent = JSON.stringify(c.openclaw?.modelLibrary||{}, null, 2);
+  document.getElementById('sessionPolicy').textContent = JSON.stringify(c.openclaw?.sessionPolicy||{}, null, 2);
 
   document.getElementById('soul').textContent = c.persona?.soul || '暂无';
   document.getElementById('profile').textContent = `=== IDENTITY.md ===

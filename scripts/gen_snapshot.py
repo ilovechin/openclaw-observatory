@@ -158,7 +158,13 @@ def main():
             'cronJobs': cron_jobs,
             'channelSummary': status.get('channelSummary', []),
             'safeConfig': cfg,
-            'skills': skills
+            'skills': skills,
+            'modelLibrary': {
+                'primary': (((cfg.get('agents') or {}).get('defaults') or {}).get('model') or {}).get('primary') if isinstance(((cfg.get('agents') or {}).get('defaults') or {}).get('model'), dict) else ((cfg.get('agents') or {}).get('defaults') or {}).get('model'),
+                'fallbacks': (((cfg.get('agents') or {}).get('defaults') or {}).get('model') or {}).get('fallbacks', []) if isinstance(((cfg.get('agents') or {}).get('defaults') or {}).get('model'), dict) else [],
+                'registeredModels': list((((cfg.get('agents') or {}).get('defaults') or {}).get('models') or {}).keys())
+            },
+            'sessionPolicy': (cfg.get('session') or {})
         },
         'workspace': {
             'fileStats': file_stats(),
