@@ -14,10 +14,10 @@
     .title{font-size:34px;font-weight:800}.sub{font-size:13px;color:var(--muted)}
     .btn{display:inline-block;border:1px solid #3858a6;background:#11224e;color:#dff0ff;padding:8px 12px;border-radius:10px;font-size:12px;text-decoration:none}
     .kpi-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px;margin-top:14px}
-    .kpi{background:linear-gradient(165deg,#122558,#0d1a3f);border:1px solid #2b437f;border-radius:12px;padding:12px 14px}
+    .kpi{background:linear-gradient(165deg,#122558,#0d1a3f);border:1px solid #2b437f;border-radius:12px;padding:12px 14px;box-shadow:0 8px 24px rgba(0,0,0,.28), inset 0 0 0 1px rgba(120,170,255,.08)}
     .k{font-size:12px;color:#9eb6e8}.v{margin-top:6px;font-size:24px;font-weight:800}
     .grid{display:grid;grid-template-columns:1.3fr 1fr;gap:14px;margin-top:14px}
-    .card{background:linear-gradient(168deg,#11234f,#0b1634);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+    .card{background:linear-gradient(168deg,#11234f,#0b1634);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.25)}
     .head{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;border-bottom:1px solid #263d73;background:linear-gradient(90deg,rgba(103,200,255,.10),rgba(255,125,136,.08))}
     .head h3{margin:0;font-size:16px}.pill{font-size:11px;border:1px solid #395ca6;padding:3px 8px;border-radius:999px;color:#cbe0ff}
     table{width:100%;border-collapse:collapse} th,td{padding:10px 12px;border-bottom:1px solid #1f325f;font-size:13px;text-align:left}
@@ -117,6 +117,16 @@
     </div>
   </section>
 
+
+  <section class="card full">
+    <div class="head"><h3>图形化总览 / Visual Analytics</h3><span class="pill">CHARTS</span></div>
+    <div class="grid" style="margin:0;padding:12px;grid-template-columns:1fr 1fr 1fr">
+      <div class="card"><div class="head"><h3>资源占比 / Resource Split</h3></div><div style="padding:10px"><canvas id="donutRes" width="360" height="240" style="width:100%;height:auto;background:#0a132e;border:1px solid #243e75;border-radius:8px"></canvas></div></div>
+      <div class="card"><div class="head"><h3>Cron状态 / Cron Status</h3></div><div style="padding:10px"><canvas id="barCron" width="360" height="240" style="width:100%;height:auto;background:#0a132e;border:1px solid #243e75;border-radius:8px"></canvas></div></div>
+      <div class="card"><div class="head"><h3>站点可用性 / Site Health</h3></div><div style="padding:10px"><canvas id="radarSite" width="360" height="240" style="width:100%;height:auto;background:#0a132e;border:1px solid #243e75;border-radius:8px"></canvas></div></div>
+    </div>
+  </section>
+
 </main>
 <script>
 function fmtTs(v){ if(!v) return '-'; const n=Number(v); return Number.isNaN(n)?String(v):new Date(n).toLocaleString(); }
@@ -171,6 +181,28 @@ function drawPixelAgents(cronJobs){
 
 
 
+
+function drawDonut(id, values, labels, colors){
+  const c=document.getElementById(id); if(!c) return; const ctx=c.getContext('2d');
+  const W=c.width,H=c.height,cx=W/2,cy=H/2,r=80,ir=45; ctx.clearRect(0,0,W,H);
+  const total=Math.max(1, values.reduce((a,b)=>a+b,0)); let a0=-Math.PI/2;
+  values.forEach((v,i)=>{ const a1=a0 + (v/total)*Math.PI*2; ctx.beginPath(); ctx.arc(cx,cy,r,a0,a1); ctx.arc(cx,cy,ir,a1,a0,true); ctx.closePath(); ctx.fillStyle=colors[i]; ctx.fill(); a0=a1;});
+  ctx.fillStyle='#dbe8ff'; ctx.font='bold 14px Inter'; ctx.textAlign='center'; ctx.fillText('资源',cx,cy-2); ctx.fillText('Resources',cx,cy+16);
+  ctx.textAlign='left'; labels.forEach((l,i)=>{ctx.fillStyle=colors[i]; ctx.fillRect(16,20+i*18,10,10); ctx.fillStyle='#9eb3e4'; ctx.font='12px Inter'; ctx.fillText(`${l}: ${values[i]}`,30,29+i*18);});
+}
+function drawBar(id, map){
+  const c=document.getElementById(id); if(!c) return; const ctx=c.getContext('2d'); const W=c.width,H=c.height; ctx.clearRect(0,0,W,H);
+  const keys=Object.keys(map), vals=keys.map(k=>map[k]); const max=Math.max(1,...vals);
+  keys.forEach((k,i)=>{ const x=40+i*90, h=(vals[i]/max)*130, y=180-h; ctx.fillStyle=(k==='ok'?'#51e3a8':k==='idle'?'#ffc76a':'#ff7d88'); ctx.fillRect(x,y,46,h); ctx.fillStyle='#dbe8ff'; ctx.font='12px Inter'; ctx.fillText(k,x,y-6); ctx.fillText(String(vals[i]),x+12,196); });
+}
+function drawRadar(id, vals){
+  const c=document.getElementById(id); if(!c) return; const ctx=c.getContext('2d'); const W=c.width,H=c.height,cx=W/2,cy=H/2,r=85; ctx.clearRect(0,0,W,H);
+  const labels=['个人站','CrystTao','监控站'];
+  for(let ring=1;ring<=4;ring++){ctx.beginPath(); for(let i=0;i<3;i++){const a=-Math.PI/2+i*2*Math.PI/3; const rr=r*ring/4; const x=cx+Math.cos(a)*rr, y=cy+Math.sin(a)*rr; if(i===0)ctx.moveTo(x,y); else ctx.lineTo(x,y);} ctx.closePath(); ctx.strokeStyle='rgba(130,170,255,.25)'; ctx.stroke();}
+  ctx.beginPath(); vals.forEach((v,i)=>{const a=-Math.PI/2+i*2*Math.PI/3; const rr=r*(v/100); const x=cx+Math.cos(a)*rr,y=cy+Math.sin(a)*rr; if(i===0)ctx.moveTo(x,y); else ctx.lineTo(x,y);}); ctx.closePath(); ctx.fillStyle='rgba(91,200,255,.25)'; ctx.fill(); ctx.strokeStyle='#67c8ff'; ctx.stroke();
+  labels.forEach((l,i)=>{const a=-Math.PI/2+i*2*Math.PI/3; const x=cx+Math.cos(a)*(r+16), y=cy+Math.sin(a)*(r+16); ctx.fillStyle='#9eb3e4'; ctx.font='12px Inter'; ctx.fillText(l,x-18,y);});
+}
+
 function drawTrend(hist){
   const c=document.getElementById('tokenTrend'); if(!c) return; const ctx=c.getContext('2d');
   const W=c.width,H=c.height; ctx.clearRect(0,0,W,H);
@@ -208,6 +240,17 @@ async function load(){
   if(t5) t5.textContent = `5h 已用: ${p5||0}%`;
   if(td) td.textContent = `Day 已用: ${pd||0}%`;
   drawTrend(h);
+
+  const memPct = Number(mem.usedPct||0), diskPct = Number(String(disk.usedPct||'0').replace('%',''))||0;
+  const tokenPct = Number(day||0);
+  drawDonut('donutRes',[memPct,diskPct,tokenPct],['内存RAM','磁盘Disk','Token Day'],['#67c8ff','#ffc76a','#ff7d88']);
+  const cronMap={ok:0,idle:0,error:0};
+  cronJobs.forEach(j=>{const st=(j.status||'idle').toLowerCase(); if(st==='ok') cronMap.ok++; else if(st==='idle') cronMap.idle++; else cronMap.error++;});
+  drawBar('barCron',cronMap);
+  const siteCodes=c.websites?.httpStatus||{};
+  const vals=['personal','crysttao','observatory'].map(k=>{const code=Number(siteCodes[k]||0); return (code>=200&&code<400)?100:(code?40:10)});
+  drawRadar('radarSite',vals);
+
 
   const summary=[['服务商 Provider',c.identity?.provider||'-','模型提供方'],['套餐 Plan',c.usageQuick?.plan||'-','套餐信息'],['运行时长 Uptime',c.system?.uptime||'-','系统运行时长'],['负载 Load',`${loadv['1m']||'-'} / ${loadv['5m']||'-'} / ${loadv['15m']||'-'}`,'系统负载'],['内存 MB RAM',`${mem.usedMB||'-'} / ${mem.totalMB||'-'}`,'内存占用'],['磁盘 / Disk',`${disk.used||'-'} / ${disk.size||'-'}`,'磁盘占用'],['Agent数量 Agent Count',String(c.openclaw?.agentCount??'-'),'Agent数量'],['语义检索 Memory Search',c.openclaw?.memoryReady?'READY':'NOT READY','语义检索状态']];
   document.querySelector('#summaryTable tbody').innerHTML=summary.map(s=>`<tr><td>${s[0]}</td><td>${s[1]}</td><td>${s[2]}</td></tr>`).join('');
