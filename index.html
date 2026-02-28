@@ -5,182 +5,76 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>锦的虾🦐 监控中枢 / Monitoring Command Center</title>
   <style>
-    :root{--bg:#060a16;--bg2:#101937;--panel:#0f1b3f;--line:#2a3f7a;--txt:#eef4ff;--muted:#9eb3e4;--ok:#51e3a8;--bad:#ff7d88;--warn:#ffc76a;--cyan:#67c8ff}
+    :root{--bg:#060a16;--bg2:#101937;--panel:#0f1b3f;--line:#2a3f7a;--txt:#eef4ff;--muted:#9eb3e4;--ok:#51e3a8;--bad:#ff7d88;--warn:#ffc76a}
     *{box-sizing:border-box} body{margin:0;font-family:Inter,"PingFang SC",Arial;color:var(--txt);
-      background:
-      radial-gradient(circle at 5% 0%,#1a2e63 0%,transparent 26%),
-      radial-gradient(circle at 95% 0%,#3c1f5d 0%,transparent 24%),
-      linear-gradient(180deg,var(--bg),var(--bg2));}
-    .wrap{max-width:1460px;margin:0 auto;padding:18px}
+      background:radial-gradient(circle at 5% 0%,#1a2e63 0%,transparent 26%),radial-gradient(circle at 95% 0%,#3c1f5d 0%,transparent 24%),linear-gradient(180deg,var(--bg),var(--bg2));}
+    .wrap{max-width:1500px;margin:0 auto;padding:18px}
     header{position:sticky;top:0;z-index:20;background:rgba(6,10,24,.78);backdrop-filter:blur(10px);border-bottom:1px solid #26407e}
     .bar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
-    .title{font-size:34px;font-weight:800;letter-spacing:.3px}
-    .sub{font-size:13px;color:var(--muted)}
+    .title{font-size:34px;font-weight:800}.sub{font-size:13px;color:var(--muted)}
     .btn{display:inline-block;border:1px solid #3858a6;background:#11224e;color:#dff0ff;padding:8px 12px;border-radius:10px;font-size:12px;text-decoration:none}
-
     .kpi-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px;margin-top:14px}
-    .kpi{background:linear-gradient(165deg,#122558,#0d1a3f);border:1px solid #2b437f;border-radius:12px;padding:12px 14px;box-shadow:0 0 0 1px rgba(103,200,255,.06) inset}
-    .k{font-size:12px;color:#9eb6e8}.v{margin-top:6px;font-size:25px;font-weight:800;line-height:1.15}
-
+    .kpi{background:linear-gradient(165deg,#122558,#0d1a3f);border:1px solid #2b437f;border-radius:12px;padding:12px 14px}
+    .k{font-size:12px;color:#9eb6e8}.v{margin-top:6px;font-size:24px;font-weight:800}
     .grid{display:grid;grid-template-columns:1.3fr 1fr;gap:14px;margin-top:14px}
     .card{background:linear-gradient(168deg,#11234f,#0b1634);border:1px solid var(--line);border-radius:14px;overflow:hidden}
     .head{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;border-bottom:1px solid #263d73;background:linear-gradient(90deg,rgba(103,200,255,.10),rgba(255,125,136,.08))}
     .head h3{margin:0;font-size:16px}.pill{font-size:11px;border:1px solid #395ca6;padding:3px 8px;border-radius:999px;color:#cbe0ff}
-
-    table{width:100%;border-collapse:collapse}
-    th,td{padding:10px 12px;border-bottom:1px solid #1f325f;font-size:13px;text-align:left}
-    th{color:#b2c8f6;background:rgba(17,37,81,.4)}
-    tr:hover td{background:rgba(42,74,144,.2)}
-
+    table{width:100%;border-collapse:collapse} th,td{padding:10px 12px;border-bottom:1px solid #1f325f;font-size:13px;text-align:left}
+    th{color:#b2c8f6;background:rgba(17,37,81,.4)} tr:hover td{background:rgba(42,74,144,.2)}
     .ok{color:var(--ok);font-weight:700}.bad{color:var(--bad);font-weight:700}.warn{color:var(--warn);font-weight:700}
-
-    .full{margin-top:14px}
-    .mono{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12px;color:#b5c6ef}
-    .tag{padding:2px 7px;border:1px solid #36579f;border-radius:999px;font-size:11px;color:#c9dbff}
-
-    @media (max-width:1200px){.kpi-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.grid{grid-template-columns:1fr}}
-    @media (max-width:760px){.kpi-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.title{font-size:26px}}
+    .full{margin-top:14px} pre{margin:0;padding:12px;max-height:280px;overflow:auto;background:rgba(6,13,32,.6);border-top:1px solid #203562;color:#d7e4ff;font-size:12px}
+    .mono{font-family:ui-monospace,Menlo,Consolas,monospace}
+    @media(max-width:1200px){.kpi-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.grid{grid-template-columns:1fr}}
+    @media(max-width:760px){.kpi-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.title{font-size:26px}}
   </style>
 </head>
 <body>
-<header>
-  <div class="wrap bar">
-    <div>
-      <div class="title">锦的虾🦐 监控中枢</div>
-      <div class="sub">全量可观测面板（中文主 / English helper） · 更新时间：<span id="ts">-</span></div>
-    </div>
-    <div>
-      <a class="btn" href="./data/current.json" target="_blank">原始数据 JSON / Raw</a>
-      <a class="btn" href="https://ilovechin.github.io/" target="_blank">个人站</a>
-      <a class="btn" href="https://ilovechin.github.io/crysttao-site/" target="_blank">CrystTao 站</a>
-    </div>
-  </div>
-</header>
-
+<header><div class="wrap bar"><div><div class="title">锦的虾🦐 监控中枢</div><div class="sub">公网公开版（敏感字段自动脱敏） · 更新时间：<span id="ts">-</span></div></div><div><a class="btn" href="./data/current.json" target="_blank">原始JSON</a><a class="btn" href="https://ilovechin.github.io/" target="_blank">个人站</a><a class="btn" href="https://ilovechin.github.io/crysttao-site/" target="_blank">CrystTao站</a></div></div></header>
 <main class="wrap">
   <section class="kpi-grid" id="kpis"></section>
-
   <section class="grid">
-    <div class="card">
-      <div class="head"><h3>任务运行看板 / Cron Board</h3><span class="pill">AUTO JOBS</span></div>
-      <table id="cronTable">
-        <thead><tr><th>任务</th><th>状态</th><th>错误数</th><th>下次运行</th></tr></thead>
-        <tbody></tbody>
-      </table>
-    </div>
-
-    <div class="card">
-      <div class="head"><h3>Token 历史 / Usage History</h3><span class="pill">LAST 20</span></div>
-      <table id="histTable">
-        <thead><tr><th>时间</th><th>5h%</th><th>Day%</th><th>Gateway</th></tr></thead>
-        <tbody></tbody>
-      </table>
-    </div>
+    <div class="card"><div class="head"><h3>任务运行看板 / Cron Board</h3><span class="pill">AUTO JOBS</span></div><table id="cronTable"><thead><tr><th>任务</th><th>状态</th><th>错误</th><th>下次运行</th></tr></thead><tbody></tbody></table></div>
+    <div class="card"><div class="head"><h3>Token 历史 / Usage History</h3><span class="pill">LAST 20</span></div><table id="histTable"><thead><tr><th>时间</th><th>5h%</th><th>Day%</th><th>Gateway</th></tr></thead><tbody></tbody></table></div>
   </section>
-
-  <section class="card full">
-    <div class="head"><h3>系统健康摘要 / System Health</h3><span class="pill">SERVER + OPENCLAW</span></div>
-    <table id="summaryTable">
-      <thead><tr><th>项目</th><th>值</th><th>说明</th></tr></thead>
-      <tbody></tbody>
-    </table>
-  </section>
-
   <section class="grid">
-    <div class="card">
-      <div class="head"><h3>网站可用性 / Website Status</h3><span class="pill">HTTP CHECK</span></div>
-      <table id="siteTable"><thead><tr><th>站点</th><th>状态</th><th>URL</th></tr></thead><tbody></tbody></table>
-    </div>
-    <div class="card">
-      <div class="head"><h3>运行信息 / Runtime</h3><span class="pill">PROCESS</span></div>
-      <table id="runtimeTable"><thead><tr><th>项</th><th>值</th></tr></thead><tbody></tbody></table>
-    </div>
+    <div class="card"><div class="head"><h3>系统健康 / System Health</h3><span class="pill">SERVER</span></div><table id="summaryTable"><thead><tr><th>项目</th><th>值</th><th>说明</th></tr></thead><tbody></tbody></table></div>
+    <div class="card"><div class="head"><h3>网站状态 / Website Status</h3><span class="pill">HTTP</span></div><table id="siteTable"><thead><tr><th>站点</th><th>状态</th><th>URL</th></tr></thead><tbody></tbody></table></div>
+  </section>
+  <section class="grid">
+    <div class="card"><div class="head"><h3>技能库 / Installed Skills</h3><span class="pill">SAFE</span></div><pre id="skills" class="mono"></pre></div>
+    <div class="card"><div class="head"><h3>模型与配置（脱敏）/ Model+Config</h3><span class="pill">REDACTED</span></div><pre id="config" class="mono"></pre></div>
+  </section>
+  <section class="grid">
+    <div class="card"><div class="head"><h3>工作区统计 / Workspace Stats</h3><span class="pill">FILES</span></div><table id="wsTable"><thead><tr><th>项</th><th>值</th></tr></thead><tbody></tbody></table></div>
+    <div class="card"><div class="head"><h3>最近提交 / Recent Commits</h3><span class="pill">GIT</span></div><pre id="commits" class="mono"></pre></div>
   </section>
 </main>
-
 <script>
-function fmtTs(v){
-  if(!v) return '-';
-  const n = Number(v);
-  if(Number.isNaN(n)) return String(v);
-  return new Date(n).toLocaleString();
-}
-
-function clsStatus(s){
-  s=(s||'').toLowerCase();
-  if(s==='ok') return 'ok';
-  if(s==='idle' || s==='unknown') return 'warn';
-  return 'bad';
-}
-
-function codeStatus(c){
-  const n=Number(c||0);
-  if(n>=200 && n<400) return `<span class='ok'>${n}</span>`;
-  if(n===0) return `<span class='warn'>N/A</span>`;
-  return `<span class='bad'>${n}</span>`;
-}
-
+function fmtTs(v){ if(!v) return '-'; const n=Number(v); return Number.isNaN(n)?String(v):new Date(n).toLocaleString(); }
+function clsStatus(s){ s=(s||'').toLowerCase(); if(s==='ok') return 'ok'; if(s==='idle'||s==='unknown') return 'warn'; return 'bad'; }
+function codeStatus(c){ const n=Number(c||0); if(n>=200&&n<400) return `<span class='ok'>${n}</span>`; if(n===0) return `<span class='warn'>N/A</span>`; return `<span class='bad'>${n}</span>`; }
 async function load(){
-  const current = await fetch('./data/current.json?t='+Date.now()).then(r=>r.json());
-  const hist = await fetch('./data/history.json?t='+Date.now()).then(r=>r.json()).catch(()=>[]);
-
-  document.getElementById('ts').textContent = new Date(current.generatedAt).toLocaleString();
-
-  const provider=(current.usage?.providers||[])[0]||{};
-  const wins=provider.windows||[];
-  const w5=wins[0]?.usedPercent;
-  const day=wins[1]?.usedPercent;
-
-  const mem = current.system?.memory || {};
-  const disk = current.system?.diskRoot || {};
-  const load = current.system?.load || {};
-
-  const kpis = [
-    ['模型 / Model', current.identity?.model || '-'],
-    ['5h已用 / 5h Used', (w5!=null?`${w5}%`:'-')],
-    ['Day已用 / Day Used', (day!=null?`${day}%`:'-')],
-    ['网关 / Gateway', current.openclaw?.gatewayOk ? '正常 OK' : '异常 ERR'],
-    ['内存占用 / RAM', (mem.usedPct!=null?`${mem.usedPct}%`:'-')],
-    ['磁盘占用 / Disk', (disk.usedPct||'-')]
-  ];
-  document.getElementById('kpis').innerHTML = kpis.map(([k,v])=>`<div class='kpi'><div class='k'>${k}</div><div class='v'>${v}</div></div>`).join('');
-
-  const cronRows=(current.openclaw?.cronJobs||[]).map(j=>
-    `<tr><td>${j.name}</td><td class='${clsStatus(j.status)}'>${j.status||'idle'}</td><td>${j.errors ?? 0}</td><td>${fmtTs(j.next)}</td></tr>`).join('');
-  document.querySelector('#cronTable tbody').innerHTML = cronRows || `<tr><td colspan='4'>无数据</td></tr>`;
-
-  const histRows=(hist.slice(-20).reverse()).map(r=>
-    `<tr><td>${new Date(r.generatedAt).toLocaleString()}</td><td>${r.w5??'-'}</td><td>${r.day??'-'}</td><td class='${r.gatewayOk?'ok':'bad'}'>${r.gatewayOk?'OK':'ERR'}</td></tr>`).join('');
-  document.querySelector('#histTable tbody').innerHTML = histRows || `<tr><td colspan='4'>无数据</td></tr>`;
-
-  const summary = [
-    ['Provider', current.identity?.provider || '-', '当前模型服务商'],
-    ['Plan', current.usageQuick?.plan || '-', '套餐/计费信息'],
-    ['Uptime', current.system?.uptime || '-', '服务器运行时长'],
-    ['Load(1/5/15m)', `${load['1m']||'-'} / ${load['5m']||'-'} / ${load['15m']||'-'}`, '系统负载'],
-    ['RAM MB', `${mem.usedMB||'-'} / ${mem.totalMB||'-'}`, '内存占用'],
-    ['Disk /', `${disk.used||'-'} / ${disk.size||'-'}`, '根分区使用'],
-    ['Agent Count', String(current.openclaw?.agentCount ?? '-'), 'Agent 数量'],
-    ['Memory Search', current.openclaw?.memoryReady ? 'READY' : 'NOT READY', '语义检索状态']
-  ];
-  document.querySelector('#summaryTable tbody').innerHTML = summary.map(s=>`<tr><td>${s[0]}</td><td>${s[1]}</td><td>${s[2]}</td></tr>`).join('');
-
-  const sites=current.websites?.urls||{};
-  const codes=current.websites?.httpStatus||{};
-  const siteRows=Object.keys(sites).map(k=>`<tr><td>${k}</td><td>${codeStatus(codes[k])}</td><td class='mono'><a href='${sites[k]}' target='_blank'>${sites[k]}</a></td></tr>`).join('');
-  document.querySelector('#siteTable tbody').innerHTML = siteRows || `<tr><td colspan='3'>无数据</td></tr>`;
-
-  const rt = [
-    ['OpenClaw Gateway 进程', current.system?.processCounts?.openclawGateway ?? '-'],
-    ['Polymarket Watcher 进程', current.system?.processCounts?.arbWatcher ?? '-'],
-    ['自动更新周期', '10 分钟 / 10 min'],
-    ['快照生成时间', new Date(current.generatedAt).toLocaleString()]
-  ];
-  document.querySelector('#runtimeTable tbody').innerHTML = rt.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td></tr>`).join('');
+  const c=await fetch('./data/current.json?t='+Date.now()).then(r=>r.json());
+  const h=await fetch('./data/history.json?t='+Date.now()).then(r=>r.json()).catch(()=>[]);
+  document.getElementById('ts').textContent=new Date(c.generatedAt).toLocaleString();
+  const provider=(c.usage?.providers||[])[0]||{}; const wins=provider.windows||[];
+  const w5=wins[0]?.usedPercent, day=wins[1]?.usedPercent;
+  const mem=c.system?.memory||{}, disk=c.system?.diskRoot||{}, loadv=c.system?.load||{};
+  const kpis=[['模型 / Model',c.identity?.model||'-'],['5h已用',w5!=null?`${w5}%`:'-'],['Day已用',day!=null?`${day}%`:'-'],['Gateway',c.openclaw?.gatewayOk?'OK':'ERR'],['RAM',mem.usedPct!=null?`${mem.usedPct}%`:'-'],['Disk',disk.usedPct||'-']];
+  document.getElementById('kpis').innerHTML=kpis.map(([k,v])=>`<div class='kpi'><div class='k'>${k}</div><div class='v'>${v}</div></div>`).join('');
+  document.querySelector('#cronTable tbody').innerHTML=(c.openclaw?.cronJobs||[]).map(j=>`<tr><td>${j.name}</td><td class='${clsStatus(j.status)}'>${j.status||'idle'}</td><td>${j.errors??0}</td><td>${fmtTs(j.next)}</td></tr>`).join('');
+  document.querySelector('#histTable tbody').innerHTML=(h.slice(-20).reverse()).map(r=>`<tr><td>${new Date(r.generatedAt).toLocaleString()}</td><td>${r.w5??'-'}</td><td>${r.day??'-'}</td><td class='${r.gatewayOk?'ok':'bad'}'>${r.gatewayOk?'OK':'ERR'}</td></tr>`).join('');
+  const summary=[['Provider',c.identity?.provider||'-','模型提供方'],['Plan',c.usageQuick?.plan||'-','套餐信息'],['Uptime',c.system?.uptime||'-','系统运行时长'],['Load',`${loadv['1m']||'-'} / ${loadv['5m']||'-'} / ${loadv['15m']||'-'}`,'系统负载'],['RAM MB',`${mem.usedMB||'-'} / ${mem.totalMB||'-'}`,'内存占用'],['Disk /',`${disk.used||'-'} / ${disk.size||'-'}`,'磁盘占用'],['Agent Count',String(c.openclaw?.agentCount??'-'),'Agent数量'],['Memory Search',c.openclaw?.memoryReady?'READY':'NOT READY','语义检索状态']];
+  document.querySelector('#summaryTable tbody').innerHTML=summary.map(s=>`<tr><td>${s[0]}</td><td>${s[1]}</td><td>${s[2]}</td></tr>`).join('');
+  const sites=c.websites?.urls||{}, codes=c.websites?.httpStatus||{};
+  document.querySelector('#siteTable tbody').innerHTML=Object.keys(sites).map(k=>`<tr><td>${k}</td><td>${codeStatus(codes[k])}</td><td class='mono'><a href='${sites[k]}' target='_blank'>${sites[k]}</a></td></tr>`).join('');
+  document.getElementById('skills').textContent=c.openclaw?.skills||'暂无';
+  document.getElementById('config').textContent=JSON.stringify(c.openclaw?.safeConfig||{},null,2).slice(0,7000);
+  const fs=c.workspace?.fileStats||{};
+  document.querySelector('#wsTable tbody').innerHTML=[['总文件',fs.totalFiles],['Markdown',fs.markdownFiles],['Python',fs.pythonFiles],['HTML',fs.htmlFiles]].map(r=>`<tr><td>${r[0]}</td><td>${r[1]??'-'}</td></tr>`).join('');
+  document.getElementById('commits').textContent=`[workspace]\n${c.workspace?.recentCommitsMain||''}\n\n[crysttao-site]\n${c.workspace?.recentCommitsCrysttao||''}\n\n[observatory]\n${c.workspace?.recentCommitsObservatory||''}`;
 }
-
-load();
-setInterval(load, 30000);
+load(); setInterval(load,30000);
 </script>
-</body>
-</html>
+</body></html>
