@@ -155,6 +155,28 @@
     </div>
   </section>
 
+
+  <section class="grid">
+    <div class="card">
+      <div class="head"><h3>异常时间轴 / Incident Timeline</h3><span class="pill">EVENTS</span></div>
+      <div style="padding:10px"><canvas id="timelineChart" width="760" height="240" style="width:100%;height:auto;background:#0a132e;border:1px solid #243e75;border-radius:8px"></canvas></div>
+      <table id="timelineTable"><thead><tr><th>时间 Time</th><th>任务 Task</th><th>状态 Status</th><th>级别 Level</th></tr></thead><tbody></tbody></table>
+    </div>
+    <div class="card">
+      <div class="head"><h3>告警中心 / Alert Center</h3><span class="pill">R/Y/G</span></div>
+      <div id="alertChips" class="chips"></div>
+      <div style="padding:10px"><canvas id="alertDonut" width="420" height="240" style="width:100%;height:auto;background:#0a132e;border:1px solid #243e75;border-radius:8px"></canvas></div>
+      <div class="chips" id="successRate"></div>
+    </div>
+  </section>
+  <section class="card full">
+    <div class="head"><h3>系统资源四联图 / System 4-up Charts</h3><span class="pill">CPU/RAM/DISK/LOAD</span></div>
+    <div class="grid" style="margin:0;padding:12px;grid-template-columns:1fr 1fr">
+      <div class="card"><div class="head"><h3>RAM/DISK</h3></div><div style="padding:10px"><canvas id="resLine" width="600" height="220" style="width:100%;height:auto;background:#0a132e;border:1px solid #243e75;border-radius:8px"></canvas></div></div>
+      <div class="card"><div class="head"><h3>Load 1/5/15</h3></div><div style="padding:10px"><canvas id="loadBar" width="600" height="220" style="width:100%;height:auto;background:#0a132e;border:1px solid #243e75;border-radius:8px"></canvas></div></div>
+    </div>
+  </section>
+
 </main>
 <script>
 function fmtTs(v){ if(!v) return '-'; const n=Number(v); return Number.isNaN(n)?String(v):new Date(n).toLocaleString(); }
@@ -209,6 +231,32 @@ function drawPixelAgents(cronJobs){
 
 
 
+
+
+function drawMiniDonut(id, vals, colors, labels){
+ const c=document.getElementById(id); if(!c) return; const ctx=c.getContext('2d'); const W=c.width,H=c.height,cx=W/2,cy=H/2,r=70,ir=38; ctx.clearRect(0,0,W,H);
+ const total=Math.max(1,vals.reduce((a,b)=>a+b,0)); let a=-Math.PI/2;
+ vals.forEach((v,i)=>{const n=a+(v/total)*Math.PI*2; ctx.beginPath(); ctx.arc(cx,cy,r,a,n); ctx.arc(cx,cy,ir,n,a,true); ctx.closePath(); ctx.fillStyle=colors[i]; ctx.fill(); a=n;});
+ ctx.fillStyle='#dbe8ff'; ctx.font='12px Inter'; ctx.textAlign='center'; ctx.fillText('Alerts',cx,cy+4);
+ labels.forEach((l,i)=>{ctx.fillStyle=colors[i]; ctx.fillRect(12,14+i*16,10,10); ctx.fillStyle='#9eb3e4'; ctx.textAlign='left'; ctx.fillText(`${l}: ${vals[i]}`,28,23+i*16)});
+}
+function drawTimeline(events){
+ const c=document.getElementById('timelineChart'); if(!c) return; const ctx=c.getContext('2d'); const W=c.width,H=c.height; ctx.clearRect(0,0,W,H);
+ const arr=(events||[]).slice(0,24).reverse();
+ const step=(W-40)/Math.max(1,arr.length-1); ctx.strokeStyle='rgba(130,170,255,.25)'; for(let x=20;x<W-20;x+=step){ctx.beginPath();ctx.moveTo(x,20);ctx.lineTo(x,H-20);ctx.stroke();}
+ arr.forEach((e,i)=>{const x=20+i*step,y=H/2; let col='#ffc76a'; if(e.level==='critical') col='#ff7d88'; else if(e.level==='info') col='#51e3a8'; ctx.beginPath();ctx.arc(x,y,6,0,Math.PI*2);ctx.fillStyle=col;ctx.fill();});
+}
+function drawResLine(hist){
+ const c=document.getElementById('resLine'); if(!c) return; const ctx=c.getContext('2d'); const W=c.width,H=c.height; ctx.clearRect(0,0,W,H);
+ const arr=(hist||[]).slice(-48); const ram=arr.map(x=>Number(x.memUsedPct||0)); const disk=arr.map(x=>Number(String(x.diskUsedPct||'0').replace('%',''))||0); const max=100;
+ function line(vals,col){ctx.strokeStyle=col;ctx.lineWidth=2;ctx.beginPath();vals.forEach((v,i)=>{const x=20+i*((W-40)/Math.max(1,vals.length-1)); const y=H-20-(v/max)*(H-40); if(i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y)});ctx.stroke();}
+ line(ram,'#67c8ff'); line(disk,'#ffb86b'); ctx.fillStyle='#9eb3e4'; ctx.font='12px Inter'; ctx.fillText('RAM',20,16); ctx.fillText('DISK',72,16);
+}
+function drawLoadBar(load){
+ const c=document.getElementById('loadBar'); if(!c) return; const ctx=c.getContext('2d'); const W=c.width,H=c.height; ctx.clearRect(0,0,W,H);
+ const vals=[Number(load['1m']||0),Number(load['5m']||0),Number(load['15m']||0)], labels=['1m','5m','15m']; const max=Math.max(1,...vals);
+ vals.forEach((v,i)=>{const x=90+i*160,h=(v/max)*130,y=180-h; ctx.fillStyle=['#67c8ff','#8ee8b8','#ffb86b'][i]; ctx.fillRect(x,y,70,h); ctx.fillStyle='#dbe8ff'; ctx.font='12px Inter'; ctx.fillText(labels[i],x+22,198); ctx.fillText(v.toFixed(2),x+14,y-6)});
+}
 
 function drawDonut(id, values, labels, colors){
   const c=document.getElementById(id); if(!c) return; const ctx=c.getContext('2d');
@@ -324,6 +372,18 @@ async function load(){
   drawRadar('radarSite',vals);
   renderStatusChips(c);
   renderHeatMap(h);
+
+  const events=(c.eventsTimeline||[]);
+  drawTimeline(events);
+  const top=events.slice(0,12);
+  document.querySelector('#timelineTable tbody').innerHTML = top.map(e=>`<tr><td>${fmtTs(e.ts)}</td><td>${e.job||'-'}</td><td>${e.status||'-'}</td><td class='${e.level==='critical'?'bad':(e.level==='warn'?'warn':'ok')}'>${e.level||'info'}</td></tr>`).join('');
+  const al=c.alerts||{critical:0,warn:0,info:0};
+  document.getElementById('alertChips').innerHTML = `<span class='chip bad'>严重 Critical: ${al.critical||0}</span><span class='chip warn'>警告 Warn: ${al.warn||0}</span><span class='chip ok'>信息 Info: ${al.info||0}</span>`;
+  drawMiniDonut('alertDonut',[al.critical||0,al.warn||0,al.info||0],['#ff7d88','#ffc76a','#51e3a8'],['Critical','Warn','Info']);
+  const sr=c.openclaw?.successRate||{}; const okPct=Math.round((Number(sr.cronOk||0))*100);
+  document.getElementById('successRate').innerHTML = `<span class='chip ok'>任务成功率 Success: ${okPct}%</span><span class='chip'>任务总数 Total: ${sr.cronTotal||0}</span>`;
+  drawResLine(h); drawLoadBar(c.system?.load||{});
+
 
 
   const summary=[['服务商 Provider',c.identity?.provider||'-','模型提供方'],['套餐 Plan',c.usageQuick?.plan||'-','套餐信息'],['运行时长 Uptime',c.system?.uptime||'-','系统运行时长'],['负载 Load',`${loadv['1m']||'-'} / ${loadv['5m']||'-'} / ${loadv['15m']||'-'}`,'系统负载'],['内存 MB RAM',`${mem.usedMB||'-'} / ${mem.totalMB||'-'}`,'内存占用'],['磁盘 / Disk',`${disk.used||'-'} / ${disk.size||'-'}`,'磁盘占用'],['Agent数量 Agent Count',String(c.openclaw?.agentCount??'-'),'Agent数量'],['语义检索 Memory Search',c.openclaw?.memoryReady?'READY':'NOT READY','语义检索状态']];

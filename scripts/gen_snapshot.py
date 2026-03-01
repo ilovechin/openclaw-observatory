@@ -203,7 +203,11 @@ def main():
                 'fallbacks': (((cfg.get('agents') or {}).get('defaults') or {}).get('model') or {}).get('fallbacks', []) if isinstance(((cfg.get('agents') or {}).get('defaults') or {}).get('model'), dict) else [],
                 'registeredModels': list((((cfg.get('agents') or {}).get('defaults') or {}).get('models') or {}).keys())
             },
-            'sessionPolicy': (cfg.get('session') or {})
+            'sessionPolicy': (cfg.get('session') or {}),
+            'successRate': {
+                'cronOk': (len([j for j in cron_jobs if str(j.get('status','')).lower()=='ok']) / max(1,len(cron_jobs))),
+                'cronTotal': len(cron_jobs)
+            }
         },
         'workspace': {
             'fileStats': file_stats(),
@@ -258,6 +262,27 @@ def main():
                  'memUsedPct': data['system']['memory'].get('usedPct'),
                  'diskUsedPct': data['system']['diskRoot'].get('usedPct')})
     hist = hist[-1000:]
+
+    # derive lightweight alert/timeline from cron + health
+    events=[]
+    for j in cron_jobs[:40]:
+        st=str(j.get('status','idle')).lower()
+        level='info'
+        if st not in ['ok','idle']: level='critical'
+        elif (j.get('errors') or 0)>0: level='warn'
+        events.append({
+            'ts': j.get('last') or j.get('next'),
+            'job': j.get('name'),
+            'status': st,
+            'level': level,
+            'errors': j.get('errors',0)
+        })
+    data['alerts']={
+        'critical': len([e for e in events if e['level']=='critical']),
+        'warn': len([e for e in events if e['level']=='warn']),
+        'info': len([e for e in events if e['level']=='info'])
+    }
+    data['eventsTimeline']=sorted(events, key=lambda x: (x.get('ts') or 0), reverse=True)[:60]
     with open(hp, 'w', encoding='utf-8') as f:
         json.dump(hist, f, ensure_ascii=False, indent=2)
 
