@@ -13,7 +13,7 @@
     .bar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
     .title{font-size:34px;font-weight:800}.sub{font-size:13px;color:var(--muted)}
     .btn{display:inline-block;border:1px solid #3858a6;background:#11224e;color:#dff0ff;padding:8px 12px;border-radius:10px;font-size:12px;text-decoration:none}
-    .kpi-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px;margin-top:14px}
+    .kpi-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px;margin-top:14px}.sticky-kpi{position:sticky;top:64px;z-index:12;background:rgba(8,14,30,.9);padding:8px;border:1px solid #27427c;border-radius:10px}
     .kpi{background:linear-gradient(165deg,#122558,#0d1a3f);border:1px solid #2b437f;border-radius:12px;padding:12px 14px;box-shadow:0 8px 24px rgba(0,0,0,.28), inset 0 0 0 1px rgba(120,170,255,.08)}
     .k{font-size:12px;color:#9eb6e8}.v{margin-top:6px;font-size:24px;font-weight:800}
     .grid{display:grid;grid-template-columns:1.3fr 1fr;gap:14px;margin-top:14px}
@@ -28,6 +28,7 @@
 .chips{display:flex;flex-wrap:wrap;gap:8px;padding:10px 12px}.chip{padding:6px 10px;border:1px solid #35579f;border-radius:999px;font-size:12px;color:#d8e6ff;background:#0d1b40}.chip.ok{border-color:#2d8f67;color:#91f2c6}.chip.warn{border-color:#8a6a2b;color:#ffd98a}.chip.bad{border-color:#9b4250;color:#ffb2bc}
 .heat-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:4px;padding:10px 12px}.heat-cell{height:16px;border-radius:3px;background:#173064}.legend{display:flex;gap:10px;align-items:center;padding:0 12px 12px;font-size:12px;color:#9eb3e4}
     @media(max-width:1200px){.kpi-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.grid{grid-template-columns:1fr}}
+@media(max-width:760px){.sticky-kpi{top:56px}.fold .bodyFold{display:none}.fold.open .bodyFold{display:block}}
     @media(max-width:760px){.kpi-grid{grid-template-columns:1fr 1fr}.title{font-size:24px}.wrap{padding:12px}.head h3{font-size:14px}th,td{font-size:12px;padding:8px}.v{font-size:20px}}
 /* mobile-ux */
 @media(max-width:520px){.kpi-grid{grid-template-columns:1fr}.btn{padding:6px 8px;font-size:11px}.bar{align-items:flex-start}.title{font-size:21px}.sub{font-size:12px}}
@@ -36,7 +37,7 @@
 <body>
 <header><div class="wrap bar"><div><div class="title">锦的虾🦐 监控中枢</div><div class="sub">公网公开版（敏感字段自动脱敏） · 更新时间：<span id="ts">-</span></div></div><div><a class="btn" href="./data/current.json" target="_blank">原始JSON / Raw JSON</a><a class="btn" href="https://ilovechin.github.io/" target="_blank">个人站 / Personal Site</a><a class="btn" href="https://ilovechin.github.io/crysttao-site/" target="_blank">CrystTao站 / CrystTao Site</a></div></div></header>
 <main class="wrap">
-  <section class="kpi-grid" id="kpis"></section>
+  <section class="sticky-kpi"><div class="kpi-grid" id="kpis"></div></section>
   <section class="grid">
     <div class="card"><div class="head"><h3>任务运行看板 / Cron Board</h3><span class="pill">AUTO JOBS</span></div><table id="cronTable"><thead><tr><th>任务 Task</th><th>状态 Status</th><th>错误 Errors</th><th>下次运行 Next Run</th></tr></thead><tbody></tbody></table></div>
     <div class="card"><div class="head"><h3>Token 历史 / Usage History</h3><span class="pill">LAST 20</span></div><table id="histTable"><thead><tr><th>时间 Time</th><th>5h%</th><th>Day%</th><th>网关 Gateway</th></tr></thead><tbody></tbody></table></div>
@@ -52,7 +53,7 @@
   <section class="grid">
     <div class="card"><div class="head"><h3>工作区统计 Workspace Stats</h3><span class="pill">FILES</span></div><table id="wsTable"><thead><tr><th>项 Item</th><th>值 Value</th></tr></thead><tbody></tbody></table></div>
     <div class="card"><div class="head"><h3>最近提交 Recent Commits</h3><span class="pill">GIT</span></div><pre id="commits" class="mono"></pre></div>
-  </section>
+  </div></section>
 
   <section class="card full">
     <div class="head"><h3>人格与偏好 Persona & Profile</h3><span class="pill">SOUL / IDENTITY / USER</span></div>
@@ -69,8 +70,8 @@
   </section>
 
 
-  <section class="card full">
-    <div class="head"><h3>全量原始明细 / Full Raw Details</h3><span class="pill">EVERY PUBLIC DETAIL</span></div>
+  <section class="card full fold" id="rawFold">
+    <div class="head" onclick="toggleFold('rawFold')" style="cursor:pointer"><h3>全量原始明细 / Full Raw Details</h3><span class="pill">EVERY PUBLIC DETAIL</span></div>
     <div class="grid" style="margin:0;padding:12px">
       <div class="card"><div class="head"><h3>Status Usage JSON</h3></div><pre id="rawStatus" class="mono"></pre></div>
       <div class="card"><div class="head"><h3>Cron List JSON</h3></div><pre id="rawCron" class="mono"></pre></div>
@@ -82,8 +83,8 @@
   </section>
 
 
-  <section class="card full">
-    <div class="head"><h3>知识库索引 / Knowledge Index（clawd.org.cn）</h3><span class="pill">SEARCHABLE</span></div>
+  <section class="card full fold" id="kbFold">
+    <div class="head" onclick="toggleFold('kbFold')" style="cursor:pointer"><h3>知识库索引 / Knowledge Index（clawd.org.cn）</h3><span class="pill">SEARCHABLE</span></div>
     <div class="grid" style="margin:0;padding:12px">
       <div class="card"><div class="head"><h3>分类统计 Categories</h3></div><pre id="kbCats" class="mono"></pre></div>
       <div class="card"><div class="head"><h3>页面列表 Top Pages</h3></div><pre id="kbItems" class="mono"></pre></div>
@@ -100,9 +101,9 @@
   </section>
 
 
-  <section class="card full">
-    <div class="head"><h3>API Token 可视化中心 / API Token Visual Center</h3><span class="pill">REALTIME + TREND</span></div>
-    <div class="grid" style="margin:0;padding:12px;grid-template-columns:1fr 1fr">
+  <section class="card full fold open" id="tokenFold">
+    <div class="head" onclick="toggleFold('tokenFold')" style="cursor:pointer"><h3>API Token 可视化中心 / API Token Visual Center</h3><span class="pill">REALTIME + TREND</span></div>
+    <div class="bodyFold"><div class="grid" style="margin:0;padding:12px;grid-template-columns:1fr 1fr">
       <div class="card"><div class="head"><h3>实时用量 / Live Usage</h3></div>
         <div style="padding:12px">
           <div class="sub">5小时窗口 / 5h window</div>
@@ -195,6 +196,7 @@
 <script>
 function fmtTs(v){ if(!v) return '-'; const n=Number(v); return Number.isNaN(n)?String(v):new Date(n).toLocaleString(); }
 function clsStatus(s){ s=(s||'').toLowerCase(); if(s==='ok') return 'ok'; if(s==='idle'||s==='unknown') return 'warn'; return 'bad'; }
+function toggleFold(id){const el=document.getElementById(id); if(!el) return; el.classList.toggle("open");}
 function codeStatus(c){ const n=Number(c||0); if(n>=200&&n<400) return `<span class='ok'>${n}</span>`; if(n===0) return `<span class='warn'>N/A</span>`; return `<span class='bad'>${n}</span>`; }
 
 function drawPixelAgents(cronJobs){
