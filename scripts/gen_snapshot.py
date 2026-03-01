@@ -209,6 +209,9 @@ def main():
                 'cronTotal': len(cron_jobs)
             }
         },
+        'security': {
+            'ssrfPatch': run('python3 /root/.openclaw/workspace/scripts/check_langchain_ssrf_patch.py','unknown')
+        },
         'workspace': {
             'fileStats': file_stats(),
             'recentCommitsMain': recent_commits('/root/.openclaw/workspace'),

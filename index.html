@@ -193,6 +193,12 @@
     </div>
   </section>
 
+
+  <section class="card full">
+    <div class="head"><h3>安全补丁状态 / Security Patch Status</h3><span class="pill">SSRF</span></div>
+    <div class="chips" id="ssrfChip"></div>
+  </section>
+
 </main>
 <script>
 function fmtTs(v){ if(!v) return '-'; const n=Number(v); return Number.isNaN(n)?String(v):new Date(n).toLocaleString(); }
