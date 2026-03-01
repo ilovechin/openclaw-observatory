@@ -389,8 +389,8 @@ async function load(){
 
   const events=(c.eventsTimeline||[]);
   drawTimeline(events);
-  const top=events.slice(0,12);
-  document.querySelector('#timelineTable tbody').innerHTML = top.map(e=>`<tr><td>${fmtTs(e.ts)}</td><td>${e.job||'-'}</td><td>${e.status||'-'}</td><td class='${e.level==='critical'?'bad':(e.level==='warn'?'warn':'ok')}'>${e.level||'info'}</td></tr>`).join('');
+  const topEvents=events.slice(0,12);
+  document.querySelector('#timelineTable tbody').innerHTML = topEvents.map(e=>`<tr><td>${fmtTs(e.ts)}</td><td>${e.job||'-'}</td><td>${e.status||'-'}</td><td class='${e.level==='critical'?'bad':(e.level==='warn'?'warn':'ok')}'>${e.level||'info'}</td></tr>`).join('');
   const al=c.alerts||{critical:0,warn:0,info:0};
   document.getElementById('alertChips').innerHTML = `<span class='chip bad'>严重 Critical: ${al.critical||0}</span><span class='chip warn'>警告 Warn: ${al.warn||0}</span><span class='chip ok'>信息 Info: ${al.info||0}</span>`;
   drawMiniDonut('alertDonut',[al.critical||0,al.warn||0,al.info||0],['#ff7d88','#ffc76a','#51e3a8'],['Critical','Warn','Info']);
@@ -402,9 +402,8 @@ async function load(){
   document.getElementById('treeChips').innerHTML = `<span class='chip ok'>健康度 Health: ${ts.health||0}%</span><span class='chip'>绿叶 Green: ${cnt.green||0}</span><span class='chip warn'>黄叶 Yellow: ${cnt.yellow||0}</span><span class='chip warn'>枯叶 Dry: ${cnt.dry||0}</span><span class='chip bad'>土壤 Soil: ${cnt.soil||0}</span>`;
   drawMiniDonut('treeDonut',[cnt.green||0,cnt.yellow||0,cnt.dry||0,cnt.soil||0],['#51e3a8','#ffc76a','#ffb86b','#ff7d88'],['Green','Yellow','Dry','Soil']);
   document.getElementById('treeSchema').textContent=(c.memuLite?.treeSchema||'').slice(0,2500);
-  const top=(ts.items||[]).slice(0,12).map(i=>`[${i.status}] (${i.priority}) conf=${i.confidence} ${i.title}`).join('
-');
-  document.getElementById('treeTop').textContent=top||'暂无';
+  const topTree=(ts.items||[]).slice(0,12).map(i=>`[${i.status}] (${i.priority}) conf=${i.confidence} ${i.title}`).join('\n');
+  document.getElementById('treeTop').textContent=topTree||'暂无';
 
 
 
