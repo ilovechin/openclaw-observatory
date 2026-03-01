@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-03-01T10:42:36.751797Z",
+  "generatedAt": "2026-03-01T10:42:32.123895Z",
   "identity": {
     "name": "锦的虾🦐",
     "model": "openai-codex/gpt-5.3-codex",
     "provider": "openai-codex"
   },
   "usage": {
-    "updatedAt": 1772361763622,
+    "updatedAt": 1772361759403,
     "providers": [
       {
         "provider": "openai-codex",
@@ -35,16 +35,16 @@
   "system": {
     "uptime": "up 1 day, 22 hours, 28 minutes",
     "load": {
-      "1m": "1.51",
-      "5m": "0.67",
-      "15m": "0.42"
+      "1m": "1.38",
+      "5m": "0.64",
+      "15m": "0.40"
     },
     "memory": {
       "totalMB": 3655,
-      "usedMB": 1706,
-      "freeMB": 925,
-      "availableMB": 1949,
-      "usedPct": 46.7
+      "usedMB": 1823,
+      "freeMB": 807,
+      "availableMB": 1832,
+      "usedPct": 49.9
     },
     "diskRoot": {
       "size": "60G",
@@ -2495,7 +2495,7 @@
             "kind": "direct",
             "sessionId": "c6015839-ca14-4189-a033-2effbfc6c296",
             "updatedAt": 1772361748453,
-            "age": 15095,
+            "age": 10878,
             "systemSent": true,
             "inputTokens": 11055,
             "outputTokens": 130,
@@ -2518,7 +2518,7 @@
             "kind": "direct",
             "sessionId": "c6015839-ca14-4189-a033-2effbfc6c296",
             "updatedAt": 1772361748453,
-            "age": 15095,
+            "age": 10878,
             "systemSent": true,
             "inputTokens": 11055,
             "outputTokens": 130,
@@ -2541,7 +2541,7 @@
             "kind": "direct",
             "sessionId": "8bace5b8-c5c8-4be6-bfe6-3196c6b7dec3",
             "updatedAt": 1772361653616,
-            "age": 109932,
+            "age": 105715,
             "systemSent": true,
             "abortedLastRun": false,
             "inputTokens": 242679,
@@ -2565,7 +2565,7 @@
             "kind": "direct",
             "sessionId": "cf35ef87-0346-4b20-b35b-a09f0f3f0ffe",
             "updatedAt": 1772361148442,
-            "age": 615106,
+            "age": 610889,
             "systemSent": true,
             "inputTokens": 11055,
             "outputTokens": 130,
@@ -2588,7 +2588,7 @@
             "kind": "direct",
             "sessionId": "6f38851f-3c7e-4eeb-8f55-ef5de0203a82",
             "updatedAt": 1772361000009,
-            "age": 763539,
+            "age": 759322,
             "systemSent": true,
             "inputTokens": 29814,
             "outputTokens": 2936,
@@ -2611,7 +2611,7 @@
             "kind": "direct",
             "sessionId": "6f38851f-3c7e-4eeb-8f55-ef5de0203a82",
             "updatedAt": 1772361000009,
-            "age": 763539,
+            "age": 759322,
             "systemSent": true,
             "inputTokens": 29814,
             "outputTokens": 2936,
@@ -2634,7 +2634,7 @@
             "kind": "direct",
             "sessionId": "ed79a186-99f6-4363-a9bd-53c6c4d7d524",
             "updatedAt": 1772360548436,
-            "age": 1215112,
+            "age": 1210895,
             "systemSent": true,
             "inputTokens": 10958,
             "outputTokens": 162,
@@ -2657,7 +2657,7 @@
             "kind": "direct",
             "sessionId": "917f1e7b-9f27-44d7-b876-dd1ae5f69194",
             "updatedAt": 1772359948429,
-            "age": 1815119,
+            "age": 1810902,
             "systemSent": true,
             "inputTokens": 10975,
             "outputTokens": 180,
@@ -2680,7 +2680,7 @@
             "kind": "direct",
             "sessionId": "b90bd918-f3f2-4edb-846c-44565b61376a",
             "updatedAt": 1772359348424,
-            "age": 2415124,
+            "age": 2410907,
             "systemSent": true,
             "inputTokens": 11042,
             "outputTokens": 166,
@@ -2703,7 +2703,7 @@
             "kind": "direct",
             "sessionId": "4ed58d1b-cb31-4c31-b81c-c45f2b27f035",
             "updatedAt": 1772358748415,
-            "age": 3015133,
+            "age": 3010916,
             "systemSent": true,
             "inputTokens": 10986,
             "outputTokens": 192,
@@ -2733,7 +2733,7 @@
                 "kind": "direct",
                 "sessionId": "c6015839-ca14-4189-a033-2effbfc6c296",
                 "updatedAt": 1772361748453,
-                "age": 15095,
+                "age": 10878,
                 "systemSent": true,
                 "inputTokens": 11055,
                 "outputTokens": 130,
@@ -2756,7 +2756,7 @@
                 "kind": "direct",
                 "sessionId": "c6015839-ca14-4189-a033-2effbfc6c296",
                 "updatedAt": 1772361748453,
-                "age": 15095,
+                "age": 10878,
                 "systemSent": true,
                 "inputTokens": 11055,
                 "outputTokens": 130,
@@ -2779,7 +2779,7 @@
                 "kind": "direct",
                 "sessionId": "8bace5b8-c5c8-4be6-bfe6-3196c6b7dec3",
                 "updatedAt": 1772361653616,
-                "age": 109932,
+                "age": 105715,
                 "systemSent": true,
                 "abortedLastRun": false,
                 "inputTokens": 242679,
@@ -2803,7 +2803,7 @@
                 "kind": "direct",
                 "sessionId": "cf35ef87-0346-4b20-b35b-a09f0f3f0ffe",
                 "updatedAt": 1772361148442,
-                "age": 615106,
+                "age": 610889,
                 "systemSent": true,
                 "inputTokens": 11055,
                 "outputTokens": 130,
@@ -2826,7 +2826,7 @@
                 "kind": "direct",
                 "sessionId": "6f38851f-3c7e-4eeb-8f55-ef5de0203a82",
                 "updatedAt": 1772361000009,
-                "age": 763539,
+                "age": 759322,
                 "systemSent": true,
                 "inputTokens": 29814,
                 "outputTokens": 2936,
@@ -2849,7 +2849,7 @@
                 "kind": "direct",
                 "sessionId": "6f38851f-3c7e-4eeb-8f55-ef5de0203a82",
                 "updatedAt": 1772361000009,
-                "age": 763539,
+                "age": 759322,
                 "systemSent": true,
                 "inputTokens": 29814,
                 "outputTokens": 2936,
@@ -2872,7 +2872,7 @@
                 "kind": "direct",
                 "sessionId": "ed79a186-99f6-4363-a9bd-53c6c4d7d524",
                 "updatedAt": 1772360548436,
-                "age": 1215112,
+                "age": 1210895,
                 "systemSent": true,
                 "inputTokens": 10958,
                 "outputTokens": 162,
@@ -2895,7 +2895,7 @@
                 "kind": "direct",
                 "sessionId": "917f1e7b-9f27-44d7-b876-dd1ae5f69194",
                 "updatedAt": 1772359948429,
-                "age": 1815119,
+                "age": 1810902,
                 "systemSent": true,
                 "inputTokens": 10975,
                 "outputTokens": 180,
@@ -2918,7 +2918,7 @@
                 "kind": "direct",
                 "sessionId": "b90bd918-f3f2-4edb-846c-44565b61376a",
                 "updatedAt": 1772359348424,
-                "age": 2415124,
+                "age": 2410907,
                 "systemSent": true,
                 "inputTokens": 11042,
                 "outputTokens": 166,
@@ -2941,7 +2941,7 @@
                 "kind": "direct",
                 "sessionId": "4ed58d1b-cb31-4c31-b81c-c45f2b27f035",
                 "updatedAt": 1772358748415,
-                "age": 3015133,
+                "age": 3010916,
                 "systemSent": true,
                 "inputTokens": 10986,
                 "outputTokens": 192,
@@ -3050,7 +3050,7 @@
         "urlSource": "local loopback",
         "misconfigured": false,
         "reachable": true,
-        "connectLatencyMs": 21,
+        "connectLatencyMs": 26,
         "self": {
           "host": "VM-0-5-opencloudos",
           "ip": "10.3.0.5",
@@ -3081,7 +3081,7 @@
             "sessionsPath": "/root/.openclaw/agents/main/sessions/sessions.json",
             "sessionsCount": 174,
             "lastUpdatedAt": 1772361748453,
-            "lastActiveAgeMs": 14452
+            "lastActiveAgeMs": 10212
           },
           {
             "id": "mira",
@@ -3098,7 +3098,7 @@
         "bootstrapPendingCount": 2
       },
       "securityAudit": {
-        "ts": 1772361763622,
+        "ts": 1772361759403,
         "summary": {
           "critical": 0,
           "warn": 1,
@@ -3121,7 +3121,7 @@
         ]
       },
       "usage": {
-        "updatedAt": 1772361763622,
+        "updatedAt": 1772361759403,
         "providers": [
           {
             "provider": "openai-codex",
@@ -3674,8 +3674,8 @@
       "hasMore": false,
       "nextOffset": null
     },
-    "doctorText": "▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄\n██░▄▄▄░██░▄▄░██░▄▄▄██░▀██░██░▄▄▀██░████░▄▄▀██░███░██\n██░███░██░▀▀░██░▄▄▄██░█░█░██░█████░████░▀▀░██░█░█░██\n██░▀▀▀░██░█████░▀▀▀██░██▄░██░▀▀▄██░▀▀░█░██░██▄▀▄▀▄██\n▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀\n                  🦞 OPENCLAW 🦞                    \n \n┌  OpenClaw doctor\n│\n◇  Session locks ──────────────────────────────────────────────────────────────╮\n│                                                                              │\n│  - Found 2 session lock files.                                               │\n│  - ~/.openclaw/agents/main/sessions/8bace5b8-c5c8-4be6-bfe6-3196c6b7dec3.js  │\n│  onl.lock                                                                    │\n│    pid=595224 (alive) age=2m4s stale=no                                      │\n│  - ~/.openclaw/agents/main/sessions/c6015839-ca14-4189-a033-2effbfc6c296.js  │\n│  onl.lock                                                                    │\n│    pid=595224 (alive) age=29s stale=no                                       │\n│                                                                              │\n├──────────────────────────────────────────────────────────────────────────────╯\n│\n◇  Gateway runtime ─────────────────────────────────────────────────────╮\n│                                                                       │\n│  System Node 22+ not found. Install via Homebrew/apt/choco and rerun  │\n│  doctor to migrate off Bun/version managers.                          │\n│                                                                       │\n├───────────────────────────────────────────────────────────────────────╯\n│\n◇  Gateway service config ─────────────────────────────────────────────────╮\n│                                                                          │\n│  - Gateway service uses Node from a version manager; it can break after  │\n│    upgrades. (/root/.nvm/versions/node/v22.22.0/bin/node)                │\n│  - System Node 22+ not found; install it before migrating away from      │\n│    version managers.                                                     │\n│                                                                          │\n├──────────────────────────────────────────────────────────────────────────╯\n│\n◇  Security ─────────────────────────────────╮\n│                                            │\n│  - No channel security warnings detected.  │\n│  - Run: openclaw security audit --deep     │\n│                                            │\n├────────────────────────────────────────────╯\n│\n◇  Skills status ────────────╮\n│                            │\n│  Eligible: 17              │\n│  Missing requirements: 3   │\n│  Blocked by allowlist: 40  │\n│                            │\n├────────────────────────────╯\n│\n◇  Plugins ──────╮\n│                │\n│  Loaded: 6     │\n│  Disabled: 36  │\n│  Errors: 0     │\n│                │\n├────────────────╯\n│\n◇  Plugin diagnostics ───────────────────────────────────────────────────╮\n│                                                                        │\n│  - WARN: memory slot plugin not found or not marked as memory:         │\n│    memory-core                                                         │\n│  - WARN adp-openclaw: loaded without install/load-path provenance;     │\n│    treat as untracked local code and pin trust via plugins.allow or    │\n│    install records (/root/.openclaw/extensions/adp-openclaw/index.ts)  │\n│  - WARN camofox-browser: loaded without install/load-path provenance;  │\n│    treat as untracked local code and pin trust via plugins.allow or    │\n│    install records                                                     │\n│    (/root/.openclaw/extensions/camofox-browser/plugin.ts)              │\n│  - WARN ddingtalk: loaded without install/load-path provenance; treat  │\n│    as untracked local code and pin trust via plugins.allow or install  │\n│    records (/root/.openclaw/extensions/ddingtalk/index.ts)             │\n│  - WARN qqbot: loaded without install/load-path provenance; treat as   │\n│    untracked local code and pin trust via plugins.allow or install     │\n│    records (/root/.openclaw/extensions/qqbot/index.ts)                 │\n│  - WARN wecom: loaded without install/load-path provenance; treat as   │\n│    untracked local code and pin trust via plugins.allow or install     │\n│    records (/root/.openclaw/extensions/wecom/index.ts)                 │\n│                                                                        │\n├────────────────────────────────────────────────────────────────────────╯\nTelegram: ok (@wdjopenclaw_bot) (319ms)\nQQ Bot: not configured\nWeCom: not configured\nADP OpenClaw: not configured\nDingTalk: not configured\nAgents: main (default), mira\nHeartbeat interval: 30m (main)\nSession store (main): /root/.openclaw/agents/main/sessions/sessions.json (174 entries)\n- agent:main:cron:9f1f6c80-8420-48af-a5b3-4e8fbf2341be (1m ago)\n- agent:main:cron:9f1f6c80-8420-48af-a5b3-4e8fbf2341be:run:c6015839-ca14-4189-a033-2effbfc6c296 (1m ago)\n- agent:main:main (2m ago)\n- agent:main:cron:9f1f6c80-8420-48af-a5b3-4e8fbf2341be:run:cf35ef87-0346-4b20-b35b-a09f0f3f0ffe (11m ago)\n- agent:main:cron:f32169f4-efc8-44aa-a9ad-b30196370b7d (13m ago)\n│\n◇  Memory search ────────────────────────────────────────────────────────╮\n│                                                                        │\n│  Memory search provider is set to \"local\" but no local model file was  │\n│  found.                                                                │\n│                                                                        │\n│  Fix (pick one):                                                       │\n│  - Install node-llama-cpp and set a local model path in config         │\n│  - Switch to a remote provider: openclaw config set                    │\n│    agents.defaults.memorySearch.provider openai                        │\n│                                                                        │\n│  Verify: openclaw memory status --deep                                 │\n│                                                                        │\n├────────────────────────────────────────────────────────────────────────╯\nRun \"openclaw doctor --fix\" to apply changes.\n│\n└  Doctor complete.",
-    "healthText": "Telegram: ok (@wdjopenclaw_bot) (655ms)\nQQ Bot: not configured\nWeCom: not configured\nADP OpenClaw: not configured\nDingTalk: not configured\nAgents: main (default), mira\nHeartbeat interval: 30m (main)\nSession store (main): /root/.openclaw/agents/main/sessions/sessions.json (174 entries)\n- agent:main:cron:9f1f6c80-8420-48af-a5b3-4e8fbf2341be (1m ago)\n- agent:main:cron:9f1f6c80-8420-48af-a5b3-4e8fbf2341be:run:c6015839-ca14-4189-a033-2effbfc6c296 (1m ago)\n- agent:main:main (2m ago)\n- agent:main:cron:9f1f6c80-8420-48af-a5b3-4e8fbf2341be:run:cf35ef87-0346-4b20-b35b-a09f0f3f0ffe (11m ago)\n- agent:main:cron:f32169f4-efc8-44aa-a9ad-b30196370b7d (13m ago)",
+    "doctorText": "▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄\n██░▄▄▄░██░▄▄░██░▄▄▄██░▀██░██░▄▄▀██░████░▄▄▀██░███░██\n██░███░██░▀▀░██░▄▄▄██░█░█░██░█████░████░▀▀░██░█░█░██\n██░▀▀▀░██░█████░▀▀▀██░██▄░██░▀▀▄██░▀▀░█░██░██▄▀▄▀▄██\n▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀\n                  🦞 OPENCLAW 🦞                    \n \n┌  OpenClaw doctor\n│\n◇  Session locks ──────────────────────────────────────────────────────────────╮\n│                                                                              │\n│  - Found 2 session lock files.                                               │\n│  - ~/.openclaw/agents/main/sessions/8bace5b8-c5c8-4be6-bfe6-3196c6b7dec3.js  │\n│  onl.lock                                                                    │\n│    pid=595224 (alive) age=2m0s stale=no                                      │\n│  - ~/.openclaw/agents/main/sessions/c6015839-ca14-4189-a033-2effbfc6c296.js  │\n│  onl.lock                                                                    │\n│    pid=595224 (alive) age=25s stale=no                                       │\n│                                                                              │\n├──────────────────────────────────────────────────────────────────────────────╯\n│\n◇  Gateway runtime ─────────────────────────────────────────────────────╮\n│                                                                       │\n│  System Node 22+ not found. Install via Homebrew/apt/choco and rerun  │\n│  doctor to migrate off Bun/version managers.                          │\n│                                                                       │\n├───────────────────────────────────────────────────────────────────────╯\n│\n◇  Gateway service config ─────────────────────────────────────────────────╮\n│                                                                          │\n│  - Gateway service uses Node from a version manager; it can break after  │\n│    upgrades. (/root/.nvm/versions/node/v22.22.0/bin/node)                │\n│  - System Node 22+ not found; install it before migrating away from      │\n│    version managers.                                                     │\n│                                                                          │\n├──────────────────────────────────────────────────────────────────────────╯\n│\n◇  Security ─────────────────────────────────╮\n│                                            │\n│  - No channel security warnings detected.  │\n│  - Run: openclaw security audit --deep     │\n│                                            │\n├────────────────────────────────────────────╯\n│\n◇  Skills status ────────────╮\n│                            │\n│  Eligible: 17              │\n│  Missing requirements: 3   │\n│  Blocked by allowlist: 40  │\n│                            │\n├────────────────────────────╯\n│\n◇  Plugins ──────╮\n│                │\n│  Loaded: 6     │\n│  Disabled: 36  │\n│  Errors: 0     │\n│                │\n├────────────────╯\n│\n◇  Plugin diagnostics ───────────────────────────────────────────────────╮\n│                                                                        │\n│  - WARN: memory slot plugin not found or not marked as memory:         │\n│    memory-core                                                         │\n│  - WARN adp-openclaw: loaded without install/load-path provenance;     │\n│    treat as untracked local code and pin trust via plugins.allow or    │\n│    install records (/root/.openclaw/extensions/adp-openclaw/index.ts)  │\n│  - WARN camofox-browser: loaded without install/load-path provenance;  │\n│    treat as untracked local code and pin trust via plugins.allow or    │\n│    install records                                                     │\n│    (/root/.openclaw/extensions/camofox-browser/plugin.ts)              │\n│  - WARN ddingtalk: loaded without install/load-path provenance; treat  │\n│    as untracked local code and pin trust via plugins.allow or install  │\n│    records (/root/.openclaw/extensions/ddingtalk/index.ts)             │\n│  - WARN qqbot: loaded without install/load-path provenance; treat as   │\n│    untracked local code and pin trust via plugins.allow or install     │\n│    records (/root/.openclaw/extensions/qqbot/index.ts)                 │\n│  - WARN wecom: loaded without install/load-path provenance; treat as   │\n│    untracked local code and pin trust via plugins.allow or install     │\n│    records (/root/.openclaw/extensions/wecom/index.ts)                 │\n│                                                                        │\n├────────────────────────────────────────────────────────────────────────╯\nTelegram: ok (@wdjopenclaw_bot) (645ms)\nQQ Bot: not configured\nWeCom: not configured\nADP OpenClaw: not configured\nDingTalk: not configured\nAgents: main (default), mira\nHeartbeat interval: 30m (main)\nSession store (main): /root/.openclaw/agents/main/sessions/sessions.json (174 entries)\n- agent:main:cron:9f1f6c80-8420-48af-a5b3-4e8fbf2341be (0m ago)\n- agent:main:cron:9f1f6c80-8420-48af-a5b3-4e8fbf2341be:run:c6015839-ca14-4189-a033-2effbfc6c296 (0m ago)\n- agent:main:main (2m ago)\n- agent:main:cron:9f1f6c80-8420-48af-a5b3-4e8fbf2341be:run:cf35ef87-0346-4b20-b35b-a09f0f3f0ffe (10m ago)\n- agent:main:cron:f32169f4-efc8-44aa-a9ad-b30196370b7d (13m ago)\n│\n◇  Memory search ────────────────────────────────────────────────────────╮\n│                                                                        │\n│  Memory search provider is set to \"local\" but no local model file was  │\n│  found.                                                                │\n│                                                                        │\n│  Fix (pick one):                                                       │\n│  - Install node-llama-cpp and set a local model path in config         │\n│  - Switch to a remote provider: openclaw config set                    │\n│    agents.defaults.memorySearch.provider openai                        │\n│                                                                        │\n│  Verify: openclaw memory status --deep                                 │\n│                                                                        │\n├────────────────────────────────────────────────────────────────────────╯\nRun \"openclaw doctor --fix\" to apply changes.\n│\n└  Doctor complete.",
+    "healthText": "Telegram: ok (@wdjopenclaw_bot) (325ms)\nQQ Bot: not configured\nWeCom: not configured\nADP OpenClaw: not configured\nDingTalk: not configured\nAgents: main (default), mira\nHeartbeat interval: 30m (main)\nSession store (main): /root/.openclaw/agents/main/sessions/sessions.json (174 entries)\n- agent:main:cron:9f1f6c80-8420-48af-a5b3-4e8fbf2341be (1m ago)\n- agent:main:cron:9f1f6c80-8420-48af-a5b3-4e8fbf2341be:run:c6015839-ca14-4189-a033-2effbfc6c296 (1m ago)\n- agent:main:main (2m ago)\n- agent:main:cron:9f1f6c80-8420-48af-a5b3-4e8fbf2341be:run:cf35ef87-0346-4b20-b35b-a09f0f3f0ffe (11m ago)\n- agent:main:cron:f32169f4-efc8-44aa-a9ad-b30196370b7d (13m ago)",
     "gatewayStatusText": "Service: systemd (enabled)\nFile logs: /tmp/openclaw/openclaw-2026-03-01.log\nCommand: /root/.nvm/versions/node/v22.22.0/bin/node /root/.local/share/pnpm/global/5/.pnpm/openclaw@2026.2.26_@napi-rs+canvas@0.1.95_@types+express@5.0.6_hono@4.12.2_node-llama-cpp@3.15.1/node_modules/openclaw/dist/index.js gateway --port 18789\nService file: ~/.config/systemd/user/openclaw-gateway.service\nService env: OPENCLAW_GATEWAY_PORT=18789\n\nConfig (cli): ~/.openclaw/openclaw.json\nConfig (service): ~/.openclaw/openclaw.json\n\nGateway: bind=loopback (127.0.0.1), port=18789 (service args)\nProbe target: ws://127.0.0.1:18789\nDashboard: http://127.0.0.1:18789/\nProbe note: Loopback-only gateway; only local clients can connect.\n\nRuntime: running (pid 595224, state active, sub running, last exit 0, reason 0)\nRPC probe: ok\n\nListening: 127.0.0.1:18789\nTroubles: run openclaw status\nTroubleshooting: https://docs.openclaw.ai/troubleshooting",
     "sessionsText": "Session store: /root/.openclaw/agents/main/sessions/sessions.json\nSessions listed: 174\nKind   Key                        Age       Model          Tokens (ctx %)       Flags\ndirect agent:main:cron:...2341be  1m ago    gpt-5.3-codex  11k/272k (4%)        system id:c6015839-ca14-4189-a033-2effbfc6c296\ndirect agent:main:cron:...c6c296  1m ago    gpt-5.3-codex  11k/272k (4%)        system id:c6015839-ca14-4189-a033-2effbfc6c296\ndirect agent:main:main            2m ago    gpt-5.3-codex  243k/272k (89%)      system id:8bace5b8-c5c8-4be6-bfe6-3196c6b7dec3\ndirect agent:main:cron:...3f0ffe  11m ago   gpt-5.3-codex  11k/272k (4%)        system id:cf35ef87-0346-4b20-b35b-a09f0f3f0ffe\ndirect agent:main:cron:...370b7d  13m ago   gpt-5.3-codex  29k/272k (11%)       system id:6f38851f-3c7e-4eeb-8f55-ef5de0203a82\ndirect agent:main:cron:...203a82  13m ago   gpt-5.3-codex  29k/272k (11%)       system id:6f38851f-3c7e-4eeb-8f55-ef5de0203a82\ndirect agent:main:cron:...d7d524  21m ago   gpt-5.3-codex  11k/272k (4%)        system id:ed79a186-99f6-4363-a9bd-53c6c4d7d524\ndirect agent:main:cron:...f69194  31m ago   gpt-5.3-codex  11k/272k (4%)        system id:917f1e7b-9f27-44d7-b876-dd1ae5f69194\ndirect agent:main:cron:...61376a  41m ago   gpt-5.3-codex  11k/272k (4%)        system id:b90bd918-f3f2-4edb-846c-44565b61376a\ndirect agent:main:cron:...27f035  51m ago   gpt-5.3-codex  11k/272k (4%)        system id:4ed58d1b-cb31-4c31-b81c-c45f2b27f035\ndirect agent:main:cron:...f789c5  1h ago    gpt-5.3-codex  11k/272k (4%)        system id:c36ab942-bad6-4a16-ac11-20a210f789c5\ndirect agent:main:cron:...76d2d1  1h ago    gpt-5.3-codex  11k/272k (4%)        system id:afdd7033-0f14-417b-a9a8-c5741576d2d1\ndirect agent:main:cron:...f5f4dd  1h ago    gpt-5.3-codex  11k/272k (4%)        system id:c3503017-34c8-4597-807b-c183f6f5f4dd\ndirect agent:main:cron:...87e265  2h ago    gpt-5.3-codex  11k/272k (4%)        system id:1d722512-b1cb-4c32-b611-4e8e5a87e265\ndirect agent:main:cron:...ddfd9d  2h ago    gpt-5.3-codex  11k/272k (4%)        system id:871c13b6-67e5-4789-9479-83ffdcddfd9d\ndirect agent:main:cron:...c6478f  2h ago    gpt-5.3-codex  11k/272k (4%)        system id:431162c4-3a6e-46c8-bd5d-77541cc6478f\ndirect agent:main:cron:...7a4ca0  2h ago    gpt-5.3-codex  11k/272k (4%)        system id:9b121991-8d6b-44e3-89b9-970a9e7a4ca0\ndirect agent:main:cron:...ad04a9  2h ago    gpt-5.3-codex  11k/272k (4%)        system id:29a1cefe-f9fb-45b9-86c9-2d2cd8ad04a9\ndirect agent:main:cron:...3e0485  2h ago    gpt-5.3-codex  11k/272k (4%)        system id:50ef38c8-f6f8-417e-a7d7-ba34913e0485\ndirect agent:main:cron:...a7ee50  3h ago    gpt-5.3-codex  11k/272k (4%)        system id:9158b175-4e5c-42af-8300-e46f5fa7ee50\ndirect agent:main:cron:...b6fae0  3h ago    gpt-5.3-codex  11k/272k (4%)        system id:f2251170-2747-480e-9e0e-0dd9f6b6fae0\ndirect agent:main:cron:...f071a2  3h ago    gpt-5.3-codex  11k/272k (4%)        system id:70fcd566-8b8c-4461-b88f-5d383bf071a2\ndirect agent:main:cron:...e9db3f  3h ago    gpt-5.3-codex  11k/272k (4%)        system id:9bee71c8-9350-4127-bc4b-704f8fe9db3f\ndirect agent:main:cron:...49b72c  3h ago    gpt-5.3-codex  11k/272k (4%)        system id:621aa01a-6e88-4b11-ae6f-0d254d49b72c\ndirect agent:main:cron:...50b40d  3h ago    gpt-5.3-codex  11k/272k (4%)        system id:6f16a3bf-795b-470b-b210-e641ce50b40d\ndirect agent:main:cron:...83f792  4h ago    gpt-5.3-codex  11k/272k (4%)        system id:a788c40e-5bed-41a5-95d3-c48d0383f792\ndirect agent:main:cron:...53dc7e  4h ago    gpt-5.3-codex  11k/272k (4%)        system id:94c860bb-b8eb-4f04-b5ba-0a376b53dc7e\ndirect agent:main:cron:...ae7852  4h ago    gpt-5.3-codex  11k/272k (4%)        system id:3a6d26ca-95f0-4874-8b54-421691ae7852\ndirect agent:main:cron:...77b0c7  4h ago    gpt-5.3-codex  11k/272k (4%)        system id:f04c0840-4cbe-4e0c-8409-1bcfc977b0c7\ndirect agent:main:cron:...21dd67  4h ago    gpt-5.3-codex  11k/272k (4%)        system id:f613ce81-7ca5-4cbd-8e46-ab369e21dd67\ndirect agent:main:cron:...ce756e  4h ago    gpt-5.3-codex  11k/272k (4%)        system id:39f289dc-e929-4274-acbb-52336ece756e\ndirect agent:main:cron:...4dfb1c  5h ago    gpt-5.3-codex  11k/272k (4%)        system id:bd0a4047-1410-4642-bddb-7d91384dfb1c\ndirect agent:main:cron:...bf48a0  5h ago    gpt-5.3-codex  11k/272k (4%)        system id:da950a3e-e0a7-4dfa-b615-3df21cbf48a0\ndirect agent:main:cron:...f7ab9c  5h ago    gpt-5.3-codex  11k/272k (4%)        system id:9c00d05b-2132-4904-9936-363520f7ab9c\ndirect agent:main:cron:...43d496  5h ago    gpt-5.3-codex  11k/272k (4%)        system id:b7621451-1508-4375-a42f-b2888243d496\ndirect agent:main:cron:...c1b371  5h ago    gpt-5.3-codex  11k/272k (4%)        system id:364f431e-4079-48ff-9a45-64b905c1b371\ndirect agent:main:cron:...4b5b65  5h ago    gpt-5.3-codex  11k/272k (4%)        system id:410d7f75-e37b-4651-a11e-cd3f2a4b5b65\ndirect agent:main:cron:...e17968  6h ago    gpt-5.3-codex  11k/272k (4%)        system id:f9a75072-f54d-4aa0-93e7-d10705e17968\ndirect agent:main:cron:...a06e00  6h ago    gpt-5.3-codex  11k/272k (4%)        system id:1c3c367a-ac49-4eff-b88a-881995a06e00\ndirect agent:main:cron:...86f9a3  6h ago    gpt-5.3-codex  11k/272k (4%)        system id:4cb4c1c0-7ae9-4de8-9dc7-39c73486f9a3\ndirect agent:main:cron:...725784  6h ago    gpt-5.3-codex  11k/272k (4%)        system id:0a228449-c6f1-474c-b87f-850537725784\ndirect agent:main:cron:...0c294b  6h ago    gpt-5.3-codex  11k/272k (4%)        system id:0a87ffcb-9a6e-4771-8d19-f3dd440c294b\ndirect agent:main:cron:...16dc41  6h ago    gpt-5.3-codex  11k/272k (4%)        system id:58e35323-3d15-4963-b13d-e8306716dc41\ndirect agent:main:cron:...da9dbd  7h ago    gpt-5.3-codex  11k/272k (4%)        system id:098f62e5-dbc4-4d34-8413-32ec63da9dbd\ndirect agent:main:cron:...08bebc  7h ago    gpt-5.3-codex  11k/272k (4%)        system id:4ac9d770-12b9-4433-bd56-3e0fa308bebc\ndirect agent:main:cron:...609bf2  7h ago    gpt-5.3-codex  11k/272k (4%)        system id:d5ebc8b6-946b-4d65-9f87-fbb63b609bf2\ndirect agent:main:cron:...2f2a95  7h ago    gpt-5.3-codex  11k/272k (4%)        system id:08b8baaa-bdc9-4f18-9c6e-064c612f2a95\ndirect agent:main:cron:...68976a  7h ago    gpt-5.3-codex  11k/272k (4%)        system id:0c415303-f79c-49bb-8e59-bafe0368976a\ndirect agent:main:cron:...b704e5  7h ago    gpt-5.3-codex  16k/272k (6%)        system id:2a87d392-4f3d-462d-a115-327f3c83b1df\ndirect agent:main:cron:...83b1df  7h ago    gpt-5.3-codex  16k/272k (6%)        system id:2a87d392-4f3d-462d-a115-327f3c83b1df\ndirect agent:main:cron:...915ba0  7h ago    gpt-5.3-codex  14k/272k (5%)        system id:4721814a-7701-4e21-bda6-73bc18a3abc2\ndirect agent:main:cron:...a3abc2  7h ago    gpt-5.3-codex  14k/272k (5%)        system id:4721814a-7701-4e21-bda6-73bc18a3abc2\ndirect agent:main:cron:...5ae4db  7h ago    gpt-5.3-codex  11k/272k (4%)        system id:62aa83c1-5f7d-4708-8e61-4adac35ae4db\ndirect agent:main:cron:...d611d1  8h ago    gpt-5.3-codex  11k/272k (4%)        system id:ebf5f248-a803-4726-9d43-d925d6d611d1\ndirect agent:main:cron:...140ad8  8h ago    gpt-5.3-codex  11k/272k (4%)        system id:7effab13-5af8-468a-be26-115be4140ad8\ndirect agent:main:cron:...06e8db  8h ago    gpt-5.3-codex  11k/272k (4%)        system id:775f4556-0e20-45e2-8d41-b23e3d06e8db\ndirect agent:main:cron:...751fba  8h ago    gpt-5.3-codex  11k/272k (4%)        system id:b45c4826-6b28-4719-beac-4c9200751fba\ndirect agent:main:cron:...3043ac  8h ago    gpt-5.3-codex  11k/272k (4%)        system id:02c66bd2-0913-40a3-b7af-d7f5f33043ac\ndirect agent:main:cron:...d3254f  8h ago    gpt-5.3-codex  11k/272k (4%)        system id:4d6278dd-54f4-4287-bcfb-55d079d3254f\ndirect agent:main:cron:...4c5964  9h ago    gpt-5.3-codex  11k/272k (4%)        system id:946229dd-e4a9-4a4e-b19a-40a5c44c5964\ndirect agent:main:cron:...1e4d50  9h ago    gpt-5.3-codex  11k/272k (4%)        system id:223aabad-32dd-4778-b2ea-0950d71e4d50\ndirect agent:main:cron:...8a5ae7  9h ago    gpt-5.3-codex  11k/272k (4%)        system id:f3839a80-a965-4ca6-b041-ae2d6a8a5ae7\ndirect agent:main:cron:...df5438  9h ago    gpt-5.3-codex  11k/272k (4%)        system id:a82d5f1f-f20e-4b8f-92fd-e14fe9df5438\ndirect agent:main:cron:...af2695  9h ago    gpt-5.3-codex  11k/272k (4%)        system id:60bc2e51-28c8-4730-abe6-5df31baf2695\ndirect agent:main:cron:...646ef8  9h ago    gpt-5.3-codex  11k/272k (4%)        system id:879ffcf9-399e-4063-9e13-7b577d646ef8\ndirect agent:main:cron:...da71f6  10h ago   gpt-5.3-codex  11k/272k (4%)        system id:ae590bcd-4957-436b-9337-a0ff63da71f6\ndirect agent:main:cron:...bd6656  10h ago   gpt-5.3-codex  11k/272k (4%)        system id:5747563c-c398-4bd5-97cf-45e9b5bd6656\ndirect agent:main:cron:...9ab890  10h ago   gpt-5.3-codex  11k/272k (4%)        system id:8dbdd0cb-f085-4655-be8d-7c4b179ab890\ndirect agent:main:cron:...ec723d  10h ago   gpt-5.3-codex  11k/272k (4%)        system id:eae1f53a-29df-4fff-8e5b-35ab30ec723d\ndirect agent:main:cron:...547da9  10h ago   gpt-5.3-codex  11k/272k (4%)        system id:2ef5a556-8bd5-4506-b889-86f00e547da9\ndirect agent:main:cron:...0245da  10h ago   gpt-5.3-codex  11k/272k (4%)        system id:08b14e1c-b75f-41ef-86e3-91b6920245da\ndirect agent:main:cron:...8a8d5a  11h ago   gpt-5.3-codex  11k/272k (4%)        system id:4b9bd8cb-e0ca-42ad-bdb6-4345488a8d5a\ndirect agent:main:cron:...8cd5e0  11h ago   gpt-5.3-codex  11k/272k (4%)        system id:bdda71b8-c9d3-4a2b-bd99-4a18e28cd5e0\ndirect agent:main:cron:...38c4e5  11h ago   gpt-5.3-codex  11k/272k (4%)        system id:a56efab2-3223-4035-989b-5ac34938c4e5\ndirect agent:main:cron:...1387bd  11h ago   gpt-5.3-codex  11k/272k (4%)        system id:2abb8af1-c7d7-444b-a0a2-13f3181387bd\ndirect agent:main:cron:...1f54ea  11h ago   gpt-5.3-codex  11k/272k (4%)        system id:29d2cc97-cb0c-4eb3-8767-619b0b1f54ea\ndirect agent:main:cron:...f05880  11h ago   gpt-5.3-codex  11k/272k (4%)        system id:24c7c2ca-906a-4fae-90a5-4ca7c5f05880\ndirect agent:main:cron:...7a5bae  12h ago   gpt-5.3-codex  11k/272k (4%)        system id:faacba5b-b946-4667-8224-1e131b7a5bae\ndirect agent:main:cron:...7939b0  12h ago   gpt-5.3-codex  11k/272k (4%)        system id:91969fba-8263-453a-aaaa-1131687939b0\ndirect agent:main:cron:...f8f9e1  12h ago   gpt-5.3-codex  11k/272k (4%)        system id:38d42ceb-7d0a-4735-bcb2-1ac9acf8f9e1\ndirect agent:main:cron:...367769  12h ago   gpt-5.3-codex  11k/272k (4%)        system id:63b59bf4-8d9b-4218-a7d3-c045fa367769\ndirect agent:main:cron:...3727b7  12h ago   gpt-5.3-codex  11k/272k (4%)        system id:64bf8465-14e7-45ad-8d64-ede43e3727b7\ndirect agent:main:cron:...0209b3  12h ago   gpt-5.3-codex  11k/272k (4%)        system id:6d976c79-a5a1-4282-b4b3-78c6c30209b3\ndirect agent:main:cron:...f5f96d  13h ago   gpt-5.3-codex  11k/272k (4%)        system id:6f39689c-fd5f-4ff5-aa5c-b18d92f5f96d\ndirect agent:main:cron:...b41ade  13h ago   gpt-5.3-codex  11k/272k (4%)        system id:37d79e2b-c1a0-417b-86a7-da746db41ade\ndirect agent:main:cron:...e47b04  13h ago   gpt-5.3-codex  11k/272k (4%)        system id:e6e220cd-88fa-4b75-a2aa-33233de47b04\ndirect agent:main:cron:...7ba2f1  13h ago   gpt-5.3-codex  11k/272k (4%)        system id:2b988a14-3c18-4cf0-81b3-57edd47ba2f1\ndirect agent:main:cron:...1b7e90  13h ago   gpt-5.3-codex  11k/272k (4%)        system id:765ba28b-2159-450f-81e5-3668da1b7e90\ndirect agent:main:cron:...91a940  13h ago   gpt-5.3-codex  11k/272k (4%)        system id:30defebc-3a70-4a97-ab2f-b8432691a940\ndirect agent:main:cron:...927c0c  14h ago   gpt-5.3-codex  11k/272k (4%)        system id:c164bb87-de86-4b7c-a952-593064927c0c\ndirect agent:main:cron:...bfa149  14h ago   gpt-5.3-codex  11k/272k (4%)        system id:bc06f754-bea6-42ed-9b5a-0a6797bfa149\ndirect agent:main:cron:...e317d1  14h ago   gpt-5.3-codex  11k/272k (4%)        system id:1c6e02f7-9ae3-4d92-af57-82d730e317d1\ndirect agent:main:cron:...221c48  14h ago   gpt-5.3-codex  11k/272k (4%)        system id:83192660-10a2-486a-86d7-f3d51e221c48\ndirect agent:main:cron:...695804  14h ago   gpt-5.3-codex  11k/272k (4%)        system id:4d23616c-ddbb-4933-bcb1-1000d9695804\ndirect agent:main:cron:...8101c2  14h ago   gpt-5.3-codex  11k/272k (4%)        system id:c5abb03d-6875-41d0-a65d-8ba8088101c2\ndirect agent:main:cron:...173105  15h ago   gpt-5.3-codex  11k/272k (4%)        system id:45539050-6f40-4374-a8b7-c81eb6173105\ndirect agent:main:cron:...dea5ae  15h ago   gpt-5.3-codex  11k/272k (4%)        system id:06860897-cb67-4656-ad20-6bb033dea5ae\ndirect agent:main:cron:...6fed6f  15h ago   gpt-5.3-codex  11k/272k (4%)        system id:6d828ae8-4eb9-4741-a423-2b4c1d6fed6f\ndirect agent:main:cron:...995529  15h ago   gpt-5.3-codex  11k/272k (4%)        system id:d0f13189-6ad2-4980-a041-b86f89995529\ndirect agent:main:cron:...5641e1  15h ago   gpt-5.3-codex  11k/272k (4%)        system id:6eccbcca-8445-49f9-9fed-5aa3c65641e1\ndirect agent:main:cron:...577f2f  15h ago   gpt-5.3-codex  18k/272k (7%)        system id:00f56930-b015-4f1e-97b7-6b9146577f2f\ndirect agent:main:cron:...1f955c  15h ago   gpt-5.3-codex  15k/272k (5%)        system id:d8de4fca-0579-4f95-a7da-07103f1f955c\ndirect agent:main:cron:...48ebdf  15h ago   gpt-5.3-codex  11k/272k (4%)        system id:862bc63c-20d4-43e1-bb01-833aad48ebdf\ndirect agent:main:cron:...bb9253  16h ago   gpt-5.3-codex  11k/272k (4%)        system id:2d8d0ca2-99b8-4df4-9680-21231abb9253\ndirect agent:main:cron:...6130df  16h ago   gpt-5.3-codex  11k/272k (4%)        system id:24ca6103-124c-4650-8caf-ccb7b16130df\ndirect agent:main:cron:...66af51  16h ago   gpt-5.3-codex  11k/272k (4%)        system id:0b133577-2c31-4fc7-a9c4-eb78aa66af51\ndirect agent:main:cron:...ef5bbe  16h ago   gpt-5.3-codex  11k/272k (4%)        system id:f4a3db4a-5ac7-40e3-9025-1af082ef5bbe\ndirect agent:main:cron:...c99020  16h ago   gpt-5.3-codex  11k/272k (4%)        system id:75b674ea-0c5f-4f97-bb64-a05f94c99020\ndirect agent:main:cron:...569524  16h ago   gpt-5.3-codex  11k/272k (4%)        system id:53e522dc-de6e-45ae-86b0-baf389569524\ndirect agent:main:cron:...407b54  17h ago   gpt-5.3-codex  11k/272k (4%)        system id:3a60a91b-6fed-449e-bb4a-50d688407b54\ndirect agent:main:cron:...3c91c6  17h ago   gpt-5.3-codex  11k/272k (4%)        system id:e76b57d8-f247-48d4-abed-225c653c91c6\ndirect agent:main:cron:...9cbd8b  17h ago   gpt-5.3-codex  11k/272k (4%)        system id:f08f0588-6efe-4940-a1d0-94906b9cbd8b\ndirect agent:main:cron:...42b827  17h ago   gpt-5.3-codex  11k/272k (4%)        system id:a0592db8-0c6c-49d0-8b19-d6ef5a42b827\ndirect agent:main:cron:...56070a  17h ago   gpt-5.3-codex  11k/272k (4%)        system id:934d6738-c2fc-414f-8b1e-e94c1956070a\ndirect agent:main:cron:...b6b261  17h ago   gpt-5.3-codex  11k/272k (4%)        system id:c63db221-1792-4e3a-8d42-e14754b6b261\ndirect agent:main:cron:...d0f08e  18h ago   gpt-5.3-codex  11k/272k (4%)        system id:11640e15-22fc-4cee-8e9f-5556bed0f08e\ndirect agent:main:cron:...d07713  18h ago   gpt-5.3-codex  11k/272k (4%)        system id:03886fa5-3f74-4c64-b6fe-a11d57d07713\ndirect agent:main:cron:...232bfe  18h ago   gpt-5.3-codex  11k/272k (4%)        system id:e1e3663c-1eb5-4200-adcf-c437a1232bfe\ndirect agent:main:cron:...0fbe4b  18h ago   gpt-5.3-codex  11k/272k (4%)        system id:88d00e6f-f1c5-430e-940c-66c4bc0fbe4b\ndirect agent:main:cron:...006118  18h ago   gpt-5.3-codex  11k/272k (4%)        system id:d8835d2c-8659-48cc-a777-510b73006118\ndirect agent:main:cron:...d3f425  18h ago   gpt-5.3-codex  11k/272k (4%)        system id:d0c5298d-c1ec-4fdd-8ff0-22020ad3f425\ndirect agent:main:cron:...f22a59  19h ago   gpt-5.3-codex  11k/272k (4%)        system id:4084f78e-3fe6-4456-b4e7-9e93a3f22a59\ndirect agent:main:cron:...478412  19h ago   gpt-5.3-codex  11k/272k (4%)        system id:2af2be19-d644-483d-84ba-c7595c478412\ndirect agent:main:cron:...b60ec8  19h ago   gpt-5.3-codex  13k/272k (5%)        system id:e51b5286-cbe0-4c4b-a845-9be858b60ec8\ndirect agent:main:cron:...fe7f1c  19h ago   gpt-5.3-codex  13k/272k (5%)        system id:0d35e29b-7e6b-4520-b4a7-0e8c6bfe7f1c\ndirect agent:main:cron:...3c8cc6  19h ago   gpt-5.3-codex  13k/272k (5%)        system id:dbd7371f-5d3b-4fdc-9856-7693733c8cc6\ndirect agent:main:cron:...21d9a8  19h ago   gpt-5.3-codex  13k/272k (5%)        system id:b3cdd066-4972-4c13-beea-f780b821d9a8\ndirect agent:main:cron:...8af0cb  20h ago   gpt-5.3-codex  13k/272k (5%)        system id:181a1d1a-3564-4c3d-8cdd-26e4a48af0cb\ndirect agent:main:cron:...8b4a61  20h ago   gpt-5.3-codex  13k/272k (5%)        system id:3fe140ca-823d-467a-8194-c5ca608b4a61\ndirect agent:main:cron:...68c974  20h ago   gpt-5.3-codex  13k/272k (5%)        system id:adc649bd-d18c-46ea-8c9e-dbd1e668c974\ndirect agent:main:cron:...dee107  20h ago   gpt-5.3-codex  13k/272k (5%)        system id:c9339e94-d010-4ea2-98a4-68bc41dee107\ndirect agent:main:cron:...8a08f1  20h ago   gpt-5.3-codex  13k/272k (5%)        system id:928c85ca-7e65-4130-b6b1-6d8c848a08f1\ndirect agent:main:cron:...2c4651  20h ago   gpt-5.3-codex  83k/272k (31%)       system id:12a94c6f-39b4-47e6-8168-9463ca1b0389\ndirect agent:main:cron:...1b0389  20h ago   gpt-5.3-codex  83k/272k (31%)       system id:12a94c6f-39b4-47e6-8168-9463ca1b0389\ndirect agent:main:cron:...18e76b  20h ago   gpt-5.3-codex  13k/272k (5%)        system id:10df446e-f425-40dc-adb1-e199ad18e76b\ndirect agent:main:cron:...a0e7ce  21h ago   gpt-5.3-codex  13k/272k (5%)        system id:dd44ac2e-8003-4d46-9b86-0d8921a0e7ce\ndirect agent:main:cron:...185bbf  21h ago   gpt-5.3-codex  13k/272k (5%)        system id:10acd61c-9c04-4639-81c1-912512185bbf\ndirect agent:main:cron:...54c3f8  21h ago   gpt-5.3-codex  13k/272k (5%)        system id:4766ce8e-192d-4986-aec9-023c5d54c3f8\ndirect agent:main:cron:...701a3a  21h ago   gpt-5.3-codex  14k/272k (5%)        system id:ebda9d68-4a1e-4f57-814c-4415fe4276c6\ndirect agent:main:cron:...4276c6  21h ago   gpt-5.3-codex  14k/272k (5%)        system id:ebda9d68-4a1e-4f57-814c-4415fe4276c6\ndirect agent:main:cron:...7149f7  21h ago   gpt-5.3-codex  13k/272k (5%)        system id:c1aa3eb0-9809-49f8-91d2-070de57149f7\ndirect agent:main:cron:...a0dcc7  21h ago   gpt-5.3-codex  13k/272k (5%)        system id:c9a55cf8-8e3f-4f52-b900-c84dd2a0dcc7\ndirect agent:main:cron:...c805b5  21h ago   gpt-5.3-codex  13k/272k (5%)        system id:d313edf8-fabb-4ac2-b21c-949d50c805b5\ndirect agent:main:cron:...d21976  22h ago   gpt-5.3-codex  13k/272k (5%)        system id:abc9a1fd-1aed-4447-afc1-d3d1a5d21976\ndirect agent:main:cron:...592285  22h ago   gpt-5.3-codex  13k/272k (5%)        system id:36cdb144-542b-4124-8c51-b48a7b592285\ndirect agent:main:cron:...79e7a3  22h ago   gpt-5.3-codex  13k/272k (5%)        system id:3b4327a1-8cc3-4411-9943-61accc79e7a3\ndirect agent:main:cron:...fd859c  22h ago   gpt-5.3-codex  13k/272k (5%)        system id:5637e26b-6aeb-40b2-8fda-6fa37efd859c\ndirect agent:main:cron:...5564ee  22h ago   gpt-5.3-codex  13k/272k (5%)        system id:bfd0df73-54ff-465f-960a-20f1ea5564ee\ndirect agent:main:cron:...dd5072  22h ago   gpt-5.3-codex  13k/272k (5%)        system id:7094fc98-1235-46c4-b4f3-a468eedd5072\ndirect agent:main:cron:...8075c4  23h ago   gpt-5.3-codex  13k/272k (5%)        system id:e63a8b63-de02-473f-965f-63ae758075c4\ndirect agent:main:cron:...c81d52  23h ago   gpt-5.3-codex  13k/272k (5%)        system id:0377324b-09c2-4bd1-8937-8cf9f7c81d52\ndirect agent:main:cron:...767585  23h ago   gpt-5.3-codex  13k/272k (5%)        system id:c212b1d4-fc0b-4d5f-bc00-79b0fa767585\ndirect agent:main:cron:...8f3244  23h ago   gpt-5.3-codex  13k/272k (5%)        system id:7015733c-03a4-478d-9bce-f954238f3244\ndirect agent:main:cron:...7134e1  23h ago   gpt-5.3-codex  13k/272k (5%)        system id:6cecc1bf-bfe4-40ae-9438-fde3b77134e1\ndirect agent:main:cron:...7c97e2  23h ago   gpt-5.3-codex  18k/272k (6%)        system id:27a59833-2529-4d69-86c7-6e8e0b7c97e2\ndirect agent:main:cron:...2e62b3  23h ago   gpt-5.3-codex  17k/272k (6%)        system id:368afce8-5f8a-42ba-93aa-fe2ab72e62b3\ndirect agent:main:cron:...027989  23h ago   gpt-5.3-codex  13k/272k (5%)        system id:3ea0f059-9314-41ad-8396-b2f1d1027989\ndirect agent:main:cron:...730c9c  23h ago   gpt-5.3-codex  17k/272k (6%)        system id:270a629a-e5d8-4747-9958-fee4d5730c9c\ndirect agent:main:cron:...401715  23h ago   gpt-5.3-codex  23k/272k (8%)        system id:25bc34d3-3ce5-407b-b3ea-9b4937401715\ndirect agent:main:cron:...9d4c58  24h ago   gpt-5.3-codex  13k/272k (5%)        system id:ac2761e6-0aca-44a3-93df-7a83009d4c58\ndirect agent:main:cron:...8a48b9  24h ago   gpt-5.3-codex  13k/272k (5%)        system id:8a3c1091-6c56-4894-9d5a-f262e38a48b9\ndirect agent:main:cron:...d83d90  24h ago   gpt-5.3-codex  19k/272k (7%)        system id:9a7795c1-be49-4613-9f97-bf5d40d83d90\ndirect agent:main:cron:...205253  24h ago   gpt-5.3-codex  16k/272k (6%)        system id:cf13c14b-11aa-4db3-8c09-d95c05c6e5c7\ndirect agent:main:cron:...c6e5c7  24h ago   gpt-5.3-codex  16k/272k (6%)        system id:cf13c14b-11aa-4db3-8c09-d95c05c6e5c7\ndirect agent:main:cron:...7ad6eb  24h ago   gpt-5.3-codex  22k/272k (8%)        system id:e9ac100e-ff06-4582-8e92-c864ec7ad6eb\ndirect agent:main:cron:...9c870e  24h ago   gpt-5.3-codex  13k/272k (5%)        system id:7db30f33-7ec1-4601-a77b-3fb5a69c870e\ndirect agent:main:cron:...eaa8f4  24h ago   gpt-5.3-codex  17k/272k (6%)        system id:97ee875a-50cd-4c23-90ee-81094feaa8f4\ndirect agent:main:cron:...076a0f  24h ago   gpt-5.3-codex  21k/272k (8%)        system id:c70b202c-9cf8-431c-b8af-a5b3d8076a0f\ndirect agent:main:cron:...62aeeb  24h ago   gpt-5.3-codex  13k/272k (5%)        system id:e6672695-49f2-4307-ac23-40c48062aeeb\ndirect agent:main:teleg...737274  34h ago   gpt-5.3-codex  unknown/272k (?%)    id:754c7900-8f62-4bfc-a021-3163ffe63b4a\ndirect agent:main:cron:...73bf15  34h ago   gpt-5.3-codex  18k/272k (7%)        system id:c39c7307-c65e-470b-96ac-a457a04fb00b\ndirect agent:main:cron:...ac85cf  2d ago    gpt-5.3-codex  14k/272k (5%)        system id:906a3f91-fba5-4f06-84d1-018414ab7103\ndirect agent:main:cron:...e4fd69  2d ago    gpt-5.3-codex  12k/272k (5%)        system id:3feab141-f6d6-4d8b-9346-730799b37932\ndirect agent:main:teleg...737274  2d ago    gpt-5.3-codex  116k/272k (43%)      system id:4a41e099-fb97-4273-af14-acba66ecbf44",
     "pluginsWarnings": "[plugins] adp-openclaw: loaded without install/load-path provenance; treat as untracked local code and pin trust via plugins.allow or install records (/root/.openclaw/extensions/adp-openclaw/index.ts)\n[plugins] camofox-browser: loaded without install/load-path provenance; treat as untracked local code and pin trust via plugins.allow or install records (/root/.openclaw/extensions/camofox-browser/plugin.ts)\n[plugins] ddingtalk: loaded without install/load-path provenance; treat as untracked local code and pin trust via plugins.allow or install records (/root/.openclaw/extensions/ddingtalk/index.ts)\n[plugins] qqbot: loaded without install/load-path provenance; treat as untracked local code and pin trust via plugins.allow or install records (/root/.openclaw/extensions/qqbot/index.ts)\n[plugins] wecom: loaded without install/load-path provenance; treat as untracked local code and pin trust via plugins.allow or install records (/root/.openclaw/extensions/wecom/index.ts)",
