@@ -1405,5 +1405,14 @@
     "gatewayOk": true,
     "memUsedPct": 44.1,
     "diskUsedPct": "56%"
+  },
+  {
+    "generatedAt": "2026-03-01T08:52:32.063247Z",
+    "model": "openai-codex/gpt-5.3-codex",
+    "w5": 9,
+    "day": 55,
+    "gatewayOk": true,
+    "memUsedPct": 43.5,
+    "diskUsedPct": "56%"
   }
 ]
