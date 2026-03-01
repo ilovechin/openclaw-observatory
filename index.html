@@ -25,6 +25,8 @@
     .ok{color:var(--ok);font-weight:700}.bad{color:var(--bad);font-weight:700}.warn{color:var(--warn);font-weight:700}
     .full{margin-top:14px} pre{margin:0;padding:12px;max-height:280px;overflow:auto;background:rgba(6,13,32,.6);border-top:1px solid #203562;color:#d7e4ff;font-size:12px}
     .mono{font-family:ui-monospace,Menlo,Consolas,monospace}
+.chips{display:flex;flex-wrap:wrap;gap:8px;padding:10px 12px}.chip{padding:6px 10px;border:1px solid #35579f;border-radius:999px;font-size:12px;color:#d8e6ff;background:#0d1b40}.chip.ok{border-color:#2d8f67;color:#91f2c6}.chip.warn{border-color:#8a6a2b;color:#ffd98a}.chip.bad{border-color:#9b4250;color:#ffb2bc}
+.heat-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:4px;padding:10px 12px}.heat-cell{height:16px;border-radius:3px;background:#173064}.legend{display:flex;gap:10px;align-items:center;padding:0 12px 12px;font-size:12px;color:#9eb3e4}
     @media(max-width:1200px){.kpi-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.grid{grid-template-columns:1fr}}
     @media(max-width:760px){.kpi-grid{grid-template-columns:1fr 1fr}.title{font-size:24px}.wrap{padding:12px}.head h3{font-size:14px}th,td{font-size:12px;padding:8px}.v{font-size:20px}}
 /* mobile-ux */
@@ -139,6 +141,20 @@
     <div style="padding:12px"><canvas id="memuGraphCanvas" width="1200" height="360" style="width:100%;height:auto;background:#0a132e;border:1px solid #243e75;border-radius:8px"></canvas></div>
   </section>
 
+
+  <section class="grid">
+    <div class="card">
+      <div class="head"><h3>可视化状态总览 / Visual Status Map</h3><span class="pill">STATUS CHIPS</span></div>
+      <div id="statusChips" class="chips"></div>
+      <div class="legend"><span>绿色=正常</span><span>黄色=关注</span><span>红色=异常</span></div>
+    </div>
+    <div class="card">
+      <div class="head"><h3>24小时负载热力图 / 24h Heatmap</h3><span class="pill">HEAT</span></div>
+      <div id="heatMap" class="heat-grid"></div>
+      <div class="legend"><span>低</span><span style="display:inline-block;width:70px;height:8px;background:linear-gradient(90deg,#1b356f,#67c8ff,#ff7d88);border-radius:99px"></span><span>高</span></div>
+    </div>
+  </section>
+
 </main>
 <script>
 function fmtTs(v){ if(!v) return '-'; const n=Number(v); return Number.isNaN(n)?String(v):new Date(n).toLocaleString(); }
@@ -236,6 +252,29 @@ function drawMemuGraph(data){
   ctx.fillText('memU-lite Graph (示意)',14,20);
 }
 
+
+function chipClass(v){ if(v==='ok') return 'ok'; if(v==='warn') return 'warn'; return 'bad'; }
+function renderStatusChips(data){
+  const el=document.getElementById('statusChips'); if(!el) return;
+  const chips=[];
+  chips.push(['网关 Gateway', data.openclaw?.gatewayOk?'ok':'bad', data.openclaw?.gatewayOk?'正常':'异常']);
+  chips.push(['记忆检索 Memory', data.openclaw?.memoryReady?'ok':'warn', data.openclaw?.memoryReady?'可用':'降级']);
+  const cron=(data.openclaw?.cronJobs||[]); const bad=cron.filter(j=>String(j.status).toLowerCase()!=='ok'&&String(j.status).toLowerCase()!=='idle').length;
+  chips.push(['定时任务 Cron', bad===0?'ok':'warn', bad===0?'稳定':'有异常']);
+  const ws=data.websites?.httpStatus||{}; const siteBad=Object.values(ws).filter(c=>!(Number(c)>=200&&Number(c)<400)).length;
+  chips.push(['网站可用 Site', siteBad===0?'ok':'warn', siteBad===0?'正常':'部分异常']);
+  const m=Number(data.system?.memory?.usedPct||0); chips.push(['内存 RAM', m<80?'ok':(m<90?'warn':'bad'), m+'%']);
+  const d=Number(String(data.system?.diskRoot?.usedPct||'0').replace('%',''))||0; chips.push(['磁盘 Disk', d<80?'ok':(d<90?'warn':'bad'), d+'%']);
+  const day=Number(data.usageQuick?.dayUsedPct||0); chips.push(['Token Day', day<70?'ok':(day<90?'warn':'bad'), day+'%']);
+  el.innerHTML=chips.map(([k,c,v])=>`<span class="chip ${chipClass(c)}">${k}: ${v}</span>`).join('');
+}
+function renderHeatMap(hist){
+  const el=document.getElementById('heatMap'); if(!el) return;
+  const arr=(hist||[]).slice(-48);
+  const vals=arr.map(x=>Number(x.day||0));
+  el.innerHTML=vals.map(v=>{ const t=Math.max(0,Math.min(100,v)); const r=Math.round(27 + t*2.0), g=Math.round(53 + (100-t)*1.3), b=Math.round(111 + (100-t)*0.6); return `<div class="heat-cell" title="${t}%" style="background:rgb(${r},${g},${b})"></div>`; }).join('');
+}
+
 function drawTrend(hist){
   const c=document.getElementById('tokenTrend'); if(!c) return; const ctx=c.getContext('2d');
   const W=c.width,H=c.height; ctx.clearRect(0,0,W,H);
@@ -283,6 +322,8 @@ async function load(){
   const siteCodes=c.websites?.httpStatus||{};
   const vals=['personal','crysttao','observatory'].map(k=>{const code=Number(siteCodes[k]||0); return (code>=200&&code<400)?100:(code?40:10)});
   drawRadar('radarSite',vals);
+  renderStatusChips(c);
+  renderHeatMap(h);
 
 
   const summary=[['服务商 Provider',c.identity?.provider||'-','模型提供方'],['套餐 Plan',c.usageQuick?.plan||'-','套餐信息'],['运行时长 Uptime',c.system?.uptime||'-','系统运行时长'],['负载 Load',`${loadv['1m']||'-'} / ${loadv['5m']||'-'} / ${loadv['15m']||'-'}`,'系统负载'],['内存 MB RAM',`${mem.usedMB||'-'} / ${mem.totalMB||'-'}`,'内存占用'],['磁盘 / Disk',`${disk.used||'-'} / ${disk.size||'-'}`,'磁盘占用'],['Agent数量 Agent Count',String(c.openclaw?.agentCount??'-'),'Agent数量'],['语义检索 Memory Search',c.openclaw?.memoryReady?'READY':'NOT READY','语义检索状态']];
