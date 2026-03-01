@@ -358,8 +358,17 @@ async function load(){
   document.getElementById('ts').textContent=new Date(c.generatedAt).toLocaleString();
   const provider=(c.usage?.providers||[])[0]||{}; const wins=provider.windows||[];
   const w5=wins[0]?.usedPercent, day=wins[1]?.usedPercent;
+  const dayResetAt=wins[1]?.resetAt;
+  function fmtCountdown(ts){
+    if(!ts) return '-';
+    const t = String(ts).length===10 ? Number(ts)*1000 : Number(ts);
+    const d = t - Date.now();
+    if(d<=0) return '即将重置';
+    const h=Math.floor(d/3600000), m=Math.floor((d%3600000)/60000);
+    return `${h}小时 ${m}分钟`;
+  }
   const mem=c.system?.memory||{}, disk=c.system?.diskRoot||{}, loadv=c.system?.load||{};
-  const kpis=[['模型 Model',c.identity?.model||'-'],['5h已用 5h Used',w5!=null?`${w5}%`:'-'],['Day已用 Day Used',day!=null?`${day}%`:'-'],['网关 Gateway',c.openclaw?.gatewayOk?'OK':'ERR'],['内存 RAM',mem.usedPct!=null?`${mem.usedPct}%`:'-'],['磁盘 Disk',disk.usedPct||'-']];
+  const kpis=[['模型 Model',c.identity?.model||'-'],['5h已用 5h Used',w5!=null?`${w5}%`:'-'],['Day已用 Day Used',day!=null?`${day}%`:'-'],['Day重置倒计时 Reset In','-'],['网关 Gateway',c.openclaw?.gatewayOk?'OK':'ERR'],['内存 RAM',mem.usedPct!=null?`${mem.usedPct}%`:'-'],['磁盘 Disk',disk.usedPct||'-']];
   document.getElementById('kpis').innerHTML=kpis.map(([k,v])=>`<div class='kpi'><div class='k'>${k}</div><div class='v'>${v}</div></div>`).join('');
   const cronJobs=(c.openclaw?.cronJobs||[]);
   document.querySelector('#cronTable tbody').innerHTML=cronJobs.map(j=>`<tr><td>${j.name}</td><td class='${clsStatus(j.status)}'>${j.status||'idle'}</td><td>${j.errors??0}</td><td>${fmtTs(j.next)}</td></tr>`).join('');
