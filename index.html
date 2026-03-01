@@ -447,6 +447,23 @@ ${c.persona?.identity||''}
 ${c.persona?.userProfile||''}`;
 
 }
-load(); setInterval(load,30000);
+function safeRunLoad(){
+  try{ load(); }catch(e){
+    console.error(e);
+    const b=document.createElement("div");
+    b.style.cssText="position:fixed;left:12px;right:12px;bottom:12px;background:#7f1d1d;color:#fff;padding:10px;border-radius:8px;z-index:9999";
+    b.innerText="监控中枢进入降级模式（脚本异常），基础数据仍可用。";
+    document.body.appendChild(b);
+    const rawBtn=document.querySelector('a[href="./data/current.json"]');
+    if(rawBtn){ rawBtn.style.background="#991b1b"; }
+  }
+}
+window.addEventListener("error", function(){
+  const b=document.createElement("div");
+  b.style.cssText="position:fixed;left:12px;right:12px;bottom:12px;background:#7f1d1d;color:#fff;padding:10px;border-radius:8px;z-index:9999";
+  b.innerText="检测到前端错误，已启用可读性保护。";
+  document.body.appendChild(b);
+});
+safeRunLoad(); setInterval(safeRunLoad,30000);
 </script>
 </body></html>
