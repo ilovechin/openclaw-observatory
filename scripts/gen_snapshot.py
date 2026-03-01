@@ -229,7 +229,9 @@ def main():
             'conversationsIndex': read_json('/root/.openclaw/workspace/memory/fs/resources/conversations/index.json'),
             'syncReport': read_json('/root/.openclaw/workspace/memory/fs/links/sync-report.json'),
             'intentCandidates': read_text('/root/.openclaw/workspace/memory/fs/context/pending/intent-candidates.md', 8000),
-            'graph': read_text('/root/.openclaw/workspace/memory/fs/links/graph.md', 12000)
+            'graph': read_text('/root/.openclaw/workspace/memory/fs/links/graph.md', 12000),
+            'treeState': read_json('/root/.openclaw/workspace/memory/fs/tree-state.json'),
+            'treeSchema': read_text('/root/.openclaw/workspace/memory/fs/tree-schema.md', 3000)
         },
         'raw': {
             'statusUsageJson': status,

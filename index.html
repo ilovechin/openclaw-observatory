@@ -177,6 +177,20 @@
     </div>
   </section>
 
+
+  <section class="grid">
+    <div class="card">
+      <div class="head"><h3>记忆树健康度 / Tree Health</h3><span class="pill">P0/P1/P2</span></div>
+      <div class="chips" id="treeChips"></div>
+      <div style="padding:10px"><canvas id="treeDonut" width="420" height="240" style="width:100%;height:auto;background:#0a132e;border:1px solid #243e75;border-radius:8px"></canvas></div>
+    </div>
+    <div class="card">
+      <div class="head"><h3>记忆树明细 / Tree Details</h3><span class="pill">SCHEMA + TOP ITEMS</span></div>
+      <pre id="treeSchema" class="mono"></pre>
+      <pre id="treeTop" class="mono"></pre>
+    </div>
+  </section>
+
 </main>
 <script>
 function fmtTs(v){ if(!v) return '-'; const n=Number(v); return Number.isNaN(n)?String(v):new Date(n).toLocaleString(); }
@@ -383,6 +397,15 @@ async function load(){
   const sr=c.openclaw?.successRate||{}; const okPct=Math.round((Number(sr.cronOk||0))*100);
   document.getElementById('successRate').innerHTML = `<span class='chip ok'>任务成功率 Success: ${okPct}%</span><span class='chip'>任务总数 Total: ${sr.cronTotal||0}</span>`;
   drawResLine(h); drawLoadBar(c.system?.load||{});
+
+  const ts=c.memuLite?.treeState||{}; const cnt=ts.counts||{};
+  document.getElementById('treeChips').innerHTML = `<span class='chip ok'>健康度 Health: ${ts.health||0}%</span><span class='chip'>绿叶 Green: ${cnt.green||0}</span><span class='chip warn'>黄叶 Yellow: ${cnt.yellow||0}</span><span class='chip warn'>枯叶 Dry: ${cnt.dry||0}</span><span class='chip bad'>土壤 Soil: ${cnt.soil||0}</span>`;
+  drawMiniDonut('treeDonut',[cnt.green||0,cnt.yellow||0,cnt.dry||0,cnt.soil||0],['#51e3a8','#ffc76a','#ffb86b','#ff7d88'],['Green','Yellow','Dry','Soil']);
+  document.getElementById('treeSchema').textContent=(c.memuLite?.treeSchema||'').slice(0,2500);
+  const top=(ts.items||[]).slice(0,12).map(i=>`[${i.status}] (${i.priority}) conf=${i.confidence} ${i.title}`).join('
+');
+  document.getElementById('treeTop').textContent=top||'暂无';
+
 
 
 
