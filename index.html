@@ -371,7 +371,7 @@ async function load(){
     return `${h}小时 ${m}分钟`;
   }
   const mem=c.system?.memory||{}, disk=c.system?.diskRoot||{}, loadv=c.system?.load||{};
-  const kpis=[['模型 Model',c.identity?.model||'-'],['5h已用 5h Used',w5!=null?`${w5}%`:'-'],['Day已用 Day Used',day!=null?`${day}%`:'-'],['Day重置倒计时 Reset In','-'],['网关 Gateway',c.openclaw?.gatewayOk?'OK':'ERR'],['内存 RAM',mem.usedPct!=null?`${mem.usedPct}%`:'-'],['磁盘 Disk',disk.usedPct||'-']];
+  const kpis=[['模型 Model',c.identity?.model||'-'],['5h已用 5h Used',w5!=null?`${w5}%`:'-'],['Day已用 Day Used',day!=null?`${day}%`:'-'],['Day重置倒计时 Reset In',fmtCountdown(dayResetAt)],['网关 Gateway',c.openclaw?.gatewayOk?'OK':'ERR'],['内存 RAM',mem.usedPct!=null?`${mem.usedPct}%`:'-'],['磁盘 Disk',disk.usedPct||'-']];
   document.getElementById('kpis').innerHTML=kpis.map(([k,v])=>`<div class='kpi'><div class='k'>${k}</div><div class='v'>${v}</div></div>`).join('');
   const cronJobs=(c.openclaw?.cronJobs||[]);
   document.querySelector('#cronTable tbody').innerHTML=cronJobs.map(j=>`<tr><td>${j.name}</td><td class='${clsStatus(j.status)}'>${j.status||'idle'}</td><td>${j.errors??0}</td><td>${fmtTs(j.next)}</td></tr>`).join('');
