@@ -33,12 +33,19 @@
 @media(max-width:520px){header{position:static}}
 /* mobile-ux */
 @media(max-width:520px){.kpi-grid{grid-template-columns:1fr}.btn{padding:6px 8px;font-size:11px}.bar{align-items:flex-start}.title{font-size:21px}.sub{font-size:12px}}
+.focus-grid{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:12px;margin-top:12px}.focus-card{background:linear-gradient(165deg,#12285e,#0b1738);border:1px solid #2b457f;border-radius:12px;padding:12px 14px;box-shadow:0 8px 24px rgba(0,0,0,.2)}.focus-label{font-size:12px;color:#9eb6e8}.focus-main{font-size:28px;font-weight:800;margin-top:6px}.focus-sub{font-size:12px;color:#b7caf3;margin-top:4px}.quick-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}.qa{font-size:12px;padding:6px 10px;border-radius:999px;border:1px solid #3b5eaa;background:#10224e;color:#d6e8ff}.qa.ok{border-color:#2d8f67;color:#9af0c9}.qa.warn{border-color:#8a6a2b;color:#ffd98a}.qa.bad{border-color:#9b4250;color:#ffb2bc}
+@media(max-width:1200px){.focus-grid{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
 <header><div class="wrap bar"><div><div class="title">锦的虾🦐 监控中枢</div><div class="sub">公网公开版（敏感字段自动脱敏） · 更新时间：<span id="ts">-</span></div></div><div><a class="btn" href="./data/current.json" target="_blank">原始JSON / Raw JSON</a><a class="btn" href="https://ilovechin.github.io/" target="_blank">个人站 / Personal Site</a><a class="btn" href="https://ilovechin.github.io/crysttao-site/" target="_blank">CrystTao站 / CrystTao Site</a></div></div></header>
 <main class="wrap">
   <section class="sticky-kpi"><div class="kpi-grid" id="kpis"></div></section>
+  <section class="focus-grid" id="focusGrid">
+    <div class="focus-card"><div class="focus-label">总体状态 / Overall</div><div class="focus-main" id="focusOverall">-</div><div class="focus-sub" id="focusOverallSub">-</div></div>
+    <div class="focus-card"><div class="focus-label">风险等级 / Risk</div><div class="focus-main" id="focusRisk">-</div><div class="focus-sub" id="focusRiskSub">-</div></div>
+    <div class="focus-card"><div class="focus-label">推荐动作 / Next Action</div><div class="focus-main" id="focusAction">-</div><div class="quick-actions" id="quickActions"></div></div>
+  </section>
   <section class="grid">
     <div class="card"><div class="head"><h3>任务运行看板 / Cron Board</h3><span class="pill">AUTO JOBS</span></div><table id="cronTable"><thead><tr><th>任务 Task</th><th>状态 Status</th><th>错误 Errors</th><th>下次运行 Next Run</th></tr></thead><tbody></tbody></table></div>
     <div class="card"><div class="head"><h3>Token 历史 / Usage History</h3><span class="pill">LAST 20</span></div><table id="histTable"><thead><tr><th>时间 Time</th><th>5h%</th><th>Day%</th><th>网关 Gateway</th></tr></thead><tbody></tbody></table></div>
@@ -414,6 +421,31 @@ function drawTrend(hist){
   ctx.fillStyle='#9eb3e4'; ctx.font='12px Inter'; ctx.fillText('Day % 趋势',12,16);
 }
 
+function renderFocusPanel(c, dayPct, cronJobs){
+  const badCron=(cronJobs||[]).filter(j=>!['ok','idle'].includes(String(j.status||'').toLowerCase())).length;
+  const gwOk=!!c.openclaw?.gatewayOk;
+  const memOk=!!c.openclaw?.memoryReady;
+  const overall = gwOk && memOk && badCron===0 ? '稳定' : (gwOk ? '可用' : '异常');
+  const overallSub = `网关:${gwOk?'正常':'异常'} · 记忆:${memOk?'可用':'降级'} · 异常任务:${badCron}`;
+
+  const risk = dayPct<70 && badCron===0 ? '低' : (dayPct<90 && badCron<2 ? '中' : '高');
+  const riskSub = `Token Day ${dayPct||0}% · Cron异常 ${badCron}`;
+
+  let action='保持';
+  const qa=[];
+  if(dayPct>=85){ action='降耗'; qa.push(['压缩高token任务','warn']); }
+  if(badCron>0){ action='排障'; qa.push(['处理异常Cron','bad']); }
+  if(!gwOk){ action='修复'; qa.push(['修复Gateway','bad']); }
+  if(qa.length===0){ qa.push(['维持稳态','ok']); qa.push(['仅异常上报','ok']); }
+
+  document.getElementById('focusOverall').textContent=overall;
+  document.getElementById('focusOverallSub').textContent=overallSub;
+  document.getElementById('focusRisk').textContent=risk;
+  document.getElementById('focusRiskSub').textContent=riskSub;
+  document.getElementById('focusAction').textContent=action;
+  document.getElementById('quickActions').innerHTML=qa.map(([t,c])=>`<span class="qa ${c}">${t}</span>`).join('');
+}
+
 async function load(){
   const c=await fetch('./data/current.json?t='+Date.now()).then(r=>r.json());
   const h=await fetch('./data/history.json?t='+Date.now()).then(r=>r.json()).catch(()=>[]);
@@ -433,6 +465,7 @@ async function load(){
   const kpis=[['模型 Model',c.identity?.model||'-'],['5h已用 5h Used',w5!=null?`${w5}%`:'-'],['Day已用 Day Used',day!=null?`${day}%`:'-'],['Day重置倒计时 Reset In',fmtCountdown(dayResetAt)],['网关 Gateway',c.openclaw?.gatewayOk?'OK':'ERR'],['内存 RAM',mem.usedPct!=null?`${mem.usedPct}%`:'-'],['磁盘 Disk',disk.usedPct||'-']];
   document.getElementById('kpis').innerHTML=kpis.map(([k,v])=>`<div class='kpi'><div class='k'>${k}</div><div class='v'>${v}</div></div>`).join('');
   const cronJobs=(c.openclaw?.cronJobs||[]);
+  renderFocusPanel(c, Number(day||0), cronJobs);
   document.querySelector('#cronTable tbody').innerHTML=cronJobs.map(j=>`<tr><td>${j.name}</td><td class='${clsStatus(j.status)}'>${j.status||'idle'}</td><td>${j.errors??0}</td><td>${fmtTs(j.next)}</td></tr>`).join('');
   drawPixelAgents(cronJobs);
   document.querySelector('#histTable tbody').innerHTML=(h.slice(-20).reverse()).map(r=>`<tr><td>${new Date(r.generatedAt).toLocaleString()}</td><td>${r.w5??'-'}</td><td>${r.day??'-'}</td><td class='${r.gatewayOk?'ok':'bad'}'>${r.gatewayOk?'OK':'ERR'}</td></tr>`).join('');
