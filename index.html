@@ -88,7 +88,7 @@
 
     function render(cur,hist){
       const model=cur?.identity?.model||'-',provider=cur?.identity?.provider||'-',mem=num(cur?.system?.memory?.usedPct),disk=num(String(cur?.system?.diskRoot?.usedPct||'0').replace('%',''));
-      const gw=!!cur?.openclaw?.gatewayOk,jobs=Array.isArray(cur?.openclaw?.cronJobs)?cur.openclaw.cronJobs:[],bad=jobs.filter(j=>(j.status||'').toLowerCase()!=='ok').length,p5=num(cur?.usageQuick?.fiveHourUsedPct),pDay=num(cur?.usageQuick?.dayUsedPct);
+      const gw=!!cur?.openclaw?.gatewayOk,jobs=Array.isArray(cur?.openclaw?.cronJobs)?cur.openclaw.cronJobs:[],bad=jobs.filter(j=>{const s=(j.status||'').toLowerCase(); return s!=='ok' && s!=='idle';}).length,p5=num(cur?.usageQuick?.fiveHourUsedPct),pDay=num(cur?.usageQuick?.dayUsedPct);
       $('updatedAt').textContent=cur?.generatedAt?new Date(cur.generatedAt).toLocaleString():'-';
       $('kpis').innerHTML=[k('Gateway',gw?'在线':'异常',gw?'ok':'bad'),k('Cron 总数',String(jobs.length)),k('异常任务',String(bad),bad?'bad':'ok'),k('内存',pct(mem),mem>cfg.thMem?'bad':mem>65?'warn':'ok'),k('磁盘',pct(disk),disk>cfg.thDisk?'bad':disk>70?'warn':'ok'),k('计划',cur?.usageQuick?.plan||'-')].join('');
       let overall='稳定',cls='ok'; if(!gw||bad>=cfg.thJob||mem>cfg.thMem||disk>cfg.thDisk){overall='高风险';cls='bad'} else if(mem>70||disk>80){overall='关注中';cls='warn'}
