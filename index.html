@@ -3,13 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>监控中枢 · Apple Monochrome Ultra V3</title>
+  <title>监控中枢 · Apple Monochrome Ultra V4</title>
   <style>
-    :root{
-      --bg:#0a0a0b;--bg2:#121214;--glass:rgba(255,255,255,.06);--line:rgba(255,255,255,.13);
-      --txt:#f5f5f7;--muted:#9b9ba1;--ok:#32d74b;--warn:#ffd60a;--bad:#ff453a;--chip:#1c1c1e;
-      --shadow:0 20px 45px rgba(0,0,0,.45)
-    }
+    :root{--bg:#0a0a0b;--bg2:#121214;--glass:rgba(255,255,255,.06);--line:rgba(255,255,255,.13);--txt:#f5f5f7;--muted:#9b9ba1;--ok:#32d74b;--warn:#ffd60a;--bad:#ff453a;--chip:#1c1c1e;--shadow:0 20px 45px rgba(0,0,0,.45)}
     :root.light{--bg:#f4f4f6;--bg2:#ececf0;--glass:rgba(255,255,255,.8);--line:rgba(0,0,0,.1);--txt:#111113;--muted:#66666c;--chip:#fff;--shadow:0 16px 35px rgba(0,0,0,.08)}
     *{box-sizing:border-box} html,body{margin:0;color:var(--txt);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","PingFang SC",Segoe UI,Arial,sans-serif;background:radial-gradient(1200px 780px at 82% -8%,#2b2b31 0%,transparent 56%),linear-gradient(180deg,var(--bg),var(--bg2))}
     .top{position:sticky;top:0;z-index:30;backdrop-filter:blur(16px);background:color-mix(in srgb,var(--bg) 70%,transparent);border-bottom:1px solid var(--line)}
@@ -26,134 +22,100 @@
     .meter{height:10px;background:color-mix(in srgb,var(--chip) 80%,#000 20%);border:1px solid var(--line);border-radius:999px;overflow:hidden}.meter i{display:block;height:100%;background:linear-gradient(90deg,#fff,#7f7f88)}
     .focus-main{font-size:36px;font-weight:800}.focus-sub{margin-top:6px;color:var(--muted);font-size:13px}
     .chips{display:flex;flex-wrap:wrap;gap:8px}.chip{padding:6px 10px;border:1px solid var(--line);border-radius:999px;background:var(--chip);font-size:12px}
-    table{width:100%;border-collapse:collapse} th,td{padding:10px 8px;border-bottom:1px solid color-mix(in srgb,var(--line) 90%,transparent);text-align:left;font-size:12px} th{color:var(--muted);font-weight:650} tr:hover td{background:color-mix(in srgb,rgba(255,255,255,.18) 60%,transparent)}
+    table{width:100%;border-collapse:collapse} th,td{padding:10px 8px;border-bottom:1px solid color-mix(in srgb,var(--line) 90%,transparent);text-align:left;font-size:12px} th{color:var(--muted);font-weight:650}
+    tr:hover td{background:color-mix(in srgb,rgba(255,255,255,.18) 60%,transparent)}
     .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;line-height:1.55;background:color-mix(in srgb,var(--chip) 86%,#000 14%);border:1px solid var(--line);border-radius:12px;padding:10px;max-height:280px;overflow:auto}
     canvas{width:100%;height:auto;background:color-mix(in srgb,var(--chip) 90%,#000 10%);border:1px solid var(--line);border-radius:12px}
     .timeline{display:flex;flex-direction:column;gap:10px}.tl-item{display:flex;gap:10px;align-items:flex-start}.dot{width:10px;height:10px;border-radius:50%;margin-top:6px;background:#8e8e93}.dot.ok{background:var(--ok)}.dot.warn{background:var(--warn)}.dot.bad{background:var(--bad)}
+    .dock{position:fixed;right:14px;bottom:14px;display:flex;gap:8px;z-index:40}.fab{border:1px solid var(--line);background:var(--chip);color:var(--txt);padding:10px 12px;border-radius:14px;font-size:12px;cursor:pointer;box-shadow:var(--shadow)}
+    .alert{position:fixed;left:50%;top:18px;transform:translateX(-50%) translateY(-120%);background:#111;color:#fff;border:1px solid #333;padding:10px 14px;border-radius:12px;z-index:90;transition:.35s ease}.alert.show{transform:translateX(-50%) translateY(0)}
+    .panel{position:fixed;left:14px;bottom:14px;z-index:45;width:min(380px,92vw);max-height:72vh;overflow:auto;background:color-mix(in srgb,var(--chip) 86%,#000 14%);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:10px;display:none}
+    .panel.show{display:block}.panel h4{margin:6px 0 8px;font-size:13px}.row{display:flex;justify-content:space-between;gap:8px;align-items:center;margin:6px 0}.row label{font-size:12px;color:var(--muted)}
+    .row input[type='range']{width:140px}.row input[type='number']{width:78px;background:var(--chip);color:var(--txt);border:1px solid var(--line);border-radius:8px;padding:4px}
+    .section{border-top:1px dashed var(--line);margin-top:8px;padding-top:8px}
 
-    .dock{position:fixed;right:14px;bottom:14px;display:flex;gap:8px;z-index:40}
-    .fab{border:1px solid var(--line);background:var(--chip);color:var(--txt);padding:10px 12px;border-radius:14px;font-size:12px;cursor:pointer;box-shadow:var(--shadow)}
-    .alert{position:fixed;left:50%;top:18px;transform:translateX(-50%) translateY(-120%);background:#111;color:#fff;border:1px solid #333;padding:10px 14px;border-radius:12px;z-index:90;transition:.35s ease}
-    .alert.show{transform:translateX(-50%) translateY(0)}
-    .sortable-ghost{opacity:.35}
-    .mobile-cards{display:none;margin-top:12px}
-    .mcard{padding:12px;border:1px solid var(--line);border-radius:14px;background:var(--glass);margin-bottom:8px}
-    .mhead{font-size:12px;color:var(--muted)}.mval{font-size:20px;font-weight:700;margin-top:4px}
-
-    @media(max-width:1260px){.kpis{grid-template-columns:repeat(3,minmax(0,1fr))}.hero{grid-template-columns:1fr}.duo{grid-template-columns:1fr}.triple{grid-template-columns:1fr}.quad{grid-template-columns:repeat(2,minmax(0,1fr))}}
-    @media(max-width:720px){.kpis,.quad{grid-template-columns:1fr 1fr}.title{font-size:24px}.wrap{padding:14px}.mobile-cards{display:block}}
+    @media(max-width:1260px){.kpis{grid-template-columns:repeat(3,minmax(0,1fr))}.hero,.duo,.triple{grid-template-columns:1fr}.quad{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:720px){.kpis,.quad{grid-template-columns:1fr 1fr}.title{font-size:24px}.wrap{padding:14px}}
     @media(max-width:520px){.kpis,.quad{grid-template-columns:1fr}.top-inner{padding:12px 14px}.wrap{padding:12px}}
   </style>
 </head>
 <body>
   <div class="alert" id="alert">告警</div>
-  <header class="top">
-    <div class="top-inner">
-      <div>
-        <div class="title">监控中枢 · Apple Monochrome Ultra V3</div>
-        <div class="sub">V3：大改版 + 告警弹层 + 动画 + 拖拽布局 + 移动端卡片 · 更新时间：<span id="updatedAt">-</span></div>
-      </div>
-      <div class="tools">
-        <button class="btn" id="themeBtn">切换明暗</button>
-        <button class="btn" id="dragBtn">布局拖拽: 关</button>
-        <button class="btn" id="refreshBtn">立即刷新</button>
-        <a class="btn" href="./data/current.json" target="_blank">current.json</a>
-        <a class="btn" href="./data/history.json" target="_blank">history.json</a>
-      </div>
+  <div class="panel" id="panel">
+    <h4>V4 控制台</h4>
+    <div class="row"><label>缩放比例</label><input type="range" id="scale" min="85" max="115" step="1"><span id="scaleTxt">100%</span></div>
+    <div class="row"><label>内存告警阈值</label><input type="number" id="thMem" min="30" max="99"></div>
+    <div class="row"><label>磁盘告警阈值</label><input type="number" id="thDisk" min="30" max="99"></div>
+    <div class="row"><label>异常任务阈值</label><input type="number" id="thJob" min="1" max="99"></div>
+    <div class="section">
+      <h4>卡片开关</h4>
+      <div class="row"><label>显示 Token 趋势</label><input type="checkbox" id="swToken"></div>
+      <div class="row"><label>显示 资源趋势</label><input type="checkbox" id="swRes"></div>
+      <div class="row"><label>显示 风险图</label><input type="checkbox" id="swRisk"></div>
+      <div class="row"><label>显示 配置摘要</label><input type="checkbox" id="swSummary"></div>
     </div>
-  </header>
+    <div class="section row">
+      <button class="btn" id="saveCfg">保存</button>
+      <button class="btn" id="resetCfg">重置</button>
+    </div>
+  </div>
+
+  <header class="top"><div class="top-inner"><div><div class="title">监控中枢 · Apple Monochrome Ultra V4</div><div class="sub">V4：阈值面板 + 卡片开关 + 缩放 + 告警策略 · 更新时间：<span id="updatedAt">-</span></div></div><div class="tools"><button class="btn" id="themeBtn">切换明暗</button><button class="btn" id="refreshBtn">立即刷新</button><button class="btn" id="panelBtn">控制台</button><a class="btn" href="./data/current.json" target="_blank">current.json</a></div></div></header>
 
   <main class="wrap" id="layoutRoot">
     <section class="grid kpis" id="kpis"></section>
-
-    <section class="mobile-cards" id="mobileCards"></section>
-
-    <section class="grid hero sortable" data-zone="hero">
-      <article class="card"><div class="head"><h3>总览态势</h3><span class="tag">COMMAND STATUS</span></div><div class="body"><div class="focus-main" id="overall">-</div><div class="focus-sub" id="overallSub">-</div><div style="height:12px"></div><div class="chips" id="quickChips"></div></div></article>
-      <article class="card"><div class="head"><h3>Token 5h</h3><span class="tag">WINDOW</span></div><div class="body"><div class="focus-main" id="p5">-</div><div class="meter"><i id="bar5" style="width:0%"></i></div><div class="focus-sub" id="p5sub">-</div></div></article>
-      <article class="card"><div class="head"><h3>Token Week/Day</h3><span class="tag">WINDOW</span></div><div class="body"><div class="focus-main" id="pDay">-</div><div class="meter"><i id="barDay" style="width:0%"></i></div><div class="focus-sub" id="pDaysub">-</div></div></article>
-    </section>
-
-    <section class="grid duo sortable" data-zone="duo1">
-      <article class="card"><div class="head"><h3>Cron 任务矩阵</h3><span class="tag">SCHEDULER</span></div><div class="body"><table><thead><tr><th>任务</th><th>状态</th><th>错误</th><th>最后运行</th><th>下次运行</th></tr></thead><tbody id="cronBody"></tbody></table></div></article>
-      <article class="card"><div class="head"><h3>事件时间轴</h3><span class="tag">TIMELINE</span></div><div class="body timeline" id="timeline"></div></article>
-    </section>
-
-    <section class="grid triple sortable" data-zone="triple1">
-      <article class="card"><div class="head"><h3>Token 趋势</h3><span class="tag">5H vs WEEK</span></div><div class="body"><canvas id="tokenChart" width="520" height="240"></canvas></div></article>
-      <article class="card"><div class="head"><h3>资源趋势</h3><span class="tag">MEM vs DISK</span></div><div class="body"><canvas id="resChart" width="520" height="240"></canvas></div></article>
-      <article class="card"><div class="head"><h3>风险雷达（简版）</h3><span class="tag">RISK</span></div><div class="body"><canvas id="riskChart" width="520" height="240"></canvas></div></article>
-    </section>
-
-    <section class="grid quad">
-      <article class="card kpi"><div class="body"><div class="label">当前模型</div><div class="value" id="mModel">-</div></div></article>
-      <article class="card kpi"><div class="body"><div class="label">模型提供方</div><div class="value" id="mProvider">-</div></div></article>
-      <article class="card kpi"><div class="body"><div class="label">内存占用</div><div class="value" id="mMem">-</div></div></article>
-      <article class="card kpi"><div class="body"><div class="label">磁盘占用</div><div class="value" id="mDisk">-</div></div></article>
-    </section>
-
-    <section class="grid duo sortable" data-zone="duo2">
-      <article class="card"><div class="head"><h3>健康标签</h3><span class="tag">HEALTH</span></div><div class="body"><div class="chips" id="healthChips"></div></div></article>
-      <article class="card"><div class="head"><h3>配置摘要</h3><span class="tag">SUMMARY</span></div><div class="body"><pre class="mono" id="summary"></pre></div></article>
-    </section>
+    <section class="grid hero"><article class="card"><div class="head"><h3>总览态势</h3><span class="tag">COMMAND STATUS</span></div><div class="body"><div class="focus-main" id="overall">-</div><div class="focus-sub" id="overallSub">-</div><div style="height:12px"></div><div class="chips" id="quickChips"></div></div></article><article class="card"><div class="head"><h3>Token 5h</h3><span class="tag">WINDOW</span></div><div class="body"><div class="focus-main" id="p5">-</div><div class="meter"><i id="bar5" style="width:0%"></i></div><div class="focus-sub" id="p5sub">-</div></div></article><article class="card"><div class="head"><h3>Token Week/Day</h3><span class="tag">WINDOW</span></div><div class="body"><div class="focus-main" id="pDay">-</div><div class="meter"><i id="barDay" style="width:0%"></i></div><div class="focus-sub" id="pDaysub">-</div></div></article></section>
+    <section class="grid duo"><article class="card"><div class="head"><h3>Cron 任务矩阵</h3><span class="tag">SCHEDULER</span></div><div class="body"><table><thead><tr><th>任务</th><th>状态</th><th>错误</th><th>最后运行</th><th>下次运行</th></tr></thead><tbody id="cronBody"></tbody></table></div></article><article class="card"><div class="head"><h3>事件时间轴</h3><span class="tag">TIMELINE</span></div><div class="body timeline" id="timeline"></div></article></section>
+    <section class="grid triple" id="chartsRow"><article class="card" id="cardToken"><div class="head"><h3>Token 趋势</h3><span class="tag">5H vs WEEK</span></div><div class="body"><canvas id="tokenChart" width="520" height="240"></canvas></div></article><article class="card" id="cardRes"><div class="head"><h3>资源趋势</h3><span class="tag">MEM vs DISK</span></div><div class="body"><canvas id="resChart" width="520" height="240"></canvas></div></article><article class="card" id="cardRisk"><div class="head"><h3>风险图</h3><span class="tag">RISK</span></div><div class="body"><canvas id="riskChart" width="520" height="240"></canvas></div></article></section>
+    <section class="grid quad"><article class="card kpi"><div class="body"><div class="label">当前模型</div><div class="value" id="mModel">-</div></div></article><article class="card kpi"><div class="body"><div class="label">模型提供方</div><div class="value" id="mProvider">-</div></div></article><article class="card kpi"><div class="body"><div class="label">内存占用</div><div class="value" id="mMem">-</div></div></article><article class="card kpi"><div class="body"><div class="label">磁盘占用</div><div class="value" id="mDisk">-</div></div></article></section>
+    <section class="grid duo"><article class="card"><div class="head"><h3>健康标签</h3><span class="tag">HEALTH</span></div><div class="body"><div class="chips" id="healthChips"></div></div></article><article class="card" id="cardSummary"><div class="head"><h3>配置摘要</h3><span class="tag">SUMMARY</span></div><div class="body"><pre class="mono" id="summary"></pre></div></article></section>
   </main>
 
   <div class="dock"><button class="fab" id="toTop">↑ 顶部</button></div>
 
   <script>
-    const $=(id)=>document.getElementById(id); const num=(v,d=0)=>{const n=Number(v);return Number.isFinite(n)?n:d}; const pct=(v)=>`${num(v).toFixed(0)}%`; const dt=(v)=>{if(!v)return '-'; const n=Number(v); return Number.isFinite(n)?new Date(n).toLocaleString():String(v)};
+    const $=(id)=>document.getElementById(id),num=(v,d=0)=>{const n=Number(v);return Number.isFinite(n)?n:d},pct=v=>`${num(v).toFixed(0)}%`,dt=v=>{if(!v)return '-';const n=Number(v);return Number.isFinite(n)?new Date(n).toLocaleString():String(v)};
+    const cfgDefault={scale:100,thMem:85,thDisk:90,thJob:1,swToken:true,swRes:true,swRisk:true,swSummary:true};
+    const cfg=Object.assign({},cfgDefault,JSON.parse(localStorage.getItem('obs_v4_cfg')||'{}'));
+    function saveCfg(){localStorage.setItem('obs_v4_cfg',JSON.stringify(cfg))}
+    function syncPanel(){ $('scale').value=cfg.scale; $('scaleTxt').textContent=cfg.scale+'%'; $('thMem').value=cfg.thMem; $('thDisk').value=cfg.thDisk; $('thJob').value=cfg.thJob; $('swToken').checked=cfg.swToken; $('swRes').checked=cfg.swRes; $('swRisk').checked=cfg.swRisk; $('swSummary').checked=cfg.swSummary; }
+    function applyCfg(){ document.body.style.zoom=(cfg.scale/100); $('cardToken').style.display=cfg.swToken?'':'none'; $('cardRes').style.display=cfg.swRes?'':'none'; $('cardRisk').style.display=cfg.swRisk?'':'none'; $('cardSummary').style.display=cfg.swSummary?'':'none'; }
     function stateClass(s){const x=(s||'').toLowerCase(); if(x==='ok'||x==='healthy')return 'ok'; if(x==='idle'||x==='warn'||x==='warning')return 'warn'; return 'bad';}
-    function showAlert(msg,type='warn'){ const el=$('alert'); el.textContent=msg; el.style.background=type==='bad'?'#3a0f12':type==='ok'?'#0f2f18':'#3a3308'; el.style.borderColor=type==='bad'?'#7a1f28':type==='ok'?'#256f3b':'#8c7610'; el.classList.add('show'); setTimeout(()=>el.classList.remove('show'),3400); }
-
+    function showAlert(msg,type='warn'){const el=$('alert'); el.textContent=msg; el.style.background=type==='bad'?'#3a0f12':type==='ok'?'#0f2f18':'#3a3308'; el.style.borderColor=type==='bad'?'#7a1f28':type==='ok'?'#256f3b':'#8c7610'; el.classList.add('show'); setTimeout(()=>el.classList.remove('show'),3400)}
     function drawLine(id,a=[],b=[],ca='#f5f5f7',cb='#8e8e93',max=100){const c=$(id);if(!c)return;const x=c.getContext('2d'),w=c.width,h=c.height,p=24;x.clearRect(0,0,w,h);x.strokeStyle='rgba(130,130,140,.25)';for(let i=0;i<5;i++){const y=p+(h-p*2)*(i/4);x.beginPath();x.moveTo(p,y);x.lineTo(w-p,y);x.stroke()}const plot=(arr,col)=>{if(!arr.length)return;x.strokeStyle=col;x.lineWidth=2;x.beginPath();arr.forEach((v,i)=>{const xx=p+(w-p*2)*(arr.length===1?0:i/(arr.length-1));const yy=h-p-(Math.min(max,Math.max(0,v))/max)*(h-p*2);if(i===0)x.moveTo(xx,yy);else x.lineTo(xx,yy)});x.stroke()};plot(a,ca);plot(b,cb)}
     function drawBars(id,vals=[],cols=[]){const c=$(id);if(!c)return;const x=c.getContext('2d'),w=c.width,h=c.height,p=24;x.clearRect(0,0,w,h);const n=vals.length||1,bw=(w-p*2)/(n*1.6);vals.forEach((v,i)=>{const xx=p+i*(bw*1.6),hh=(Math.min(100,Math.max(0,v))/100)*(h-p*2),yy=h-p-hh;x.fillStyle=cols[i]||'#aaa';x.fillRect(xx,yy,bw,hh)})}
-
-    function makeKpi(label,v,cls=''){return `<article class="card kpi"><div class="body"><div class="label">${label}</div><div class="value ${cls}">${v}</div></div></article>`}
+    const k=(l,v,c='')=>`<article class='card kpi'><div class='body'><div class='label'>${l}</div><div class='value ${c}'>${v}</div></div></article>`;
 
     function render(cur,hist){
       const model=cur?.identity?.model||'-',provider=cur?.identity?.provider||'-',mem=num(cur?.system?.memory?.usedPct),disk=num(String(cur?.system?.diskRoot?.usedPct||'0').replace('%',''));
       const gw=!!cur?.openclaw?.gatewayOk,jobs=Array.isArray(cur?.openclaw?.cronJobs)?cur.openclaw.cronJobs:[],bad=jobs.filter(j=>(j.status||'').toLowerCase()!=='ok').length,p5=num(cur?.usageQuick?.fiveHourUsedPct),pDay=num(cur?.usageQuick?.dayUsedPct);
       $('updatedAt').textContent=cur?.generatedAt?new Date(cur.generatedAt).toLocaleString():'-';
-      $('kpis').innerHTML=[makeKpi('Gateway',gw?'在线':'异常',gw?'ok':'bad'),makeKpi('Cron 总数',String(jobs.length)),makeKpi('异常任务',String(bad),bad?'bad':'ok'),makeKpi('内存',pct(mem),mem>80?'bad':mem>65?'warn':'ok'),makeKpi('磁盘',pct(disk),disk>85?'bad':disk>70?'warn':'ok'),makeKpi('计划',cur?.usageQuick?.plan||'-')].join('');
-
-      let overall='稳定',cls='ok'; if(!gw||bad>0||mem>85||disk>90){overall='高风险';cls='bad'} else if(mem>70||disk>80||bad>0){overall='关注中';cls='warn'}
+      $('kpis').innerHTML=[k('Gateway',gw?'在线':'异常',gw?'ok':'bad'),k('Cron 总数',String(jobs.length)),k('异常任务',String(bad),bad?'bad':'ok'),k('内存',pct(mem),mem>cfg.thMem?'bad':mem>65?'warn':'ok'),k('磁盘',pct(disk),disk>cfg.thDisk?'bad':disk>70?'warn':'ok'),k('计划',cur?.usageQuick?.plan||'-')].join('');
+      let overall='稳定',cls='ok'; if(!gw||bad>=cfg.thJob||mem>cfg.thMem||disk>cfg.thDisk){overall='高风险';cls='bad'} else if(mem>70||disk>80){overall='关注中';cls='warn'}
       $('overall').textContent=overall; $('overall').className='focus-main '+cls; $('overallSub').textContent=`模型 ${model} · Provider ${provider}`;
       $('quickChips').innerHTML=[`Provider: ${provider}`,`Model: ${model}`,`Load1m: ${cur?.system?.load?.['1m']||'-'}`,`Memory Ready: ${cur?.openclaw?.memoryReady?'Yes':'No'}`,`Channels: ${(cur?.openclaw?.channelSummary||[]).length}`].map(x=>`<span class='chip'>${x}</span>`).join('');
-
       $('p5').textContent=pct(p5); $('bar5').style.width=Math.min(100,p5)+'%'; $('p5sub').textContent='5小时窗口';
       $('pDay').textContent=pct(pDay); $('barDay').style.width=Math.min(100,pDay)+'%'; $('pDaysub').textContent='Week/Day窗口';
-
       $('mModel').textContent=model; $('mProvider').textContent=provider; $('mMem').textContent=pct(mem); $('mDisk').textContent=pct(disk);
-
-      $('cronBody').innerHTML=jobs.slice().sort((a,b)=>num(a.next)-num(b.next)).slice(0,18).map(j=>`<tr><td>${j.name||j.id||'-'}</td><td class='${stateClass(j.status)}'>${j.status||'-'}</td><td>${num(j.errors)}</td><td>${dt(j.last)}</td><td>${dt(j.next)}</td></tr>`).join('') || '<tr><td colspan="5">暂无任务</td></tr>';
-      const tl=[{lvl:gw?'ok':'bad',txt:`Gateway ${gw?'运行中':'异常'}`}, ...jobs.slice(0,6).map(j=>({lvl:stateClass(j.status),txt:`${j.name||j.id} · ${j.status||'-'} · Next ${dt(j.next)}`}))];
-      $('timeline').innerHTML=tl.map(t=>`<div class='tl-item'><span class='dot ${t.lvl}'></span><div>${t.txt}</div></div>`).join('');
-
+      $('cronBody').innerHTML=jobs.slice().sort((a,b)=>num(a.next)-num(b.next)).slice(0,18).map(j=>`<tr><td>${j.name||j.id||'-'}</td><td class='${stateClass(j.status)}'>${j.status||'-'}</td><td>${num(j.errors)}</td><td>${dt(j.last)}</td><td>${dt(j.next)}</td></tr>`).join('')||'<tr><td colspan="5">暂无任务</td></tr>';
+      $('timeline').innerHTML=[{lvl:gw?'ok':'bad',txt:`Gateway ${gw?'运行中':'异常'}`},...jobs.slice(0,6).map(j=>({lvl:stateClass(j.status),txt:`${j.name||j.id} · ${j.status||'-'} · Next ${dt(j.next)}`}))].map(t=>`<div class='tl-item'><span class='dot ${t.lvl}'></span><div>${t.txt}</div></div>`).join('');
       $('healthChips').innerHTML=[`Gateway: ${gw?'OK':'BAD'}`,`Memory: ${pct(mem)}`,`Disk: ${pct(disk)}`,`Load 1/5/15: ${cur?.system?.load?.['1m']||'-'}/${cur?.system?.load?.['5m']||'-'}/${cur?.system?.load?.['15m']||'-'}`,`OpenClaw Proc: ${cur?.system?.processCounts?.openclawGateway??'-'}`,`Plan: ${cur?.usageQuick?.plan||'-'}`].map(x=>`<span class='chip'>${x}</span>`).join('');
       $('summary').textContent=JSON.stringify({identity:cur?.identity,usageQuick:cur?.usageQuick,system:{load:cur?.system?.load,memory:cur?.system?.memory,diskRoot:cur?.system?.diskRoot},openclaw:{gatewayOk:cur?.openclaw?.gatewayOk,memoryReady:cur?.openclaw?.memoryReady,channels:cur?.openclaw?.channelSummary}},null,2);
-
       const list=(Array.isArray(hist)?hist:[]).slice(-32),w5=list.map(x=>num(x.w5)),day=list.map(x=>num(x.day)),mm=list.map(x=>num(x.memUsedPct)),dd=list.map(x=>num(String(x.diskUsedPct||'0').replace('%','')));
-      drawLine('tokenChart',w5,day,'#f5f5f7','#8e8e93',100); drawLine('resChart',mm,dd,'#d6d6db','#63636a',100); drawBars('riskChart',[p5,pDay,mem,disk,bad?Math.min(100,bad*20):0],['#f5f5f7','#d1d1d6','#8e8e93','#636366',bad?'#ff453a':'#32d74b']);
-
-      $('mobileCards').innerHTML=`<div class='mcard'><div class='mhead'>当前模型</div><div class='mval'>${model}</div></div><div class='mcard'><div class='mhead'>Gateway</div><div class='mval ${gw?'ok':'bad'}'>${gw?'在线':'异常'}</div></div><div class='mcard'><div class='mhead'>异常任务</div><div class='mval ${bad?'bad':'ok'}'>${bad}</div></div><div class='mcard'><div class='mhead'>内存/磁盘</div><div class='mval'>${pct(mem)} / ${pct(disk)}</div></div>`;
-
-      if(!gw || bad>0 || mem>85 || disk>90){ showAlert(`告警：${!gw?'Gateway异常 ':' '}${bad>0?`异常任务 ${bad} 个 `:''}${mem>85?`内存 ${pct(mem)} `:''}${disk>90?`磁盘 ${pct(disk)} `:''}`,'bad'); }
-      else if(mem>70 || disk>80){ showAlert(`注意：资源偏高（内存 ${pct(mem)} / 磁盘 ${pct(disk)}）`,'warn'); }
+      drawLine('tokenChart',w5,day); drawLine('resChart',mm,dd,'#d6d6db','#63636a',100); drawBars('riskChart',[p5,pDay,mem,disk,bad?Math.min(100,bad*20):0],['#f5f5f7','#d1d1d6','#8e8e93','#636366',bad?'#ff453a':'#32d74b']);
+      if(!gw||bad>=cfg.thJob||mem>cfg.thMem||disk>cfg.thDisk) showAlert(`告警：${!gw?'Gateway异常 ':''}${bad>=cfg.thJob?`异常任务 ${bad} `:''}${mem>cfg.thMem?`内存 ${pct(mem)} `:''}${disk>cfg.thDisk?`磁盘 ${pct(disk)} `:''}`,'bad');
     }
 
     async function load(){try{const [a,b]=await Promise.all([fetch('./data/current.json?t='+Date.now()),fetch('./data/history.json?t='+Date.now())]);render(await a.json(),await b.json())}catch(e){$('summary').textContent='加载失败: '+e;showAlert('数据加载失败','bad')}}
+    function bootTheme(){if((localStorage.getItem('obs_theme')||'dark')==='light')document.documentElement.classList.add('light')} function toggleTheme(){document.documentElement.classList.toggle('light');localStorage.setItem('obs_theme',document.documentElement.classList.contains('light')?'light':'dark')}
 
-    function bootTheme(){if((localStorage.getItem('obs_theme')||'dark')==='light')document.documentElement.classList.add('light')}
-    function toggleTheme(){document.documentElement.classList.toggle('light');localStorage.setItem('obs_theme',document.documentElement.classList.contains('light')?'light':'dark')}
+    $('themeBtn').onclick=toggleTheme; $('refreshBtn').onclick=load; $('toTop').onclick=()=>window.scrollTo({top:0,behavior:'smooth'});
+    $('panelBtn').onclick=()=>$('panel').classList.toggle('show');
+    $('saveCfg').onclick=()=>{cfg.scale=num($('scale').value,100);cfg.thMem=num($('thMem').value,85);cfg.thDisk=num($('thDisk').value,90);cfg.thJob=num($('thJob').value,1);cfg.swToken=$('swToken').checked;cfg.swRes=$('swRes').checked;cfg.swRisk=$('swRisk').checked;cfg.swSummary=$('swSummary').checked;saveCfg();applyCfg();showAlert('V4 配置已保存','ok')};
+    $('resetCfg').onclick=()=>{Object.assign(cfg,cfgDefault);saveCfg();syncPanel();applyCfg();showAlert('已恢复默认配置','ok')};
+    $('scale').oninput=()=>{$('scaleTxt').textContent=$('scale').value+'%'};
 
-    function dragEnabled(){return localStorage.getItem('obs_drag')==='1'}
-    function setDrag(on){localStorage.setItem('obs_drag',on?'1':'0');$('dragBtn').textContent=`布局拖拽: ${on?'开':'关'}`;document.querySelectorAll('.sortable').forEach(zone=>[...zone.children].forEach((el,i)=>{el.draggable=on;el.dataset.i=i}))}
-    function wireDrag(){document.querySelectorAll('.sortable').forEach(zone=>{let dragged=null;zone.addEventListener('dragstart',e=>{if(!dragEnabled())return;dragged=e.target.closest('.card'); if(!dragged)return; dragged.classList.add('sortable-ghost')});zone.addEventListener('dragend',()=>{if(dragged)dragged.classList.remove('sortable-ghost'); dragged=null});zone.addEventListener('dragover',e=>{if(!dragged)return; e.preventDefault(); const t=e.target.closest('.card'); if(!t||t===dragged)return; const rect=t.getBoundingClientRect(); const next=(e.clientY-rect.top)/(rect.bottom-rect.top)>.5; zone.insertBefore(dragged,next?t.nextSibling:t)});zone.addEventListener('drop',()=>saveLayout(zone))})}
-    function saveLayout(zone){const key='obs_layout_'+zone.dataset.zone; localStorage.setItem(key, JSON.stringify([...zone.children].map(el=>el.querySelector('.head h3')?.textContent||'')))}
-    function restoreLayout(){document.querySelectorAll('.sortable').forEach(zone=>{const key='obs_layout_'+zone.dataset.zone; const saved=JSON.parse(localStorage.getItem(key)||'[]'); if(!saved.length) return; const map=new Map([...zone.children].map(el=>[el.querySelector('.head h3')?.textContent||'',el])); saved.forEach(name=>{const el=map.get(name); if(el) zone.appendChild(el)})})}
-
-    $('themeBtn').addEventListener('click',toggleTheme); $('refreshBtn').addEventListener('click',load); $('dragBtn').addEventListener('click',()=>setDrag(!dragEnabled())); $('toTop').addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
-    bootTheme(); restoreLayout(); wireDrag(); setDrag(dragEnabled()); load(); setInterval(load,15000);
+    bootTheme(); syncPanel(); applyCfg(); load(); setInterval(load,15000);
   </script>
 </body>
 </html>
