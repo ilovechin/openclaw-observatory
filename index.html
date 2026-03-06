@@ -2,573 +2,267 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>锦的虾🦐 监控中枢 / Monitoring Command Center</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>监控中枢 · Apple B/W Pro</title>
   <style>
-    :root{--bg:#060a16;--bg2:#101937;--panel:#0f1b3f;--line:#2a3f7a;--txt:#eef4ff;--muted:#9eb3e4;--ok:#51e3a8;--bad:#ff7d88;--warn:#ffc76a}
-    *{box-sizing:border-box} body{margin:0;font-family:Inter,"PingFang SC",Arial;color:var(--txt);overflow-y:auto;-webkit-overflow-scrolling:touch;
-      background:radial-gradient(circle at 5% 0%,#1a2e63 0%,transparent 26%),radial-gradient(circle at 95% 0%,#3c1f5d 0%,transparent 24%),linear-gradient(180deg,var(--bg),var(--bg2));}
-    .wrap{max-width:1500px;margin:0 auto;padding:18px}
-    header{position:sticky;top:0;z-index:20;background:rgba(6,10,24,.78);backdrop-filter:blur(10px);border-bottom:1px solid #26407e}
-    .bar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
-    .title{font-size:34px;font-weight:800}.sub{font-size:13px;color:var(--muted)}
-    .btn{display:inline-block;border:1px solid #3858a6;background:#11224e;color:#dff0ff;padding:8px 12px;border-radius:10px;font-size:12px;text-decoration:none}
-    .kpi-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px;margin-top:14px}.sticky-kpi{position:static;background:transparent;padding:0;border:0;border-radius:0}
-    .kpi{background:linear-gradient(165deg,#122558,#0d1a3f);border:1px solid #2b437f;border-radius:12px;padding:12px 14px;box-shadow:0 8px 24px rgba(0,0,0,.28), inset 0 0 0 1px rgba(120,170,255,.08)}
-    .k{font-size:12px;color:#9eb6e8}.v{margin-top:6px;font-size:24px;font-weight:800}
-    .grid{display:grid;grid-template-columns:1.3fr 1fr;gap:14px;margin-top:14px}
-    .card{background:linear-gradient(168deg,#11234f,#0b1634);border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.25)}
-    .head{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;border-bottom:1px solid #263d73;background:linear-gradient(90deg,rgba(103,200,255,.10),rgba(255,125,136,.08))}
-    .head h3{margin:0;font-size:16px}.pill{font-size:11px;border:1px solid #395ca6;padding:3px 8px;border-radius:999px;color:#cbe0ff}
-    table{width:100%;border-collapse:collapse} th,td{padding:10px 12px;border-bottom:1px solid #1f325f;font-size:13px;text-align:left}
-    th{color:#b2c8f6;background:rgba(17,37,81,.4)} tr:hover td{background:rgba(42,74,144,.2)}
-    .ok{color:var(--ok);font-weight:700}.bad{color:var(--bad);font-weight:700}.warn{color:var(--warn);font-weight:700}
-    .full{margin-top:14px} pre{margin:0;padding:12px;max-height:280px;overflow:auto;background:rgba(6,13,32,.6);border-top:1px solid #203562;color:#d7e4ff;font-size:12px}
-    .mono{font-family:ui-monospace,Menlo,Consolas,monospace}
-.chips{display:flex;flex-wrap:wrap;gap:8px;padding:10px 12px}.chip{padding:6px 10px;border:1px solid #35579f;border-radius:999px;font-size:12px;color:#d8e6ff;background:#0d1b40}.chip.ok{border-color:#2d8f67;color:#91f2c6}.chip.warn{border-color:#8a6a2b;color:#ffd98a}.chip.bad{border-color:#9b4250;color:#ffb2bc}
-.heat-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:4px;padding:10px 12px}.heat-cell{height:16px;border-radius:3px;background:#173064}.legend{display:flex;gap:10px;align-items:center;padding:0 12px 12px;font-size:12px;color:#9eb3e4}
-    @media(max-width:1200px){.kpi-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.grid{grid-template-columns:1fr}}
-@media(max-width:760px){.fold .bodyFold{display:none}.fold.open .bodyFold{display:block}}
-    @media(max-width:760px){.kpi-grid{grid-template-columns:1fr 1fr}.title{font-size:24px}.wrap{padding:12px}.head h3{font-size:14px}th,td{font-size:12px;padding:8px}.v{font-size:20px}}
-@media(max-width:520px){header{position:static}}
-/* mobile-ux */
-@media(max-width:520px){.kpi-grid{grid-template-columns:1fr}.btn{padding:6px 8px;font-size:11px}.bar{align-items:flex-start}.title{font-size:21px}.sub{font-size:12px}}
-.focus-grid{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:12px;margin-top:12px}.focus-card{background:linear-gradient(165deg,#12285e,#0b1738);border:1px solid #2b457f;border-radius:12px;padding:12px 14px;box-shadow:0 8px 24px rgba(0,0,0,.2)}.focus-label{font-size:12px;color:#9eb6e8}.focus-main{font-size:28px;font-weight:800;margin-top:6px}.focus-sub{font-size:12px;color:#b7caf3;margin-top:4px}.quick-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}.qa{font-size:12px;padding:6px 10px;border-radius:999px;border:1px solid #3b5eaa;background:#10224e;color:#d6e8ff}.qa.ok{border-color:#2d8f67;color:#9af0c9}.qa.warn{border-color:#8a6a2b;color:#ffd98a}.qa.bad{border-color:#9b4250;color:#ffb2bc}
-@media(max-width:1200px){.focus-grid{grid-template-columns:1fr}}
+    :root{
+      --bg:#0a0a0b;
+      --bg-soft:#121214;
+      --card:rgba(255,255,255,.06);
+      --card-strong:rgba(255,255,255,.1);
+      --line:rgba(255,255,255,.14);
+      --text:#f5f5f7;
+      --muted:#a1a1a6;
+      --ok:#34c759;
+      --warn:#ffd60a;
+      --bad:#ff453a;
+      --pill:#1c1c1e;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;background:radial-gradient(1200px 700px at 85% -10%,#262628 0%,transparent 50%),var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","PingFang SC",Segoe UI,Arial,sans-serif}
+    .wrap{max-width:1400px;margin:0 auto;padding:20px}
+    .top{position:sticky;top:0;z-index:10;backdrop-filter:blur(14px);background:rgba(10,10,11,.7);border-bottom:1px solid var(--line)}
+    .top-inner{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;padding:16px 20px;max-width:1400px;margin:0 auto}
+    .title{font-size:30px;font-weight:700;letter-spacing:.2px}
+    .sub{font-size:12px;color:var(--muted);margin-top:4px}
+    .toolbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+    .btn{border:1px solid var(--line);background:var(--pill);color:var(--text);padding:8px 12px;border-radius:999px;font-size:12px;text-decoration:none}
+
+    .grid{display:grid;gap:12px}
+    .kpis{grid-template-columns:repeat(6,minmax(0,1fr));margin-top:16px}
+    .main{grid-template-columns:1.3fr 1fr;margin-top:12px}
+    .triple{grid-template-columns:repeat(3,minmax(0,1fr));margin-top:12px}
+
+    .card{background:linear-gradient(180deg,var(--card),rgba(255,255,255,.03));border:1px solid var(--line);border-radius:18px;box-shadow:0 10px 40px rgba(0,0,0,.35)}
+    .card-h{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-bottom:1px solid var(--line)}
+    .card-h h3{margin:0;font-size:14px;font-weight:600}
+    .tag{font-size:11px;color:#d6d6db;background:var(--pill);border:1px solid var(--line);padding:4px 8px;border-radius:999px}
+    .card-b{padding:14px 16px}
+
+    .kpi{padding:14px 16px}
+    .k-label{font-size:12px;color:var(--muted)}
+    .k-value{font-size:24px;font-weight:700;margin-top:8px;word-break:break-word}
+    .state-ok{color:var(--ok)} .state-warn{color:var(--warn)} .state-bad{color:var(--bad)}
+
+    .progress{height:10px;background:#1b1b1f;border-radius:999px;border:1px solid var(--line);overflow:hidden}
+    .progress > i{display:block;height:100%;background:linear-gradient(90deg,#fff,#8e8e93)}
+
+    table{width:100%;border-collapse:collapse}
+    th,td{padding:10px 8px;border-bottom:1px solid rgba(255,255,255,.08);text-align:left;font-size:12px}
+    th{color:var(--muted);font-weight:600}
+
+    .chips{display:flex;gap:8px;flex-wrap:wrap}
+    .chip{padding:6px 10px;border-radius:999px;border:1px solid var(--line);background:var(--pill);font-size:12px}
+
+    .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;line-height:1.5;color:#d6d6db;background:#0e0e10;border:1px solid var(--line);border-radius:12px;padding:10px;max-height:280px;overflow:auto}
+    canvas{width:100%;height:auto;border:1px solid var(--line);border-radius:12px;background:#0f0f11}
+
+    @media(max-width:1200px){.kpis{grid-template-columns:repeat(3,minmax(0,1fr))}.main{grid-template-columns:1fr}.triple{grid-template-columns:1fr}}
+    @media(max-width:740px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.title{font-size:24px}.wrap{padding:14px}}
   </style>
 </head>
 <body>
-<header><div class="wrap bar"><div><div class="title">锦的虾🦐 监控中枢</div><div class="sub">公网公开版（敏感字段自动脱敏） · 更新时间：<span id="ts">-</span></div></div><div><a class="btn" href="./data/current.json" target="_blank">原始JSON / Raw JSON</a><a class="btn" href="https://ilovechin.github.io/" target="_blank">个人站 / Personal Site</a><a class="btn" href="https://ilovechin.github.io/crysttao-site/" target="_blank">CrystTao站 / CrystTao Site</a></div></div></header>
-<main class="wrap">
-  <section class="sticky-kpi"><div class="kpi-grid" id="kpis"></div></section>
-  <section class="focus-grid" id="focusGrid">
-    <div class="focus-card"><div class="focus-label">总体状态 / Overall</div><div class="focus-main" id="focusOverall">-</div><div class="focus-sub" id="focusOverallSub">-</div></div>
-    <div class="focus-card"><div class="focus-label">风险等级 / Risk</div><div class="focus-main" id="focusRisk">-</div><div class="focus-sub" id="focusRiskSub">-</div></div>
-    <div class="focus-card"><div class="focus-label">推荐动作 / Next Action</div><div class="focus-main" id="focusAction">-</div><div class="quick-actions" id="quickActions"></div></div>
-  </section>
-  <section class="grid">
-    <div class="card"><div class="head"><h3>任务运行看板 / Cron Board</h3><span class="pill">AUTO JOBS</span></div><table id="cronTable"><thead><tr><th>任务 Task</th><th>状态 Status</th><th>错误 Errors</th><th>下次运行 Next Run</th></tr></thead><tbody></tbody></table></div>
-    <div class="card"><div class="head"><h3>Token 历史 / Usage History</h3><span class="pill">LAST 20</span></div><table id="histTable"><thead><tr><th>时间 Time</th><th>5h%</th><th>Day%</th><th>网关 Gateway</th></tr></thead><tbody></tbody></table></div>
-  </section>
-  <section class="grid">
-    <div class="card"><div class="head"><h3>系统健康 / System Health</h3><span class="pill">SERVER</span></div><table id="summaryTable"><thead><tr><th>项目 Item</th><th>值 Value</th><th>说明 Notes</th></tr></thead><tbody></tbody></table></div>
-    <div class="card"><div class="head"><h3>网站状态 / Website Status</h3><span class="pill">HTTP</span></div><table id="siteTable"><thead><tr><th>站点 Site</th><th>状态 Status</th><th>URL</th></tr></thead><tbody></tbody></table></div>
-  </section>
-  <section class="grid">
-    <div class="card"><div class="head"><h3>技能库 Skills / Installed Skills</h3><span class="pill">SAFE</span></div><pre id="skills" class="mono"></pre></div>
-    <div class="card"><div class="head"><h3>模型与配置（脱敏） Model+Config (Redacted)</h3><span class="pill">REDACTED</span></div><pre id="config" class="mono"></pre></div>
-  </section>
-  <section class="grid">
-    <div class="card"><div class="head"><h3>工作区统计 Workspace Stats</h3><span class="pill">FILES</span></div><table id="wsTable"><thead><tr><th>项 Item</th><th>值 Value</th></tr></thead><tbody></tbody></table></div>
-    <div class="card"><div class="head"><h3>最近提交 Recent Commits</h3><span class="pill">GIT</span></div><pre id="commits" class="mono"></pre></div>
-  </div></section>
-
-  <section class="card full">
-    <div class="head"><h3>人格与偏好 Persona & Profile</h3><span class="pill">SOUL / IDENTITY / USER</span></div>
-    <div class="grid" style="margin:0;padding:12px">
-      <div class="card"><div class="head"><h3>SOUL.md</h3></div><pre id="soul" class="mono"></pre></div>
-      <div class="card"><div class="head"><h3>IDENTITY.md + USER.md</h3></div><pre id="profile" class="mono"></pre></div>
+  <header class="top">
+    <div class="top-inner">
+      <div>
+        <div class="title">监控中枢 · Apple B/W Pro</div>
+        <div class="sub">黑白苹果风豪华版 · 更新时间：<span id="updatedAt">-</span></div>
+      </div>
+      <div class="toolbar">
+        <a class="btn" href="./data/current.json" target="_blank">Current JSON</a>
+        <a class="btn" href="./data/history.json" target="_blank">History JSON</a>
+        <button class="btn" id="refreshBtn">刷新</button>
+      </div>
     </div>
-  </section>
+  </header>
 
+  <main class="wrap">
+    <section class="grid kpis" id="kpis"></section>
 
-  <section class="grid">
-    <div class="card"><div class="head"><h3>模型库 / Model Library</h3><span class="pill">LLM + EMBEDDING</span></div><pre id="modelLib" class="mono"></pre></div>
-    <div class="card"><div class="head"><h3>会话策略 / Session Policy</h3><span class="pill">TTL + IDLE</span></div><pre id="sessionPolicy" class="mono"></pre></div>
-  </section>
-
-
-  <section class="card full fold" id="rawFold">
-    <div class="head" onclick="toggleFold('rawFold')" style="cursor:pointer"><h3>全量原始明细 / Full Raw Details</h3><span class="pill">EVERY PUBLIC DETAIL</span></div>
-    <div class="grid" style="margin:0;padding:12px">
-      <div class="card"><div class="head"><h3>Status Usage JSON</h3></div><pre id="rawStatus" class="mono"></pre></div>
-      <div class="card"><div class="head"><h3>Cron List JSON</h3></div><pre id="rawCron" class="mono"></pre></div>
-      <div class="card"><div class="head"><h3>Cron Recent Runs</h3></div><pre id="rawRuns" class="mono"></pre></div>
-      <div class="card"><div class="head"><h3>Memory Status</h3></div><pre id="rawMem" class="mono"></pre></div>
-      <div class="card"><div class="head"><h3>Doctor / Health / Gateway</h3></div><pre id="rawDiag" class="mono"></pre></div>
-      <div class="card"><div class="head"><h3>Sessions + Workspace Tree</h3></div><pre id="rawWs" class="mono"></pre></div>
-    </div>
-  </section>
-
-
-  <section class="card full fold" id="kbFold">
-    <div class="head" onclick="toggleFold('kbFold')" style="cursor:pointer"><h3>知识库索引 / Knowledge Index（clawd.org.cn）</h3><span class="pill">SEARCHABLE</span></div>
-    <div class="grid" style="margin:0;padding:12px">
-      <div class="card"><div class="head"><h3>分类统计 Categories</h3></div><pre id="kbCats" class="mono"></pre></div>
-      <div class="card"><div class="head"><h3>页面列表 Top Pages</h3></div><pre id="kbItems" class="mono"></pre></div>
-    </div>
-  </section>
-
-
-  <section class="card full">
-    <div class="head"><h3>像素小人指挥台 / Pixel Agents</h3><span class="pill">LIVE</span></div>
-    <div style="padding:12px">
-      <canvas id="pixelCanvas" width="1400" height="260" style="width:100%;height:auto;background:linear-gradient(180deg,#0b1430,#0a1022);border:1px solid #243c72;border-radius:10px;image-rendering:pixelated"></canvas>
-      <div class="sub" style="margin-top:8px">每个小人代表一个任务（绿色=正常，黄色=空闲，红色=异常） / Each sprite = one cron job.</div>
-    </div>
-  </section>
-
-
-  <section class="card full fold open" id="tokenFold">
-    <div class="head" onclick="toggleFold('tokenFold')" style="cursor:pointer"><h3>API Token 可视化中心 / API Token Visual Center</h3><span class="pill">REALTIME + TREND</span></div>
-    <div class="bodyFold"><div class="grid" style="margin:0;padding:12px;grid-template-columns:1fr 1fr">
-      <div class="card"><div class="head"><h3>实时用量 / Live Usage</h3></div>
-        <div style="padding:12px">
-          <div class="sub">5小时窗口 / 5h window</div>
-          <div style="background:#0a1532;border:1px solid #29427d;border-radius:999px;height:14px;overflow:hidden"><div id="bar5" style="height:100%;width:0;background:linear-gradient(90deg,#63d7ff,#5ae5a8)"></div></div>
-          <div id="txt5" class="mono" style="margin-top:6px">-</div>
-          <div class="sub" style="margin-top:10px">当日窗口 / Day window</div>
-          <div style="background:#0a1532;border:1px solid #29427d;border-radius:999px;height:14px;overflow:hidden"><div id="barDay" style="height:100%;width:0;background:linear-gradient(90deg,#ffc76a,#ff7d88)"></div></div>
-          <div id="txtDay" class="mono" style="margin-top:6px">-</div>
+    <section class="grid main">
+      <article class="card">
+        <div class="card-h"><h3>任务看板</h3><span class="tag">CRON</span></div>
+        <div class="card-b">
+          <table>
+            <thead><tr><th>任务</th><th>状态</th><th>错误</th><th>下次运行</th></tr></thead>
+            <tbody id="cronBody"></tbody>
+          </table>
         </div>
-      </div>
-      <div class="card"><div class="head"><h3>趋势曲线 / Trend</h3></div>
-        <div style="padding:12px"><canvas id="tokenTrend" width="600" height="220" style="width:100%;height:auto;background:#0a132e;border:1px solid #243e75;border-radius:8px"></canvas></div>
-      </div>
-    </div>
-  </section>
+      </article>
 
-
-  <section class="card full">
-    <div class="head"><h3>图形化总览 / Visual Analytics</h3><span class="pill">CHARTS</span></div>
-    <div class="grid" style="margin:0;padding:12px;grid-template-columns:1fr 1fr 1fr">
-      <div class="card"><div class="head"><h3>资源占比 / Resource Split</h3></div><div style="padding:10px"><canvas id="donutRes" width="360" height="240" style="width:100%;height:auto;background:#0a132e;border:1px solid #243e75;border-radius:8px"></canvas></div></div>
-      <div class="card"><div class="head"><h3>Cron状态 / Cron Status</h3></div><div style="padding:10px"><canvas id="barCron" width="360" height="240" style="width:100%;height:auto;background:#0a132e;border:1px solid #243e75;border-radius:8px"></canvas></div></div>
-      <div class="card"><div class="head"><h3>站点可用性 / Site Health</h3></div><div style="padding:10px"><canvas id="radarSite" width="360" height="240" style="width:100%;height:auto;background:#0a132e;border:1px solid #243e75;border-radius:8px"></canvas></div></div>
-    </div>
-  </section>
-
-
-  <section class="card full">
-    <div class="head"><h3>memU-lite 记忆图谱 / Memory Graph</h3><span class="pill">AUTO MEMORY</span></div>
-    <div class="grid" style="margin:0;padding:12px;grid-template-columns:1fr 1fr">
-      <div class="card"><div class="head"><h3>同步报告 / Sync Report</h3></div><pre id="memuReport" class="mono"></pre></div>
-      <div class="card"><div class="head"><h3>资源挂载统计 / Resource Mounts</h3></div><pre id="memuMounts" class="mono"></pre></div>
-      <div class="card"><div class="head"><h3>意图候选 / Intent Candidates</h3></div><pre id="memuIntent" class="mono"></pre></div>
-      <div class="card"><div class="head"><h3>关系图谱 / Graph Edges</h3></div><pre id="memuGraph" class="mono"></pre></div>
-    </div>
-    <div style="padding:12px"><canvas id="memuGraphCanvas" width="1200" height="360" style="width:100%;height:auto;background:#0a132e;border:1px solid #243e75;border-radius:8px"></canvas></div>
-  </section>
-
-
-  <section class="grid">
-    <div class="card">
-      <div class="head"><h3>可视化状态总览 / Visual Status Map</h3><span class="pill">STATUS CHIPS</span></div>
-      <div id="statusChips" class="chips"></div>
-      <div class="legend"><span>绿色=正常</span><span>黄色=关注</span><span>红色=异常</span></div>
-    </div>
-    <div class="card">
-      <div class="head"><h3>24小时负载热力图 / 24h Heatmap</h3><span class="pill">HEAT</span></div>
-      <div id="heatMap" class="heat-grid"></div>
-      <div class="legend"><span>低</span><span style="display:inline-block;width:70px;height:8px;background:linear-gradient(90deg,#1b356f,#67c8ff,#ff7d88);border-radius:99px"></span><span>高</span></div>
-    </div>
-  </section>
-
-
-  <section class="grid">
-    <div class="card">
-      <div class="head"><h3>异常时间轴 / Incident Timeline</h3><span class="pill">EVENTS</span></div>
-      <div style="padding:10px"><canvas id="timelineChart" width="760" height="240" style="width:100%;height:auto;background:#0a132e;border:1px solid #243e75;border-radius:8px"></canvas></div>
-      <table id="timelineTable"><thead><tr><th>时间 Time</th><th>任务 Task</th><th>状态 Status</th><th>级别 Level</th></tr></thead><tbody></tbody></table>
-    </div>
-    <div class="card">
-      <div class="head"><h3>告警中心 / Alert Center</h3><span class="pill">R/Y/G</span></div>
-      <div id="alertChips" class="chips"></div>
-      <div style="padding:10px"><canvas id="alertDonut" width="420" height="240" style="width:100%;height:auto;background:#0a132e;border:1px solid #243e75;border-radius:8px"></canvas></div>
-      <div class="chips" id="successRate"></div>
-    </div>
-  </section>
-  <section class="card full">
-    <div class="head"><h3>系统资源四联图 / System 4-up Charts</h3><span class="pill">CPU/RAM/DISK/LOAD</span></div>
-    <div class="grid" style="margin:0;padding:12px;grid-template-columns:1fr 1fr">
-      <div class="card"><div class="head"><h3>RAM/DISK</h3></div><div style="padding:10px"><canvas id="resLine" width="600" height="220" style="width:100%;height:auto;background:#0a132e;border:1px solid #243e75;border-radius:8px"></canvas></div></div>
-      <div class="card"><div class="head"><h3>Load 1/5/15</h3></div><div style="padding:10px"><canvas id="loadBar" width="600" height="220" style="width:100%;height:auto;background:#0a132e;border:1px solid #243e75;border-radius:8px"></canvas></div></div>
-    </div>
-  </section>
-
-
-  <section class="grid">
-    <div class="card">
-      <div class="head"><h3>记忆树健康度 / Tree Health</h3><span class="pill">P0/P1/P2</span></div>
-      <div class="chips" id="treeChips"></div>
-      <div style="padding:10px"><canvas id="treeDonut" width="420" height="240" style="width:100%;height:auto;background:#0a132e;border:1px solid #243e75;border-radius:8px"></canvas></div>
-    </div>
-    <div class="card">
-      <div class="head"><h3>记忆树明细 / Tree Details</h3><span class="pill">SCHEMA + TOP ITEMS</span></div>
-      <pre id="treeSchema" class="mono"></pre>
-      <pre id="treeTop" class="mono"></pre>
-    </div>
-  </section>
-
-
-  <section class="card full">
-    <div class="head"><h3>安全补丁状态 / Security Patch Status</h3><span class="pill">SSRF</span></div>
-    <div class="chips" id="ssrfChip"></div>
-  </section>
-
-
-  <section class="card full">
-    <div class="head"><h3>Token总消耗估算 / Token Cost Estimate</h3><span class="pill">ESTIMATE</span></div>
-    <div class="grid" style="margin:0;padding:12px;grid-template-columns:1fr 1fr">
-      <div class="card">
-        <div class="head"><h3>估算参数 / Assumptions</h3></div>
-        <div class="body" style="padding:12px">
-          <div class="row" style="display:flex;gap:8px;flex-wrap:wrap">
-            <label>Day总Token上限(估算)<br><input id="dailyCap" type="number" value="1000000"></label>
-            <label>单价(USD/1M token)<br><input id="usdPer1m" type="number" step="0.01" value="5"></label>
-            <button onclick="saveCostCfg()">保存参数</button>
-          </div>
-          <div class="muted" style="margin-top:8px">说明：平台未提供绝对 token 时，按 Day已用百分比做估算。</div>
+      <article class="card">
+        <div class="card-h"><h3>系统健康</h3><span class="tag">HEALTH</span></div>
+        <div class="card-b">
+          <div class="chips" id="healthChips"></div>
+          <div style="height:12px"></div>
+          <div class="k-label">5h Token 使用率</div>
+          <div class="progress" style="margin-top:6px"><i id="bar5"></i></div>
+          <div class="k-label" id="txt5" style="margin-top:8px">-</div>
+          <div style="height:10px"></div>
+          <div class="k-label">Week/Day Token 使用率</div>
+          <div class="progress" style="margin-top:6px"><i id="barDay"></i></div>
+          <div class="k-label" id="txtDay" style="margin-top:8px">-</div>
         </div>
-      </div>
-      <div class="card">
-        <div class="head"><h3>估算结果 / Estimated Total</h3></div>
-        <div class="body" style="padding:12px">
-          <div class="chips" id="costChips"></div>
-          <pre id="costDetail" class="mono"></pre>
-        </div>
-      </div>
-    </div>
-  </section>
+      </article>
+    </section>
 
-</main>
-<script>
-function fmtTs(v){ if(!v) return '-'; const n=Number(v); return Number.isNaN(n)?String(v):new Date(n).toLocaleString(); }
-function clsStatus(s){ s=(s||'').toLowerCase(); if(s==='ok') return 'ok'; if(s==='idle'||s==='unknown') return 'warn'; return 'bad'; }
+    <section class="grid triple">
+      <article class="card">
+        <div class="card-h"><h3>Token 趋势</h3><span class="tag">TREND</span></div>
+        <div class="card-b"><canvas id="tokenChart" width="560" height="250"></canvas></div>
+      </article>
+      <article class="card">
+        <div class="card-h"><h3>资源趋势</h3><span class="tag">MEM/DISK</span></div>
+        <div class="card-b"><canvas id="resChart" width="560" height="250"></canvas></div>
+      </article>
+      <article class="card">
+        <div class="card-h"><h3>配置摘要</h3><span class="tag">MODEL</span></div>
+        <div class="card-b"><pre class="mono" id="summary"></pre></div>
+      </article>
+    </section>
+  </main>
 
-function saveCostCfg(){
-  const cap=Number(document.getElementById('dailyCap')?.value||1000000);
-  const p=Number(document.getElementById('usdPer1m')?.value||5);
-  localStorage.setItem('obs_cost_cfg', JSON.stringify({cap,p}));
-}
-function loadCostCfg(){
-  try{
-    const c=JSON.parse(localStorage.getItem('obs_cost_cfg')||'{}');
-    if(c.cap) document.getElementById('dailyCap').value=c.cap;
-    if(c.p) document.getElementById('usdPer1m').value=c.p;
-  }catch(e){}
-}
-function renderCostEstimate(dayPct){
-  loadCostCfg();
-  const cap=Number(document.getElementById('dailyCap')?.value||1000000);
-  const p=Number(document.getElementById('usdPer1m')?.value||5);
-  const used=Math.round((Number(dayPct||0)/100)*cap);
-  const usd=(used/1_000_000)*p;
-  const chips=document.getElementById('costChips');
-  if(chips){chips.innerHTML=`<span class='chip ok'>已用占比 Day%: ${dayPct||0}%</span><span class='chip'>估算已用Token: ${used.toLocaleString()}</span><span class='chip warn'>估算成本: $${usd.toFixed(4)}</span>`;}
-  const d=document.getElementById('costDetail');
-  if(d){d.textContent=`公式: used = dayPct * dailyCap
-used = ${dayPct||0}% * ${cap.toLocaleString()}
-price = ${p} USD / 1M token
-estimatedCost = ${used.toLocaleString()} / 1,000,000 * ${p} = $${usd.toFixed(4)}`}
-}
+  <script>
+    const $ = (id) => document.getElementById(id);
 
-function toggleFold(id){const el=document.getElementById(id); if(!el) return; el.classList.toggle("open");}
-function codeStatus(c){ const n=Number(c||0); if(n>=200&&n<400) return `<span class='ok'>${n}</span>`; if(n===0) return `<span class='warn'>N/A</span>`; return `<span class='bad'>${n}</span>`; }
+    function num(v, d=0){ const n=Number(v); return Number.isFinite(n)?n:d; }
+    function pct(v){ return `${num(v).toFixed(0)}%`; }
+    function dt(v){ if(!v) return '-'; const t=Number(v); return Number.isFinite(t)?new Date(t).toLocaleString():String(v); }
 
-function drawPixelAgents(cronJobs){
-  const canvas=document.getElementById('pixelCanvas');
-  if(!canvas) return;
-  const ctx=canvas.getContext('2d');
-  const W=canvas.width,H=canvas.height;
-  ctx.clearRect(0,0,W,H);
-  // grid background
-  ctx.fillStyle='rgba(120,150,220,.08)';
-  for(let x=0;x<W;x+=16){ctx.fillRect(x,0,1,H)}
-  for(let y=0;y<H;y+=16){ctx.fillRect(0,y,W,1)}
-
-  const sprite=[
-    [0,1,1,1,1,1,1,0],
-    [1,2,2,2,2,2,2,1],
-    [1,2,0,2,2,0,2,1],
-    [1,2,2,2,2,2,2,1],
-    [0,1,3,3,3,3,1,0],
-    [0,3,3,1,1,3,3,0],
-    [0,3,1,0,0,1,3,0],
-    [0,1,0,0,0,0,1,0]
-  ];
-  const scale=4, sw=8*scale, sh=8*scale;
-  const pad=18;
-  cronJobs=(cronJobs||[]).slice(0,22);
-  cronJobs.forEach((j,i)=>{
-    const col=i%11,row=Math.floor(i/11);
-    const ox=pad+col*(sw+pad), oy=18+row*(sh+64);
-    const st=(j.status||'idle').toLowerCase();
-    const cBody= st==='ok'?'#59e7ac':(st==='idle'?'#ffcc6e':'#ff7f88');
-    const cHead= st==='ok'?'#d6ffe8':(st==='idle'?'#fff0c5':'#ffd5d9');
-    for(let y=0;y<8;y++)for(let x=0;x<8;x++){
-      const v=sprite[y][x]; if(!v) continue;
-      ctx.fillStyle = v===1 ? cHead : (v===2 ? cBody : '#2a355f');
-      ctx.fillRect(ox+x*scale, oy+y*scale, scale, scale);
+    function stateClass(s){
+      const x=(s||'').toLowerCase();
+      if(x==='ok' || x==='healthy') return 'state-ok';
+      if(x==='idle' || x==='warn' || x==='warning') return 'state-warn';
+      return 'state-bad';
     }
-    ctx.fillStyle='#d9e6ff';
-    ctx.font='11px Inter';
-    const name=(j.name||'job').slice(0,18);
-    ctx.fillText(name, ox-2, oy+sh+16);
-    ctx.fillStyle = st==='ok'?'#59e7ac':(st==='idle'?'#ffcc6e':'#ff7f88');
-    ctx.fillText((j.status||'idle'), ox-2, oy+sh+30);
-    ctx.fillStyle='#9eb3e4';
-    ctx.fillText('Err:'+String(j.errors||0), ox-2, oy+sh+44);
-  });
-}
 
+    function kpiCard(label, value, cls=''){
+      return `<div class="card kpi"><div class="k-label">${label}</div><div class="k-value ${cls}">${value}</div></div>`;
+    }
 
+    function drawLine(canvasId, valuesA=[], valuesB=[], colorA='#f5f5f7', colorB='#8e8e93', maxY=100){
+      const c=$(canvasId); if(!c) return;
+      const ctx=c.getContext('2d');
+      const w=c.width, h=c.height, p=24;
+      ctx.clearRect(0,0,w,h);
 
+      ctx.strokeStyle='rgba(255,255,255,.12)';
+      for(let i=0;i<5;i++){
+        const y=p+(h-p*2)*(i/4);
+        ctx.beginPath(); ctx.moveTo(p,y); ctx.lineTo(w-p,y); ctx.stroke();
+      }
 
+      function plot(arr,color){
+        if(!arr.length) return;
+        ctx.strokeStyle=color; ctx.lineWidth=2;
+        ctx.beginPath();
+        arr.forEach((v,i)=>{
+          const x=p+(w-p*2)*(arr.length===1?0:i/(arr.length-1));
+          const y=h-p-(Math.min(maxY,Math.max(0,v))/maxY)*(h-p*2);
+          if(i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+        });
+        ctx.stroke();
+      }
 
-function drawMiniDonut(id, vals, colors, labels){
- const c=document.getElementById(id); if(!c) return; const ctx=c.getContext('2d'); const W=c.width,H=c.height,cx=W/2,cy=H/2,r=70,ir=38; ctx.clearRect(0,0,W,H);
- const total=Math.max(1,vals.reduce((a,b)=>a+b,0)); let a=-Math.PI/2;
- vals.forEach((v,i)=>{const n=a+(v/total)*Math.PI*2; ctx.beginPath(); ctx.arc(cx,cy,r,a,n); ctx.arc(cx,cy,ir,n,a,true); ctx.closePath(); ctx.fillStyle=colors[i]; ctx.fill(); a=n;});
- ctx.fillStyle='#dbe8ff'; ctx.font='12px Inter'; ctx.textAlign='center'; ctx.fillText('Alerts',cx,cy+4);
- labels.forEach((l,i)=>{ctx.fillStyle=colors[i]; ctx.fillRect(12,14+i*16,10,10); ctx.fillStyle='#9eb3e4'; ctx.textAlign='left'; ctx.fillText(`${l}: ${vals[i]}`,28,23+i*16)});
-}
-function drawTimeline(events){
- const c=document.getElementById('timelineChart'); if(!c) return; const ctx=c.getContext('2d'); const W=c.width,H=c.height; ctx.clearRect(0,0,W,H);
- const arr=(events||[]).slice(0,24).reverse();
- const step=(W-40)/Math.max(1,arr.length-1); ctx.strokeStyle='rgba(130,170,255,.25)'; for(let x=20;x<W-20;x+=step){ctx.beginPath();ctx.moveTo(x,20);ctx.lineTo(x,H-20);ctx.stroke();}
- arr.forEach((e,i)=>{const x=20+i*step,y=H/2; let col='#ffc76a'; if(e.level==='critical') col='#ff7d88'; else if(e.level==='info') col='#51e3a8'; ctx.beginPath();ctx.arc(x,y,6,0,Math.PI*2);ctx.fillStyle=col;ctx.fill();});
-}
-function drawResLine(hist){
- const c=document.getElementById('resLine'); if(!c) return; const ctx=c.getContext('2d'); const W=c.width,H=c.height; ctx.clearRect(0,0,W,H);
- const arr=(hist||[]).slice(-48); const ram=arr.map(x=>Number(x.memUsedPct||0)); const disk=arr.map(x=>Number(String(x.diskUsedPct||'0').replace('%',''))||0); const max=100;
- function line(vals,col){ctx.strokeStyle=col;ctx.lineWidth=2;ctx.beginPath();vals.forEach((v,i)=>{const x=20+i*((W-40)/Math.max(1,vals.length-1)); const y=H-20-(v/max)*(H-40); if(i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y)});ctx.stroke();}
- line(ram,'#67c8ff'); line(disk,'#ffb86b'); ctx.fillStyle='#9eb3e4'; ctx.font='12px Inter'; ctx.fillText('RAM',20,16); ctx.fillText('DISK',72,16);
-}
-function drawLoadBar(load){
- const c=document.getElementById('loadBar'); if(!c) return; const ctx=c.getContext('2d'); const W=c.width,H=c.height; ctx.clearRect(0,0,W,H);
- const vals=[Number(load['1m']||0),Number(load['5m']||0),Number(load['15m']||0)], labels=['1m','5m','15m']; const max=Math.max(1,...vals);
- vals.forEach((v,i)=>{const x=90+i*160,h=(v/max)*130,y=180-h; ctx.fillStyle=['#67c8ff','#8ee8b8','#ffb86b'][i]; ctx.fillRect(x,y,70,h); ctx.fillStyle='#dbe8ff'; ctx.font='12px Inter'; ctx.fillText(labels[i],x+22,198); ctx.fillText(v.toFixed(2),x+14,y-6)});
-}
+      plot(valuesA, colorA);
+      plot(valuesB, colorB);
+    }
 
-function drawDonut(id, values, labels, colors){
-  const c=document.getElementById(id); if(!c) return; const ctx=c.getContext('2d');
-  const W=c.width,H=c.height,cx=W/2,cy=H/2,r=80,ir=45; ctx.clearRect(0,0,W,H);
-  const total=Math.max(1, values.reduce((a,b)=>a+b,0)); let a0=-Math.PI/2;
-  values.forEach((v,i)=>{ const a1=a0 + (v/total)*Math.PI*2; ctx.beginPath(); ctx.arc(cx,cy,r,a0,a1); ctx.arc(cx,cy,ir,a1,a0,true); ctx.closePath(); ctx.fillStyle=colors[i]; ctx.fill(); a0=a1;});
-  ctx.fillStyle='#dbe8ff'; ctx.font='bold 14px Inter'; ctx.textAlign='center'; ctx.fillText('资源',cx,cy-2); ctx.fillText('Resources',cx,cy+16);
-  ctx.textAlign='left'; labels.forEach((l,i)=>{ctx.fillStyle=colors[i]; ctx.fillRect(16,20+i*18,10,10); ctx.fillStyle='#9eb3e4'; ctx.font='12px Inter'; ctx.fillText(`${l}: ${values[i]}`,30,29+i*18);});
-}
-function drawBar(id, map){
-  const c=document.getElementById(id); if(!c) return; const ctx=c.getContext('2d'); const W=c.width,H=c.height; ctx.clearRect(0,0,W,H);
-  const keys=Object.keys(map), vals=keys.map(k=>map[k]); const max=Math.max(1,...vals);
-  keys.forEach((k,i)=>{ const x=40+i*90, h=(vals[i]/max)*130, y=180-h; ctx.fillStyle=(k==='ok'?'#51e3a8':k==='idle'?'#ffc76a':'#ff7d88'); ctx.fillRect(x,y,46,h); ctx.fillStyle='#dbe8ff'; ctx.font='12px Inter'; ctx.fillText(k,x,y-6); ctx.fillText(String(vals[i]),x+12,196); });
-}
-function drawRadar(id, vals){
-  const c=document.getElementById(id); if(!c) return; const ctx=c.getContext('2d'); const W=c.width,H=c.height,cx=W/2,cy=H/2,r=85; ctx.clearRect(0,0,W,H);
-  const labels=['个人站','CrystTao','监控站'];
-  for(let ring=1;ring<=4;ring++){ctx.beginPath(); for(let i=0;i<3;i++){const a=-Math.PI/2+i*2*Math.PI/3; const rr=r*ring/4; const x=cx+Math.cos(a)*rr, y=cy+Math.sin(a)*rr; if(i===0)ctx.moveTo(x,y); else ctx.lineTo(x,y);} ctx.closePath(); ctx.strokeStyle='rgba(130,170,255,.25)'; ctx.stroke();}
-  ctx.beginPath(); vals.forEach((v,i)=>{const a=-Math.PI/2+i*2*Math.PI/3; const rr=r*(v/100); const x=cx+Math.cos(a)*rr,y=cy+Math.sin(a)*rr; if(i===0)ctx.moveTo(x,y); else ctx.lineTo(x,y);}); ctx.closePath(); ctx.fillStyle='rgba(91,200,255,.25)'; ctx.fill(); ctx.strokeStyle='#67c8ff'; ctx.stroke();
-  labels.forEach((l,i)=>{const a=-Math.PI/2+i*2*Math.PI/3; const x=cx+Math.cos(a)*(r+16), y=cy+Math.sin(a)*(r+16); ctx.fillStyle='#9eb3e4'; ctx.font='12px Inter'; ctx.fillText(l,x-18,y);});
-}
+    function buildKpis(cur){
+      const model = cur?.identity?.model || '-';
+      const gw = !!cur?.openclaw?.gatewayOk;
+      const mem = num(cur?.system?.memory?.usedPct);
+      const disk = num(String(cur?.system?.diskRoot?.usedPct || '0').replace('%',''));
+      const jobs = Array.isArray(cur?.openclaw?.cronJobs) ? cur.openclaw.cronJobs : [];
+      const badJobs = jobs.filter(j => (j.status||'').toLowerCase() !== 'ok').length;
+      const five = num(cur?.usageQuick?.fiveHourUsedPct);
+      const day = num(cur?.usageQuick?.dayUsedPct);
 
+      $('kpis').innerHTML = [
+        kpiCard('当前模型', model),
+        kpiCard('Gateway', gw?'在线':'异常', gw?'state-ok':'state-bad'),
+        kpiCard('Cron 任务', String(jobs.length)),
+        kpiCard('异常任务', String(badJobs), badJobs? 'state-bad':'state-ok'),
+        kpiCard('内存占用', pct(mem), mem>80?'state-bad':mem>65?'state-warn':'state-ok'),
+        kpiCard('磁盘占用', pct(disk), disk>85?'state-bad':disk>70?'state-warn':'state-ok')
+      ].join('');
 
-function drawMemuGraph(data){
-  const c=document.getElementById('memuGraphCanvas'); if(!c) return; const ctx=c.getContext('2d');
-  const W=c.width,H=c.height; ctx.clearRect(0,0,W,H);
-  const nodes=[
-    {id:'Project',x:140,y:180,color:'#67c8ff'},
-    {id:'Task',x:360,y:90,color:'#51e3a8'},
-    {id:'Document',x:360,y:270,color:'#ffc76a'},
-    {id:'Decision',x:600,y:90,color:'#ff7d88'},
-    {id:'Event',x:600,y:270,color:'#b392ff'},
-    {id:'Cron',x:860,y:180,color:'#7de2ff'},
-    {id:'Intent',x:1040,y:180,color:'#9df0b4'}
-  ];
-  const edges=[[0,1],[0,2],[1,3],[4,5],[5,6],[2,6]];
-  ctx.strokeStyle='rgba(140,180,255,.45)'; ctx.lineWidth=2;
-  edges.forEach(([a,b])=>{ctx.beginPath();ctx.moveTo(nodes[a].x,nodes[a].y);ctx.lineTo(nodes[b].x,nodes[b].y);ctx.stroke();});
-  nodes.forEach(n=>{ctx.beginPath();ctx.arc(n.x,n.y,26,0,Math.PI*2);ctx.fillStyle=n.color;ctx.fill();ctx.fillStyle='#071023';ctx.font='bold 12px Inter';ctx.textAlign='center';ctx.fillText(n.id,n.x,n.y+4)});
-  ctx.fillStyle='#9eb3e4';ctx.textAlign='left';ctx.font='12px Inter';
-  ctx.fillText('memU-lite Graph (示意)',14,20);
-}
+      $('bar5').style.width = Math.min(100,five) + '%';
+      $('barDay').style.width = Math.min(100,day) + '%';
+      $('txt5').textContent = `${five}% used`;
+      $('txtDay').textContent = `${day}% used`;
+    }
 
+    function buildCron(cur){
+      const rows = (cur?.openclaw?.cronJobs || []).slice().sort((a,b)=> num(a.next)-num(b.next)).slice(0,14).map(j=>{
+        return `<tr>
+          <td>${j.name||j.id||'-'}</td>
+          <td class="${stateClass(j.status)}">${j.status||'-'}</td>
+          <td>${num(j.errors)}</td>
+          <td>${dt(j.next)}</td>
+        </tr>`;
+      }).join('');
+      $('cronBody').innerHTML = rows || '<tr><td colspan="4">暂无任务</td></tr>';
+    }
 
-function chipClass(v){ if(v==='ok') return 'ok'; if(v==='warn') return 'warn'; return 'bad'; }
-function renderStatusChips(data){
-  const el=document.getElementById('statusChips'); if(!el) return;
-  const chips=[];
-  chips.push(['网关 Gateway', data.openclaw?.gatewayOk?'ok':'bad', data.openclaw?.gatewayOk?'正常':'异常']);
-  chips.push(['记忆检索 Memory', data.openclaw?.memoryReady?'ok':'warn', data.openclaw?.memoryReady?'可用':'降级']);
-  const cron=(data.openclaw?.cronJobs||[]); const bad=cron.filter(j=>String(j.status).toLowerCase()!=='ok'&&String(j.status).toLowerCase()!=='idle').length;
-  chips.push(['定时任务 Cron', bad===0?'ok':'warn', bad===0?'稳定':'有异常']);
-  const ws=data.websites?.httpStatus||{}; const siteBad=Object.values(ws).filter(c=>!(Number(c)>=200&&Number(c)<400)).length;
-  chips.push(['网站可用 Site', siteBad===0?'ok':'warn', siteBad===0?'正常':'部分异常']);
-  const m=Number(data.system?.memory?.usedPct||0); chips.push(['内存 RAM', m<80?'ok':(m<90?'warn':'bad'), m+'%']);
-  const d=Number(String(data.system?.diskRoot?.usedPct||'0').replace('%',''))||0; chips.push(['磁盘 Disk', d<80?'ok':(d<90?'warn':'bad'), d+'%']);
-  const day=Number(data.usageQuick?.dayUsedPct||0); chips.push(['Token Day', day<70?'ok':(day<90?'warn':'bad'), day+'%']);
-  el.innerHTML=chips.map(([k,c,v])=>`<span class="chip ${chipClass(c)}">${k}: ${v}</span>`).join('');
-}
-function renderHeatMap(hist){
-  const el=document.getElementById('heatMap'); if(!el) return;
-  const arr=(hist||[]).slice(-48);
-  const vals=arr.map(x=>Number(x.day||0));
-  el.innerHTML=vals.map(v=>{ const t=Math.max(0,Math.min(100,v)); const r=Math.round(27 + t*2.0), g=Math.round(53 + (100-t)*1.3), b=Math.round(111 + (100-t)*0.6); return `<div class="heat-cell" title="${t}%" style="background:rgb(${r},${g},${b})"></div>`; }).join('');
-}
+    function buildHealth(cur){
+      const mem = num(cur?.system?.memory?.usedPct);
+      const disk = num(String(cur?.system?.diskRoot?.usedPct||'0').replace('%',''));
+      const load1 = num(cur?.system?.load?.['1m']);
+      const chips = [
+        `Gateway: ${cur?.openclaw?.gatewayOk ? 'OK':'BAD'}`,
+        `Memory: ${pct(mem)}`,
+        `Disk: ${pct(disk)}`,
+        `Load1m: ${load1.toFixed(2)}`,
+        `Model: ${(cur?.identity?.provider||'-')}`
+      ];
+      $('healthChips').innerHTML = chips.map(c=>`<span class="chip">${c}</span>`).join('');
+    }
 
-function drawTrend(hist){
-  const c=document.getElementById('tokenTrend'); if(!c) return; const ctx=c.getContext('2d');
-  const W=c.width,H=c.height; ctx.clearRect(0,0,W,H);
-  ctx.fillStyle='rgba(120,150,220,.08)';
-  for(let x=0;x<W;x+=40) ctx.fillRect(x,0,1,H);
-  for(let y=0;y<H;y+=40) ctx.fillRect(0,y,W,1);
-  const arr=(hist||[]).slice(-48);
-  const vals=arr.map(x=>Number(x.day||0));
-  const max=Math.max(10,...vals);
-  ctx.strokeStyle='#63d7ff'; ctx.lineWidth=2; ctx.beginPath();
-  vals.forEach((v,i)=>{ const x=20 + i*( (W-40)/Math.max(1,vals.length-1)); const y=H-20-(v/max)*(H-40); if(i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y); });
-  ctx.stroke();
-  ctx.fillStyle='#9eb3e4'; ctx.font='12px Inter'; ctx.fillText('Day % 趋势',12,16);
-}
+    function buildSummary(cur){
+      const txt = {
+        identity: cur?.identity || {},
+        usageQuick: cur?.usageQuick || {},
+        load: cur?.system?.load || {},
+        process: cur?.system?.processCounts || {},
+        channelSummary: cur?.openclaw?.channelSummary || []
+      };
+      $('summary').textContent = JSON.stringify(txt, null, 2);
+    }
 
-function renderFocusPanel(c, dayPct, cronJobs){
-  const badCron=(cronJobs||[]).filter(j=>!['ok','idle'].includes(String(j.status||'').toLowerCase())).length;
-  const gwOk=!!c.openclaw?.gatewayOk;
-  const memOk=!!c.openclaw?.memoryReady;
-  const overall = gwOk && memOk && badCron===0 ? '稳定' : (gwOk ? '可用' : '异常');
-  const overallSub = `网关:${gwOk?'正常':'异常'} · 记忆:${memOk?'可用':'降级'} · 异常任务:${badCron}`;
+    function buildCharts(hist){
+      const list = (Array.isArray(hist)?hist:[]).slice(-28);
+      const w5 = list.map(x=>num(x.w5));
+      const day = list.map(x=>num(x.day));
+      const mem = list.map(x=>num(x.memUsedPct));
+      const disk = list.map(x=>num(String(x.diskUsedPct||'0').replace('%','')));
+      drawLine('tokenChart', w5, day, '#f5f5f7', '#8e8e93', 100);
+      drawLine('resChart', mem, disk, '#d1d1d6', '#636366', 100);
+    }
 
-  const risk = dayPct<70 && badCron===0 ? '低' : (dayPct<90 && badCron<2 ? '中' : '高');
-  const riskSub = `Token Day ${dayPct||0}% · Cron异常 ${badCron}`;
+    async function load(){
+      try{
+        const [curR, histR] = await Promise.all([
+          fetch('./data/current.json?t='+Date.now()),
+          fetch('./data/history.json?t='+Date.now())
+        ]);
+        const cur = await curR.json();
+        const hist = await histR.json();
 
-  let action='保持';
-  const qa=[];
-  if(dayPct>=85){ action='降耗'; qa.push(['压缩高token任务','warn']); }
-  if(badCron>0){ action='排障'; qa.push(['处理异常Cron','bad']); }
-  if(!gwOk){ action='修复'; qa.push(['修复Gateway','bad']); }
-  if(qa.length===0){ qa.push(['维持稳态','ok']); qa.push(['仅异常上报','ok']); }
+        $('updatedAt').textContent = cur?.generatedAt ? new Date(cur.generatedAt).toLocaleString() : '-';
+        buildKpis(cur);
+        buildCron(cur);
+        buildHealth(cur);
+        buildSummary(cur);
+        buildCharts(hist);
+      } catch (e) {
+        $('summary').textContent = '加载失败: ' + e;
+      }
+    }
 
-  document.getElementById('focusOverall').textContent=overall;
-  document.getElementById('focusOverallSub').textContent=overallSub;
-  document.getElementById('focusRisk').textContent=risk;
-  document.getElementById('focusRiskSub').textContent=riskSub;
-  document.getElementById('focusAction').textContent=action;
-  document.getElementById('quickActions').innerHTML=qa.map(([t,c])=>`<span class="qa ${c}">${t}</span>`).join('');
-}
-
-async function load(){
-  const c=await fetch('./data/current.json?t='+Date.now()).then(r=>r.json());
-  const h=await fetch('./data/history.json?t='+Date.now()).then(r=>r.json()).catch(()=>[]);
-  document.getElementById('ts').textContent=new Date(c.generatedAt).toLocaleString();
-  const provider=(c.usage?.providers||[])[0]||{}; const wins=provider.windows||[];
-  const w5=wins[0]?.usedPercent, day=wins[1]?.usedPercent;
-  const dayResetAt=wins[1]?.resetAt;
-  function fmtCountdown(ts){
-    if(!ts) return '-';
-    const t = String(ts).length===10 ? Number(ts)*1000 : Number(ts);
-    const d = t - Date.now();
-    if(d<=0) return '即将重置';
-    const h=Math.floor(d/3600000), m=Math.floor((d%3600000)/60000);
-    return `${h}小时 ${m}分钟`;
-  }
-  const mem=c.system?.memory||{}, disk=c.system?.diskRoot||{}, loadv=c.system?.load||{};
-  const kpis=[['模型 Model',c.identity?.model||'-'],['5h已用 5h Used',w5!=null?`${w5}%`:'-'],['Day已用 Day Used',day!=null?`${day}%`:'-'],['Day重置倒计时 Reset In',fmtCountdown(dayResetAt)],['网关 Gateway',c.openclaw?.gatewayOk?'OK':'ERR'],['内存 RAM',mem.usedPct!=null?`${mem.usedPct}%`:'-'],['磁盘 Disk',disk.usedPct||'-']];
-  document.getElementById('kpis').innerHTML=kpis.map(([k,v])=>`<div class='kpi'><div class='k'>${k}</div><div class='v'>${v}</div></div>`).join('');
-  const cronJobs=(c.openclaw?.cronJobs||[]);
-  renderFocusPanel(c, Number(day||0), cronJobs);
-  document.querySelector('#cronTable tbody').innerHTML=cronJobs.map(j=>`<tr><td>${j.name}</td><td class='${clsStatus(j.status)}'>${j.status||'idle'}</td><td>${j.errors??0}</td><td>${fmtTs(j.next)}</td></tr>`).join('');
-  drawPixelAgents(cronJobs);
-  document.querySelector('#histTable tbody').innerHTML=(h.slice(-20).reverse()).map(r=>`<tr><td>${new Date(r.generatedAt).toLocaleString()}</td><td>${r.w5??'-'}</td><td>${r.day??'-'}</td><td class='${r.gatewayOk?'ok':'bad'}'>${r.gatewayOk?'OK':'ERR'}</td></tr>`).join('');
-
-  const p5 = Number(w5||0), pd = Number(day||0);
-  const bar5=document.getElementById('bar5'), barDay=document.getElementById('barDay');
-  if(bar5) bar5.style.width = Math.max(0,Math.min(100,p5))+'%';
-  if(barDay) barDay.style.width = Math.max(0,Math.min(100,pd))+'%';
-  const t5=document.getElementById('txt5'), td=document.getElementById('txtDay');
-  if(t5) t5.textContent = `5h 已用: ${p5||0}%`;
-  if(td) td.textContent = `Day 已用: ${pd||0}%`;
-  drawTrend(h);
-
-  const memPct = Number(mem.usedPct||0), diskPct = Number(String(disk.usedPct||'0').replace('%',''))||0;
-  const tokenPct = Number(day||0);
-  drawDonut('donutRes',[memPct,diskPct,tokenPct],['内存RAM','磁盘Disk','Token Day'],['#67c8ff','#ffc76a','#ff7d88']);
-  const cronMap={ok:0,idle:0,error:0};
-  cronJobs.forEach(j=>{const st=(j.status||'idle').toLowerCase(); if(st==='ok') cronMap.ok++; else if(st==='idle') cronMap.idle++; else cronMap.error++;});
-  drawBar('barCron',cronMap);
-  const siteCodes=c.websites?.httpStatus||{};
-  const vals=['personal','crysttao','observatory'].map(k=>{const code=Number(siteCodes[k]||0); return (code>=200&&code<400)?100:(code?40:10)});
-  drawRadar('radarSite',vals);
-  renderStatusChips(c);
-  renderHeatMap(h);
-
-  const events=(c.eventsTimeline||[]);
-  drawTimeline(events);
-  const topEvents=events.slice(0,12);
-  document.querySelector('#timelineTable tbody').innerHTML = topEvents.map(e=>`<tr><td>${fmtTs(e.ts)}</td><td>${e.job||'-'}</td><td>${e.status||'-'}</td><td class='${e.level==='critical'?'bad':(e.level==='warn'?'warn':'ok')}'>${e.level||'info'}</td></tr>`).join('');
-  const al=c.alerts||{critical:0,warn:0,info:0};
-  document.getElementById('alertChips').innerHTML = `<span class='chip bad'>严重 Critical: ${al.critical||0}</span><span class='chip warn'>警告 Warn: ${al.warn||0}</span><span class='chip ok'>信息 Info: ${al.info||0}</span>`;
-  drawMiniDonut('alertDonut',[al.critical||0,al.warn||0,al.info||0],['#ff7d88','#ffc76a','#51e3a8'],['Critical','Warn','Info']);
-  const sr=c.openclaw?.successRate||{}; const okPct=Math.round((Number(sr.cronOk||0))*100);
-  document.getElementById('successRate').innerHTML = `<span class='chip ok'>任务成功率 Success: ${okPct}%</span><span class='chip'>任务总数 Total: ${sr.cronTotal||0}</span>`;
-  drawResLine(h); drawLoadBar(c.system?.load||{});
-  renderCostEstimate(day);
-
-  const ts=c.memuLite?.treeState||{}; const cnt=ts.counts||{};
-  document.getElementById('treeChips').innerHTML = `<span class='chip ok'>健康度 Health: ${ts.health||0}%</span><span class='chip'>绿叶 Green: ${cnt.green||0}</span><span class='chip warn'>黄叶 Yellow: ${cnt.yellow||0}</span><span class='chip warn'>枯叶 Dry: ${cnt.dry||0}</span><span class='chip bad'>土壤 Soil: ${cnt.soil||0}</span>`;
-  drawMiniDonut('treeDonut',[cnt.green||0,cnt.yellow||0,cnt.dry||0,cnt.soil||0],['#51e3a8','#ffc76a','#ffb86b','#ff7d88'],['Green','Yellow','Dry','Soil']);
-  document.getElementById('treeSchema').textContent=(c.memuLite?.treeSchema||'').slice(0,2500);
-  const topTree=(ts.items||[]).slice(0,12).map(i=>`[${i.status}] (${i.priority}) conf=${i.confidence} ${i.title}`).join('\n');
-  document.getElementById('treeTop').textContent=topTree||'暂无';
-
-
-
-
-  const summary=[['服务商 Provider',c.identity?.provider||'-','模型提供方'],['套餐 Plan',c.usageQuick?.plan||'-','套餐信息'],['运行时长 Uptime',c.system?.uptime||'-','系统运行时长'],['负载 Load',`${loadv['1m']||'-'} / ${loadv['5m']||'-'} / ${loadv['15m']||'-'}`,'系统负载'],['内存 MB RAM',`${mem.usedMB||'-'} / ${mem.totalMB||'-'}`,'内存占用'],['磁盘 / Disk',`${disk.used||'-'} / ${disk.size||'-'}`,'磁盘占用'],['Agent数量 Agent Count',String(c.openclaw?.agentCount??'-'),'Agent数量'],['语义检索 Memory Search',c.openclaw?.memoryReady?'READY':'NOT READY','语义检索状态']];
-  document.querySelector('#summaryTable tbody').innerHTML=summary.map(s=>`<tr><td>${s[0]}</td><td>${s[1]}</td><td>${s[2]}</td></tr>`).join('');
-  const sites=c.websites?.urls||{}, codes=c.websites?.httpStatus||{};
-  document.querySelector('#siteTable tbody').innerHTML=Object.keys(sites).map(k=>`<tr><td>${k}</td><td>${codeStatus(codes[k])}</td><td class='mono'><a href='${sites[k]}' target='_blank'>${sites[k]}</a></td></tr>`).join('');
-  document.getElementById('skills').textContent=c.openclaw?.skills||'暂无';
-  document.getElementById('config').textContent=JSON.stringify(c.openclaw?.safeConfig||{},null,2).slice(0,7000);
-  const fs=c.workspace?.fileStats||{};
-  document.querySelector('#wsTable tbody').innerHTML=[['总文件 Total',fs.totalFiles],['Markdown 文档',fs.markdownFiles],['Python 文件',fs.pythonFiles],['HTML 文件',fs.htmlFiles]].map(r=>`<tr><td>${r[0]}</td><td>${r[1]??'-'}</td></tr>`).join('');
-  document.getElementById('commits').textContent=`[workspace]\n${c.workspace?.recentCommitsMain||''}\n\n[crysttao-site]\n${c.workspace?.recentCommitsCrysttao||''}\n\n[observatory]\n${c.workspace?.recentCommitsObservatory||''}`;
-  document.getElementById('modelLib').textContent = JSON.stringify(c.openclaw?.modelLibrary||{}, null, 2);
-  document.getElementById('sessionPolicy').textContent = JSON.stringify(c.openclaw?.sessionPolicy||{}, null, 2);
-
-  document.getElementById('rawStatus').textContent = JSON.stringify(c.raw?.statusUsageJson||{}, null, 2).slice(0,12000);
-  document.getElementById('rawCron').textContent = JSON.stringify(c.raw?.cronListJson||{}, null, 2).slice(0,12000);
-  document.getElementById('rawRuns').textContent = JSON.stringify(c.raw?.cronRecentRuns||{}, null, 2).slice(0,12000);
-  document.getElementById('rawMem').textContent = (c.raw?.memoryStatusText||'').slice(0,12000);
-  document.getElementById('rawDiag').textContent = `=== doctor ===
-${(c.raw?.doctorText||'').slice(0,3500)}
-
-=== health ===
-${(c.raw?.healthText||'').slice(0,2500)}
-
-=== gateway ===
-${(c.raw?.gatewayStatusText||'').slice(0,2500)}`;
-  document.getElementById('rawWs').textContent = `=== sessions ===
-${(c.raw?.sessionsText||'').slice(0,3500)}
-
-=== workspace tree ===
-${(c.raw?.workspaceTree||'').slice(0,7000)}`;
-
-
-  document.getElementById('soul').textContent = c.persona?.soul || '暂无';
-  document.getElementById('profile').textContent = `=== IDENTITY.md ===
-${c.persona?.identity||''}
-
-=== USER.md ===
-${c.persona?.userProfile||''}`;
-
-}
-function safeRunLoad(){
-  try{ load(); }catch(e){
-    console.error(e);
-    const b=document.createElement("div");
-    b.style.cssText="position:fixed;left:12px;right:12px;bottom:12px;background:#7f1d1d;color:#fff;padding:10px;border-radius:8px;z-index:9999";
-    b.innerText="监控中枢进入降级模式（脚本异常），基础数据仍可用。";
-    document.body.appendChild(b);
-    const rawBtn=document.querySelector('a[href="./data/current.json"]');
-    if(rawBtn){ rawBtn.style.background="#991b1b"; }
-  }
-}
-window.addEventListener("error", function(){
-  const b=document.createElement("div");
-  b.style.cssText="position:fixed;left:12px;right:12px;bottom:12px;background:#7f1d1d;color:#fff;padding:10px;border-radius:8px;z-index:9999";
-  b.innerText="检测到前端错误，已启用可读性保护。";
-  document.body.appendChild(b);
-});
-safeRunLoad(); setInterval(safeRunLoad,30000);
-</script>
-</body></html>
+    $('refreshBtn').addEventListener('click', load);
+    load();
+    setInterval(load, 15000);
+  </script>
+</body>
+</html>
