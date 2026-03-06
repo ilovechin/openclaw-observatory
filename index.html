@@ -3,75 +3,91 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>监控中枢 · Apple B/W Pro</title>
+  <title>监控中枢 · Apple Monochrome Ultra</title>
   <style>
     :root{
       --bg:#0a0a0b;
-      --bg-soft:#121214;
-      --card:rgba(255,255,255,.06);
-      --card-strong:rgba(255,255,255,.1);
-      --line:rgba(255,255,255,.14);
-      --text:#f5f5f7;
-      --muted:#a1a1a6;
-      --ok:#34c759;
+      --bg2:#111113;
+      --glass:rgba(255,255,255,.06);
+      --glass-2:rgba(255,255,255,.1);
+      --line:rgba(255,255,255,.13);
+      --txt:#f5f5f7;
+      --muted:#9b9ba1;
+      --ok:#32d74b;
       --warn:#ffd60a;
       --bad:#ff453a;
-      --pill:#1c1c1e;
+      --chip:#1c1c1e;
+      --shadow:0 20px 45px rgba(0,0,0,.45);
+    }
+    :root.light{
+      --bg:#f4f4f6;
+      --bg2:#ececf0;
+      --glass:rgba(255,255,255,.72);
+      --glass-2:rgba(255,255,255,.9);
+      --line:rgba(0,0,0,.1);
+      --txt:#111113;
+      --muted:#66666c;
+      --chip:#ffffff;
+      --shadow:0 16px 35px rgba(0,0,0,.08);
     }
     *{box-sizing:border-box}
-    html,body{margin:0;background:radial-gradient(1200px 700px at 85% -10%,#262628 0%,transparent 50%),var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","PingFang SC",Segoe UI,Arial,sans-serif}
-    .wrap{max-width:1400px;margin:0 auto;padding:20px}
-    .top{position:sticky;top:0;z-index:10;backdrop-filter:blur(14px);background:rgba(10,10,11,.7);border-bottom:1px solid var(--line)}
-    .top-inner{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;padding:16px 20px;max-width:1400px;margin:0 auto}
-    .title{font-size:30px;font-weight:700;letter-spacing:.2px}
+    html,body{margin:0;background:radial-gradient(1200px 780px at 82% -8%,#2b2b31 0%,transparent 56%),linear-gradient(180deg,var(--bg),var(--bg2));color:var(--txt);font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","PingFang SC",Segoe UI,Arial,sans-serif}
+    .top{position:sticky;top:0;z-index:30;backdrop-filter:blur(16px);background:color-mix(in srgb,var(--bg) 70%,transparent);border-bottom:1px solid var(--line)}
+    .top-inner{max-width:1500px;margin:0 auto;padding:16px 20px;display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}
+    .title{font-size:30px;font-weight:760;letter-spacing:.2px}
     .sub{font-size:12px;color:var(--muted);margin-top:4px}
-    .toolbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
-    .btn{border:1px solid var(--line);background:var(--pill);color:var(--text);padding:8px 12px;border-radius:999px;font-size:12px;text-decoration:none}
-
+    .tools{display:flex;gap:8px;flex-wrap:wrap}
+    .btn{border:1px solid var(--line);background:var(--chip);color:var(--txt);padding:8px 12px;border-radius:999px;font-size:12px;text-decoration:none;cursor:pointer}
+    .wrap{max-width:1500px;margin:0 auto;padding:18px 20px 28px}
     .grid{display:grid;gap:12px}
-    .kpis{grid-template-columns:repeat(6,minmax(0,1fr));margin-top:16px}
-    .main{grid-template-columns:1.3fr 1fr;margin-top:12px}
+    .kpis{grid-template-columns:repeat(6,minmax(0,1fr))}
+    .hero{grid-template-columns:1.4fr 1fr 1fr;margin-top:12px}
+    .duo{grid-template-columns:1.2fr 1fr;margin-top:12px}
     .triple{grid-template-columns:repeat(3,minmax(0,1fr));margin-top:12px}
-
-    .card{background:linear-gradient(180deg,var(--card),rgba(255,255,255,.03));border:1px solid var(--line);border-radius:18px;box-shadow:0 10px 40px rgba(0,0,0,.35)}
-    .card-h{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-bottom:1px solid var(--line)}
-    .card-h h3{margin:0;font-size:14px;font-weight:600}
-    .tag{font-size:11px;color:#d6d6db;background:var(--pill);border:1px solid var(--line);padding:4px 8px;border-radius:999px}
-    .card-b{padding:14px 16px}
-
-    .kpi{padding:14px 16px}
-    .k-label{font-size:12px;color:var(--muted)}
-    .k-value{font-size:24px;font-weight:700;margin-top:8px;word-break:break-word}
-    .state-ok{color:var(--ok)} .state-warn{color:var(--warn)} .state-bad{color:var(--bad)}
-
-    .progress{height:10px;background:#1b1b1f;border-radius:999px;border:1px solid var(--line);overflow:hidden}
-    .progress > i{display:block;height:100%;background:linear-gradient(90deg,#fff,#8e8e93)}
-
+    .quad{grid-template-columns:repeat(4,minmax(0,1fr));margin-top:12px}
+    .card{border:1px solid var(--line);border-radius:20px;background:linear-gradient(170deg,var(--glass),rgba(255,255,255,.02));box-shadow:var(--shadow);overflow:hidden}
+    .head{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;border-bottom:1px solid var(--line)}
+    .head h3{margin:0;font-size:14px;font-weight:650}
+    .tag{font-size:11px;padding:4px 8px;border:1px solid var(--line);border-radius:999px;background:var(--chip);color:var(--muted)}
+    .body{padding:14px 16px}
+    .kpi .label{font-size:12px;color:var(--muted)}
+    .kpi .value{margin-top:8px;font-size:24px;font-weight:760;word-break:break-word}
+    .ok{color:var(--ok)} .warn{color:var(--warn)} .bad{color:var(--bad)}
+    .meter{height:10px;background:color-mix(in srgb,var(--chip) 80%,#000 20%);border:1px solid var(--line);border-radius:999px;overflow:hidden}
+    .meter i{display:block;height:100%;background:linear-gradient(90deg,#ffffff,#7f7f88)}
+    .focus-main{font-size:36px;font-weight:800;letter-spacing:.3px}
+    .focus-sub{margin-top:6px;color:var(--muted);font-size:13px}
+    .chips{display:flex;flex-wrap:wrap;gap:8px}
+    .chip{padding:6px 10px;border:1px solid var(--line);border-radius:999px;background:var(--chip);font-size:12px}
     table{width:100%;border-collapse:collapse}
-    th,td{padding:10px 8px;border-bottom:1px solid rgba(255,255,255,.08);text-align:left;font-size:12px}
-    th{color:var(--muted);font-weight:600}
+    th,td{padding:10px 8px;border-bottom:1px solid color-mix(in srgb,var(--line) 90%,transparent);text-align:left;font-size:12px}
+    th{color:var(--muted);font-weight:650}
+    tr:hover td{background:color-mix(in srgb,var(--glass-2) 50%,transparent)}
+    .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;line-height:1.55;background:color-mix(in srgb,var(--chip) 86%,#000 14%);border:1px solid var(--line);border-radius:12px;padding:10px;max-height:280px;overflow:auto}
+    canvas{width:100%;height:auto;background:color-mix(in srgb,var(--chip) 90%,#000 10%);border:1px solid var(--line);border-radius:12px}
+    .timeline{display:flex;flex-direction:column;gap:10px}
+    .tl-item{display:flex;gap:10px;align-items:flex-start}
+    .dot{width:10px;height:10px;border-radius:50%;margin-top:6px;background:#8e8e93}
+    .dot.ok{background:var(--ok)} .dot.warn{background:var(--warn)} .dot.bad{background:var(--bad)}
+    .muted{color:var(--muted)}
 
-    .chips{display:flex;gap:8px;flex-wrap:wrap}
-    .chip{padding:6px 10px;border-radius:999px;border:1px solid var(--line);background:var(--pill);font-size:12px}
-
-    .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;line-height:1.5;color:#d6d6db;background:#0e0e10;border:1px solid var(--line);border-radius:12px;padding:10px;max-height:280px;overflow:auto}
-    canvas{width:100%;height:auto;border:1px solid var(--line);border-radius:12px;background:#0f0f11}
-
-    @media(max-width:1200px){.kpis{grid-template-columns:repeat(3,minmax(0,1fr))}.main{grid-template-columns:1fr}.triple{grid-template-columns:1fr}}
-    @media(max-width:740px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.title{font-size:24px}.wrap{padding:14px}}
+    @media(max-width:1260px){.kpis{grid-template-columns:repeat(3,minmax(0,1fr))}.hero{grid-template-columns:1fr}.duo{grid-template-columns:1fr}.triple{grid-template-columns:1fr}.quad{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:720px){.kpis,.quad{grid-template-columns:1fr 1fr}.title{font-size:24px}.wrap{padding:14px}}
+    @media(max-width:520px){.kpis,.quad{grid-template-columns:1fr}.top-inner{padding:12px 14px}.wrap{padding:12px}}
   </style>
 </head>
 <body>
   <header class="top">
     <div class="top-inner">
       <div>
-        <div class="title">监控中枢 · Apple B/W Pro</div>
-        <div class="sub">黑白苹果风豪华版 · 更新时间：<span id="updatedAt">-</span></div>
+        <div class="title">监控中枢 · Apple Monochrome Ultra</div>
+        <div class="sub">大改版｜黑白苹果风豪华版 · 更新时间：<span id="updatedAt">-</span></div>
       </div>
-      <div class="toolbar">
-        <a class="btn" href="./data/current.json" target="_blank">Current JSON</a>
-        <a class="btn" href="./data/history.json" target="_blank">History JSON</a>
-        <button class="btn" id="refreshBtn">刷新</button>
+      <div class="tools">
+        <button class="btn" id="themeBtn">切换明暗</button>
+        <button class="btn" id="refreshBtn">立即刷新</button>
+        <a class="btn" href="./data/current.json" target="_blank">current.json</a>
+        <a class="btn" href="./data/history.json" target="_blank">history.json</a>
       </div>
     </div>
   </header>
@@ -79,190 +95,240 @@
   <main class="wrap">
     <section class="grid kpis" id="kpis"></section>
 
-    <section class="grid main">
+    <section class="grid hero">
       <article class="card">
-        <div class="card-h"><h3>任务看板</h3><span class="tag">CRON</span></div>
-        <div class="card-b">
+        <div class="head"><h3>总览态势</h3><span class="tag">COMMAND STATUS</span></div>
+        <div class="body">
+          <div class="focus-main" id="overall">-</div>
+          <div class="focus-sub" id="overallSub">-</div>
+          <div style="height:12px"></div>
+          <div class="chips" id="quickChips"></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="head"><h3>Token 5h</h3><span class="tag">WINDOW</span></div>
+        <div class="body">
+          <div class="focus-main" id="p5">-</div>
+          <div class="meter"><i id="bar5" style="width:0%"></i></div>
+          <div class="focus-sub" id="p5sub">-</div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="head"><h3>Token Week/Day</h3><span class="tag">WINDOW</span></div>
+        <div class="body">
+          <div class="focus-main" id="pDay">-</div>
+          <div class="meter"><i id="barDay" style="width:0%"></i></div>
+          <div class="focus-sub" id="pDaysub">-</div>
+        </div>
+      </article>
+    </section>
+
+    <section class="grid duo">
+      <article class="card">
+        <div class="head"><h3>Cron 任务矩阵</h3><span class="tag">SCHEDULER</span></div>
+        <div class="body">
           <table>
-            <thead><tr><th>任务</th><th>状态</th><th>错误</th><th>下次运行</th></tr></thead>
+            <thead><tr><th>任务</th><th>状态</th><th>错误</th><th>最后运行</th><th>下次运行</th></tr></thead>
             <tbody id="cronBody"></tbody>
           </table>
         </div>
       </article>
-
       <article class="card">
-        <div class="card-h"><h3>系统健康</h3><span class="tag">HEALTH</span></div>
-        <div class="card-b">
-          <div class="chips" id="healthChips"></div>
-          <div style="height:12px"></div>
-          <div class="k-label">5h Token 使用率</div>
-          <div class="progress" style="margin-top:6px"><i id="bar5"></i></div>
-          <div class="k-label" id="txt5" style="margin-top:8px">-</div>
-          <div style="height:10px"></div>
-          <div class="k-label">Week/Day Token 使用率</div>
-          <div class="progress" style="margin-top:6px"><i id="barDay"></i></div>
-          <div class="k-label" id="txtDay" style="margin-top:8px">-</div>
-        </div>
+        <div class="head"><h3>事件时间轴</h3><span class="tag">TIMELINE</span></div>
+        <div class="body timeline" id="timeline"></div>
       </article>
     </section>
 
     <section class="grid triple">
       <article class="card">
-        <div class="card-h"><h3>Token 趋势</h3><span class="tag">TREND</span></div>
-        <div class="card-b"><canvas id="tokenChart" width="560" height="250"></canvas></div>
+        <div class="head"><h3>Token 趋势</h3><span class="tag">5H vs WEEK</span></div>
+        <div class="body"><canvas id="tokenChart" width="520" height="240"></canvas></div>
       </article>
       <article class="card">
-        <div class="card-h"><h3>资源趋势</h3><span class="tag">MEM/DISK</span></div>
-        <div class="card-b"><canvas id="resChart" width="560" height="250"></canvas></div>
+        <div class="head"><h3>资源趋势</h3><span class="tag">MEM vs DISK</span></div>
+        <div class="body"><canvas id="resChart" width="520" height="240"></canvas></div>
       </article>
       <article class="card">
-        <div class="card-h"><h3>配置摘要</h3><span class="tag">MODEL</span></div>
-        <div class="card-b"><pre class="mono" id="summary"></pre></div>
+        <div class="head"><h3>风险雷达（简版）</h3><span class="tag">RISK</span></div>
+        <div class="body"><canvas id="riskChart" width="520" height="240"></canvas></div>
+      </article>
+    </section>
+
+    <section class="grid quad">
+      <article class="card kpi"><div class="body"><div class="label">当前模型</div><div class="value" id="mModel">-</div></div></article>
+      <article class="card kpi"><div class="body"><div class="label">模型提供方</div><div class="value" id="mProvider">-</div></div></article>
+      <article class="card kpi"><div class="body"><div class="label">内存占用</div><div class="value" id="mMem">-</div></div></article>
+      <article class="card kpi"><div class="body"><div class="label">磁盘占用</div><div class="value" id="mDisk">-</div></div></article>
+    </section>
+
+    <section class="grid duo">
+      <article class="card">
+        <div class="head"><h3>健康标签</h3><span class="tag">HEALTH</span></div>
+        <div class="body"><div class="chips" id="healthChips"></div></div>
+      </article>
+      <article class="card">
+        <div class="head"><h3>配置摘要</h3><span class="tag">SUMMARY</span></div>
+        <div class="body"><pre class="mono" id="summary"></pre></div>
       </article>
     </section>
   </main>
 
   <script>
-    const $ = (id) => document.getElementById(id);
-
-    function num(v, d=0){ const n=Number(v); return Number.isFinite(n)?n:d; }
-    function pct(v){ return `${num(v).toFixed(0)}%`; }
-    function dt(v){ if(!v) return '-'; const t=Number(v); return Number.isFinite(t)?new Date(t).toLocaleString():String(v); }
+    const $ = (id)=>document.getElementById(id);
+    const num=(v,d=0)=>{const n=Number(v);return Number.isFinite(n)?n:d};
+    const pct=(v)=>`${num(v).toFixed(0)}%`;
+    const dt=(v)=>{if(!v)return '-';const n=Number(v);return Number.isFinite(n)?new Date(n).toLocaleString():String(v)};
 
     function stateClass(s){
       const x=(s||'').toLowerCase();
-      if(x==='ok' || x==='healthy') return 'state-ok';
-      if(x==='idle' || x==='warn' || x==='warning') return 'state-warn';
-      return 'state-bad';
+      if(x==='ok'||x==='healthy') return 'ok';
+      if(x==='idle'||x==='warn'||x==='warning') return 'warn';
+      return 'bad';
     }
 
-    function kpiCard(label, value, cls=''){
-      return `<div class="card kpi"><div class="k-label">${label}</div><div class="k-value ${cls}">${value}</div></div>`;
-    }
-
-    function drawLine(canvasId, valuesA=[], valuesB=[], colorA='#f5f5f7', colorB='#8e8e93', maxY=100){
+    function drawLine(canvasId,a=[],b=[],colorA='#f5f5f7',colorB='#8e8e93',maxY=100){
       const c=$(canvasId); if(!c) return;
       const ctx=c.getContext('2d');
-      const w=c.width, h=c.height, p=24;
+      const w=c.width,h=c.height,p=24;
       ctx.clearRect(0,0,w,h);
-
-      ctx.strokeStyle='rgba(255,255,255,.12)';
-      for(let i=0;i<5;i++){
-        const y=p+(h-p*2)*(i/4);
-        ctx.beginPath(); ctx.moveTo(p,y); ctx.lineTo(w-p,y); ctx.stroke();
-      }
-
-      function plot(arr,color){
-        if(!arr.length) return;
-        ctx.strokeStyle=color; ctx.lineWidth=2;
-        ctx.beginPath();
-        arr.forEach((v,i)=>{
-          const x=p+(w-p*2)*(arr.length===1?0:i/(arr.length-1));
-          const y=h-p-(Math.min(maxY,Math.max(0,v))/maxY)*(h-p*2);
-          if(i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
-        });
-        ctx.stroke();
-      }
-
-      plot(valuesA, colorA);
-      plot(valuesB, colorB);
+      ctx.strokeStyle='rgba(130,130,140,.25)';
+      for(let i=0;i<5;i++){const y=p+(h-p*2)*(i/4);ctx.beginPath();ctx.moveTo(p,y);ctx.lineTo(w-p,y);ctx.stroke();}
+      const plot=(arr,color)=>{if(!arr.length) return;ctx.strokeStyle=color;ctx.lineWidth=2;ctx.beginPath();arr.forEach((v,i)=>{const x=p+(w-p*2)*(arr.length===1?0:i/(arr.length-1));const y=h-p-(Math.min(maxY,Math.max(0,v))/maxY)*(h-p*2);if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y)});ctx.stroke();};
+      plot(a,colorA); plot(b,colorB);
     }
 
-    function buildKpis(cur){
-      const model = cur?.identity?.model || '-';
-      const gw = !!cur?.openclaw?.gatewayOk;
-      const mem = num(cur?.system?.memory?.usedPct);
-      const disk = num(String(cur?.system?.diskRoot?.usedPct || '0').replace('%',''));
-      const jobs = Array.isArray(cur?.openclaw?.cronJobs) ? cur.openclaw.cronJobs : [];
-      const badJobs = jobs.filter(j => (j.status||'').toLowerCase() !== 'ok').length;
-      const five = num(cur?.usageQuick?.fiveHourUsedPct);
-      const day = num(cur?.usageQuick?.dayUsedPct);
+    function drawBars(canvasId,vals=[],colors=[]){
+      const c=$(canvasId); if(!c) return;
+      const ctx=c.getContext('2d');
+      const w=c.width,h=c.height,p=24;
+      ctx.clearRect(0,0,w,h);
+      const n=vals.length||1;
+      const bw=(w-p*2)/(n*1.6);
+      vals.forEach((v,i)=>{
+        const x=p+i*(bw*1.6);
+        const hh=(Math.min(100,Math.max(0,v))/100)*(h-p*2);
+        const y=h-p-hh;
+        ctx.fillStyle=colors[i]||'#aaa';
+        ctx.fillRect(x,y,bw,hh);
+      });
+    }
 
-      $('kpis').innerHTML = [
-        kpiCard('当前模型', model),
-        kpiCard('Gateway', gw?'在线':'异常', gw?'state-ok':'state-bad'),
-        kpiCard('Cron 任务', String(jobs.length)),
-        kpiCard('异常任务', String(badJobs), badJobs? 'state-bad':'state-ok'),
-        kpiCard('内存占用', pct(mem), mem>80?'state-bad':mem>65?'state-warn':'state-ok'),
-        kpiCard('磁盘占用', pct(disk), disk>85?'state-bad':disk>70?'state-warn':'state-ok')
+    function makeKpi(label,value,cls=''){
+      return `<article class="card kpi"><div class="body"><div class="label">${label}</div><div class="value ${cls}">${value}</div></div></article>`;
+    }
+
+    function render(cur,hist){
+      const model=cur?.identity?.model||'-';
+      const provider=cur?.identity?.provider||'-';
+      const mem=num(cur?.system?.memory?.usedPct);
+      const disk=num(String(cur?.system?.diskRoot?.usedPct||'0').replace('%',''));
+      const gw=!!cur?.openclaw?.gatewayOk;
+      const jobs=Array.isArray(cur?.openclaw?.cronJobs)?cur.openclaw.cronJobs:[];
+      const bad=jobs.filter(j=>(j.status||'').toLowerCase()!=='ok').length;
+      const p5=num(cur?.usageQuick?.fiveHourUsedPct);
+      const pDay=num(cur?.usageQuick?.dayUsedPct);
+
+      $('updatedAt').textContent = cur?.generatedAt ? new Date(cur.generatedAt).toLocaleString() : '-';
+
+      $('kpis').innerHTML=[
+        makeKpi('Gateway',gw?'在线':'异常',gw?'ok':'bad'),
+        makeKpi('Cron 总数',String(jobs.length)),
+        makeKpi('异常任务',String(bad),bad?'bad':'ok'),
+        makeKpi('内存',pct(mem),mem>80?'bad':mem>65?'warn':'ok'),
+        makeKpi('磁盘',pct(disk),disk>85?'bad':disk>70?'warn':'ok'),
+        makeKpi('计划',cur?.usageQuick?.plan||'-')
       ].join('');
 
-      $('bar5').style.width = Math.min(100,five) + '%';
-      $('barDay').style.width = Math.min(100,day) + '%';
-      $('txt5').textContent = `${five}% used`;
-      $('txtDay').textContent = `${day}% used`;
-    }
+      let overall='稳定'; let overallCls='ok';
+      if(!gw || bad>0 || mem>85 || disk>90) {overall='高风险'; overallCls='bad'}
+      else if(mem>70 || disk>80 || bad>0){overall='关注中'; overallCls='warn'}
+      $('overall').textContent=overall;
+      $('overall').className='focus-main '+overallCls;
+      $('overallSub').textContent=`模型 ${model} · Provider ${provider}`;
 
-    function buildCron(cur){
-      const rows = (cur?.openclaw?.cronJobs || []).slice().sort((a,b)=> num(a.next)-num(b.next)).slice(0,14).map(j=>{
-        return `<tr>
-          <td>${j.name||j.id||'-'}</td>
-          <td class="${stateClass(j.status)}">${j.status||'-'}</td>
-          <td>${num(j.errors)}</td>
-          <td>${dt(j.next)}</td>
-        </tr>`;
-      }).join('');
-      $('cronBody').innerHTML = rows || '<tr><td colspan="4">暂无任务</td></tr>';
-    }
+      $('quickChips').innerHTML=[
+        `Provider: ${provider}`,
+        `Model: ${model}`,
+        `Load1m: ${cur?.system?.load?.['1m']||'-'}`,
+        `Memory Ready: ${cur?.openclaw?.memoryReady?'Yes':'No'}`,
+        `Channels: ${(cur?.openclaw?.channelSummary||[]).length}`
+      ].map(x=>`<span class="chip">${x}</span>`).join('');
 
-    function buildHealth(cur){
-      const mem = num(cur?.system?.memory?.usedPct);
-      const disk = num(String(cur?.system?.diskRoot?.usedPct||'0').replace('%',''));
-      const load1 = num(cur?.system?.load?.['1m']);
-      const chips = [
-        `Gateway: ${cur?.openclaw?.gatewayOk ? 'OK':'BAD'}`,
+      $('p5').textContent=pct(p5); $('bar5').style.width=Math.min(100,p5)+'%'; $('p5sub').textContent='5小时窗口';
+      $('pDay').textContent=pct(pDay); $('barDay').style.width=Math.min(100,pDay)+'%'; $('pDaysub').textContent='Week/Day窗口';
+
+      $('mModel').textContent=model;
+      $('mProvider').textContent=provider;
+      $('mMem').textContent=pct(mem);
+      $('mDisk').textContent=pct(disk);
+
+      $('cronBody').innerHTML = jobs.slice().sort((a,b)=>num(a.next)-num(b.next)).slice(0,18).map(j=>`<tr>
+        <td>${j.name||j.id||'-'}</td>
+        <td class="${stateClass(j.status)}">${j.status||'-'}</td>
+        <td>${num(j.errors)}</td>
+        <td>${dt(j.last)}</td>
+        <td>${dt(j.next)}</td>
+      </tr>`).join('') || '<tr><td colspan="5">暂无任务</td></tr>';
+
+      const timeline=[];
+      timeline.push({lvl:gw?'ok':'bad',txt:`Gateway ${gw?'运行中':'异常'}`});
+      jobs.slice(0,6).forEach(j=>timeline.push({lvl:stateClass(j.status),txt:`${j.name||j.id} · ${j.status||'-'} · Next ${dt(j.next)}`}));
+      $('timeline').innerHTML = timeline.map(t=>`<div class="tl-item"><span class="dot ${t.lvl}"></span><div>${t.txt}</div></div>`).join('');
+
+      $('healthChips').innerHTML=[
+        `Gateway: ${gw?'OK':'BAD'}`,
         `Memory: ${pct(mem)}`,
         `Disk: ${pct(disk)}`,
-        `Load1m: ${load1.toFixed(2)}`,
-        `Model: ${(cur?.identity?.provider||'-')}`
-      ];
-      $('healthChips').innerHTML = chips.map(c=>`<span class="chip">${c}</span>`).join('');
-    }
+        `Load 1/5/15: ${cur?.system?.load?.['1m']||'-'}/${cur?.system?.load?.['5m']||'-'}/${cur?.system?.load?.['15m']||'-'}`,
+        `OpenClaw Proc: ${cur?.system?.processCounts?.openclawGateway??'-'}`,
+        `Plan: ${cur?.usageQuick?.plan||'-'}`
+      ].map(x=>`<span class="chip">${x}</span>`).join('');
 
-    function buildSummary(cur){
-      const txt = {
-        identity: cur?.identity || {},
-        usageQuick: cur?.usageQuick || {},
-        load: cur?.system?.load || {},
-        process: cur?.system?.processCounts || {},
-        channelSummary: cur?.openclaw?.channelSummary || []
-      };
-      $('summary').textContent = JSON.stringify(txt, null, 2);
-    }
+      $('summary').textContent = JSON.stringify({
+        identity:cur?.identity,
+        usageQuick:cur?.usageQuick,
+        system:{load:cur?.system?.load,memory:cur?.system?.memory,diskRoot:cur?.system?.diskRoot},
+        openclaw:{gatewayOk:cur?.openclaw?.gatewayOk,memoryReady:cur?.openclaw?.memoryReady,channels:cur?.openclaw?.channelSummary}
+      },null,2);
 
-    function buildCharts(hist){
-      const list = (Array.isArray(hist)?hist:[]).slice(-28);
-      const w5 = list.map(x=>num(x.w5));
-      const day = list.map(x=>num(x.day));
-      const mem = list.map(x=>num(x.memUsedPct));
-      const disk = list.map(x=>num(String(x.diskUsedPct||'0').replace('%','')));
-      drawLine('tokenChart', w5, day, '#f5f5f7', '#8e8e93', 100);
-      drawLine('resChart', mem, disk, '#d1d1d6', '#636366', 100);
+      const list=(Array.isArray(hist)?hist:[]).slice(-32);
+      const w5=list.map(x=>num(x.w5));
+      const day=list.map(x=>num(x.day));
+      const memArr=list.map(x=>num(x.memUsedPct));
+      const diskArr=list.map(x=>num(String(x.diskUsedPct||'0').replace('%','')));
+      drawLine('tokenChart',w5,day,'#f5f5f7','#8e8e93',100);
+      drawLine('resChart',memArr,diskArr,'#d6d6db','#63636a',100);
+
+      const riskVals=[p5,pDay,mem,disk, bad?Math.min(100,bad*20):0];
+      drawBars('riskChart',riskVals,['#f5f5f7','#d1d1d6','#8e8e93','#636366', bad? '#ff453a':'#32d74b']);
     }
 
     async function load(){
       try{
-        const [curR, histR] = await Promise.all([
+        const [a,b]=await Promise.all([
           fetch('./data/current.json?t='+Date.now()),
           fetch('./data/history.json?t='+Date.now())
         ]);
-        const cur = await curR.json();
-        const hist = await histR.json();
-
-        $('updatedAt').textContent = cur?.generatedAt ? new Date(cur.generatedAt).toLocaleString() : '-';
-        buildKpis(cur);
-        buildCron(cur);
-        buildHealth(cur);
-        buildSummary(cur);
-        buildCharts(hist);
-      } catch (e) {
-        $('summary').textContent = '加载失败: ' + e;
+        render(await a.json(), await b.json());
+      }catch(e){
+        $('summary').textContent='加载失败: '+e;
       }
     }
 
-    $('refreshBtn').addEventListener('click', load);
+    function bootTheme(){
+      const t=localStorage.getItem('obs_theme')||'dark';
+      if(t==='light') document.documentElement.classList.add('light');
+    }
+    function toggleTheme(){
+      document.documentElement.classList.toggle('light');
+      localStorage.setItem('obs_theme',document.documentElement.classList.contains('light')?'light':'dark');
+    }
+
+    $('themeBtn').addEventListener('click',toggleTheme);
+    $('refreshBtn').addEventListener('click',load);
+    bootTheme();
     load();
-    setInterval(load, 15000);
+    setInterval(load,15000);
   </script>
 </body>
 </html>
