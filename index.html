@@ -11,6 +11,7 @@
     .top{position:sticky;top:0;z-index:30;backdrop-filter:blur(16px);background:color-mix(in srgb,var(--bg) 70%,transparent);border-bottom:1px solid var(--line)}
     .top-inner{max-width:1540px;margin:0 auto;padding:14px 18px;display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}
     .title{font-size:28px;font-weight:760}.sub{font-size:12px;color:var(--muted);margin-top:4px}
+    .sub b{color:var(--txt);font-weight:650}
     .tabs{display:flex;gap:8px;flex-wrap:wrap}.tab{border:1px solid var(--line);background:var(--chip);color:var(--txt);padding:8px 12px;border-radius:999px;font-size:12px;cursor:pointer}.tab.active{outline:2px solid color-mix(in srgb,var(--txt) 20%,transparent)}
     .tools{display:flex;gap:8px;flex-wrap:wrap}.btn{border:1px solid var(--line);background:var(--chip);color:var(--txt);padding:8px 12px;border-radius:999px;font-size:12px;cursor:pointer}
     .wrap{max-width:1540px;margin:0 auto;padding:16px 18px 28px}
@@ -32,7 +33,7 @@
   </style>
 </head>
 <body>
-<header class="top"><div class="top-inner"><div><div class="title">监控中枢 · V10</div><div class="sub">全量增强版 · 更新时间：<span id="updatedAt">-</span></div></div><div class="tabs"><button class="tab active" data-tab="overview">总览</button><button class="tab" data-tab="tasks">任务</button><button class="tab" data-tab="alerts">告警</button><button class="tab" data-tab="config">配置</button></div><div class="tools"><button class="btn" id="themeBtn">明暗</button><button class="btn" id="refreshBtn">刷新</button></div></div></header>
+<header class="top"><div class="top-inner"><div><div class="title">监控中枢 · V10.1</div><div class="sub">全量增强版 · 更新时间：<span id="updatedAt">-</span> · 当前时间：<b id="nowClock">-</b></div></div><div class="tabs"><button class="tab active" data-tab="overview">总览</button><button class="tab" data-tab="tasks">任务</button><button class="tab" data-tab="alerts">告警</button><button class="tab" data-tab="config">配置</button></div><div class="tools"><button class="btn" id="themeBtn">明暗</button><button class="btn" id="refreshBtn">刷新</button><button class="btn" id="exportBtn">导出快照</button></div></div></header>
 <main class="wrap">
   <section id="overview" class="panel active">
     <div class="grid kpis" id="kpis"></div>
@@ -44,6 +45,10 @@
       <article class="card"><div class="head"><h3>Token 趋势</h3><span class="tag">5H/WEEK</span></div><div class="body"><canvas id="tokenChart" width="500" height="220"></canvas></div></article>
       <article class="card"><div class="head"><h3>资源趋势</h3><span class="tag">MEM/DISK</span></div><div class="body"><canvas id="resChart" width="500" height="220"></canvas></div></article>
       <article class="card"><div class="head"><h3>风险图</h3><span class="tag">RISK</span></div><div class="body"><canvas id="riskChart" width="500" height="220"></canvas></div></article>
+    </div>
+    <div class="grid duo" style="margin-top:12px">
+      <article class="card"><div class="head"><h3>SLA 快照</h3><span class="tag">UPTIME</span></div><div class="body"><div class="chips" id="slaChips"></div></div></article>
+      <article class="card"><div class="head"><h3>运行摘要</h3><span class="tag">RUNTIME</span></div><div class="body"><pre class="mono" id="runtimeBrief"></pre></div></article>
     </div>
   </section>
 
@@ -83,6 +88,8 @@ function renderOverview(cur,hist,jobs,bad,mem,disk,p5,pDay){
   $('overall').textContent=overall; $('overall').className='value '+cls; $('overallSub').textContent=`${cur?.identity?.provider||'-'} · ${cur?.usageQuick?.plan||'-'}`;
   $('quickChips').innerHTML=[`5h: ${pct(p5)}`,`Week/Day: ${pct(pDay)}`,`Load1m: ${cur?.system?.load?.['1m']||'-'}`,`MemoryReady: ${cur?.openclaw?.memoryReady?'Yes':'No'}`].map(x=>`<span class='chip'>${x}</span>`).join('');
   $('healthChips').innerHTML=[`内存 ${pct(mem)}`,`磁盘 ${pct(disk)}`,`进程 ${cur?.system?.processCounts?.openclawGateway??'-'}`,`渠道 ${(cur?.openclaw?.channelSummary||[]).length}`].map(x=>`<span class='chip'>${x}</span>`).join('');
+  $('slaChips').innerHTML=[`Uptime: ${cur?.system?.uptime||'-'}`,`Gateway: ${cur?.openclaw?.gatewayOk?'OK':'BAD'}`,`MemoryReady: ${cur?.openclaw?.memoryReady?'YES':'NO'}`,`AgentCount: ${cur?.openclaw?.agentCount??'-'}`].map(x=>`<span class='chip'>${x}</span>`).join('');
+  $('runtimeBrief').textContent=JSON.stringify({model:cur?.identity?.model,provider:cur?.identity?.provider,load:cur?.system?.load,memory:cur?.system?.memory,disk:cur?.system?.diskRoot,plan:cur?.usageQuick?.plan},null,2);
   const list=(hist||[]).slice(-32); drawLine('tokenChart',list.map(x=>num(x.w5)),list.map(x=>num(x.day))); drawLine('resChart',list.map(x=>num(x.memUsedPct)),list.map(x=>num(String(x.diskUsedPct||'0').replace('%',''))),'#d6d6db','#63636a'); drawBars('riskChart',[p5,pDay,mem,disk,bad?Math.min(100,bad*20):0],['#f5f5f7','#d1d1d6','#8e8e93','#636366',bad?'#ff453a':'#32d74b']);
 }
 
@@ -123,10 +130,12 @@ function boot(){
   document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));b.classList.add('active');const t=b.dataset.tab;document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));$(t).classList.add('active')});
   $('themeBtn').onclick=()=>{document.documentElement.classList.toggle('light');localStorage.setItem('obs_theme',document.documentElement.classList.contains('light')?'light':'dark')};
   $('refreshBtn').onclick=load;
+  $('exportBtn').onclick=()=>{const payload={exportedAt:new Date().toISOString(),cfg,lastSnapshot:{generatedAt:lastData.cur?.generatedAt,identity:lastData.cur?.identity,usageQuick:lastData.cur?.usageQuick,system:lastData.cur?.system,jobs:(lastData.jobs||[]).slice(0,50)}}; const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'}); const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=`observatory-snapshot-${Date.now()}.json`; a.click(); URL.revokeObjectURL(a.href);};
   $('taskFilter').onchange=renderTasks; $('taskSearch').oninput=renderTasks;
   $('muteBtn').onclick=()=>{const m=num($('muteMin').value,0); cfg.muteUntil=Date.now()+m*60*1000; saveCfg(); renderAlerts(lastData.cur, lastData.jobs.filter(j=>{const s=(j.status||'').toLowerCase();return s!=='ok'&&s!=='idle'}).length, num(lastData.cur?.system?.memory?.usedPct), num(String(lastData.cur?.system?.diskRoot?.usedPct||'0').replace('%','')))};
   $('saveCfg').onclick=()=>{cfg.thMem=num($('thMem').value,85); cfg.thDisk=num($('thDisk').value,90); cfg.thJob=num($('thJob').value,1); saveCfg(); load()};
   $('resetCfg').onclick=()=>{Object.assign(cfg,cfgDefault); saveCfg(); load()};
+  const tick=()=>{$('nowClock').textContent=new Date().toLocaleTimeString()}; tick(); setInterval(tick,1000);
   load(); setInterval(()=>{load(); renderTasks()},15000);
 }
 boot();
