@@ -2215,5 +2215,212 @@
     "gatewayOk": true,
     "memUsedPct": 63.6,
     "diskUsedPct": "65%"
+  },
+  {
+    "generatedAt": "2026-03-12T05:32:56.494715Z",
+    "model": "openai-codex/gpt-5.3-codex",
+    "w5": null,
+    "day": null,
+    "gatewayOk": true,
+    "memUsedPct": 61.1,
+    "diskUsedPct": "65%"
+  },
+  {
+    "generatedAt": "2026-03-12T09:23:23.225843Z",
+    "model": "openai-codex/gpt-5.3-codex",
+    "w5": 37,
+    "day": 11,
+    "gatewayOk": true,
+    "memUsedPct": 36.8,
+    "diskUsedPct": "65%"
+  },
+  {
+    "generatedAt": "2026-03-13T01:23:13.969531Z",
+    "model": "openai-codex/gpt-5.3-codex",
+    "w5": 0,
+    "day": 11,
+    "gatewayOk": true,
+    "memUsedPct": 38.3,
+    "diskUsedPct": "65%"
+  },
+  {
+    "generatedAt": "2026-03-15T01:23:03.024672Z",
+    "model": "openai-codex/gpt-5.3-codex",
+    "w5": 0,
+    "day": 11,
+    "gatewayOk": true,
+    "memUsedPct": 55.9,
+    "diskUsedPct": "65%"
+  },
+  {
+    "generatedAt": "2026-03-16T05:23:04.463890Z",
+    "model": "openai-codex/gpt-5.3-codex",
+    "w5": 0,
+    "day": 11,
+    "gatewayOk": true,
+    "memUsedPct": 42.2,
+    "diskUsedPct": "65%"
+  },
+  {
+    "generatedAt": "2026-03-16T21:23:09.504689Z",
+    "model": "openai-codex/gpt-5.3-codex",
+    "w5": 0,
+    "day": 11,
+    "gatewayOk": true,
+    "memUsedPct": 45.8,
+    "diskUsedPct": "65%"
+  },
+  {
+    "generatedAt": "2026-03-17T01:23:15.946482Z",
+    "model": "openai-codex/gpt-5.3-codex",
+    "w5": 0,
+    "day": 11,
+    "gatewayOk": true,
+    "memUsedPct": 47.3,
+    "diskUsedPct": "65%"
+  },
+  {
+    "generatedAt": "2026-03-17T09:23:02.240703Z",
+    "model": "openai-codex/gpt-5.3-codex",
+    "w5": null,
+    "day": null,
+    "gatewayOk": true,
+    "memUsedPct": 44.7,
+    "diskUsedPct": "65%"
+  },
+  {
+    "generatedAt": "2026-03-17T21:23:03.803231Z",
+    "model": "openai-codex/gpt-5.3-codex",
+    "w5": 0,
+    "day": 11,
+    "gatewayOk": true,
+    "memUsedPct": 50.8,
+    "diskUsedPct": "65%"
+  },
+  {
+    "generatedAt": "2026-03-18T17:23:20.787822Z",
+    "model": "openai-codex/gpt-5.3-codex",
+    "w5": 0,
+    "day": 11,
+    "gatewayOk": true,
+    "memUsedPct": 49.7,
+    "diskUsedPct": "65%"
+  },
+  {
+    "generatedAt": "2026-03-18T17:24:38.460534Z",
+    "model": "openai-codex/gpt-5.3-codex",
+    "w5": 0,
+    "day": 11,
+    "gatewayOk": true,
+    "memUsedPct": 58.7,
+    "diskUsedPct": "65%"
+  },
+  {
+    "generatedAt": "2026-03-19T09:23:22.453770Z",
+    "model": "openai-codex/gpt-5.3-codex",
+    "w5": 0,
+    "day": 0,
+    "gatewayOk": true,
+    "memUsedPct": 51.2,
+    "diskUsedPct": "65%"
+  },
+  {
+    "generatedAt": "2026-03-19T21:22:53.479600Z",
+    "model": "openai-codex/gpt-5.3-codex",
+    "w5": 0,
+    "day": 0,
+    "gatewayOk": true,
+    "memUsedPct": 47.6,
+    "diskUsedPct": "65%"
+  },
+  {
+    "generatedAt": "2026-03-20T01:23:01.132519Z",
+    "model": "openai-codex/gpt-5.3-codex",
+    "w5": 0,
+    "day": 0,
+    "gatewayOk": true,
+    "memUsedPct": 49.7,
+    "diskUsedPct": "65%"
+  },
+  {
+    "generatedAt": "2026-03-20T17:23:35.297046Z",
+    "model": "openai-codex/gpt-5.3-codex",
+    "w5": 0,
+    "day": 0,
+    "gatewayOk": true,
+    "memUsedPct": 49.2,
+    "diskUsedPct": "65%"
+  },
+  {
+    "generatedAt": "2026-03-21T05:23:13.520738Z",
+    "model": "openai-codex/gpt-5.3-codex",
+    "w5": null,
+    "day": null,
+    "gatewayOk": true,
+    "memUsedPct": 49.0,
+    "diskUsedPct": "65%"
+  },
+  {
+    "generatedAt": "2026-03-22T01:23:03.753719Z",
+    "model": "openai-codex/gpt-5.3-codex",
+    "w5": 0,
+    "day": 0,
+    "gatewayOk": true,
+    "memUsedPct": 51.1,
+    "diskUsedPct": "65%"
+  },
+  {
+    "generatedAt": "2026-03-22T05:23:52.647014Z",
+    "model": "openai-codex/gpt-5.3-codex",
+    "w5": 0,
+    "day": 0,
+    "gatewayOk": true,
+    "memUsedPct": 52.3,
+    "diskUsedPct": "65%"
+  },
+  {
+    "generatedAt": "2026-03-22T13:23:34.458728Z",
+    "model": "openai-codex/gpt-5.3-codex",
+    "w5": 0,
+    "day": 0,
+    "gatewayOk": true,
+    "memUsedPct": 51.2,
+    "diskUsedPct": "65%"
+  },
+  {
+    "generatedAt": "2026-03-23T13:25:11.650457Z",
+    "model": "openai-codex/gpt-5.3-codex",
+    "w5": null,
+    "day": null,
+    "gatewayOk": true,
+    "memUsedPct": 53.5,
+    "diskUsedPct": "65%"
+  },
+  {
+    "generatedAt": "2026-03-24T21:23:15.606176Z",
+    "model": "openai-codex/gpt-5.3-codex",
+    "w5": null,
+    "day": null,
+    "gatewayOk": true,
+    "memUsedPct": 40.6,
+    "diskUsedPct": "66%"
+  },
+  {
+    "generatedAt": "2026-03-25T05:23:23.318467Z",
+    "model": "openai-codex/gpt-5.3-codex",
+    "w5": null,
+    "day": null,
+    "gatewayOk": true,
+    "memUsedPct": 60.3,
+    "diskUsedPct": "58%"
+  },
+  {
+    "generatedAt": "2026-03-26T05:23:27.652389Z",
+    "model": "openai-codex/gpt-5.3-codex",
+    "w5": 41,
+    "day": 12,
+    "gatewayOk": true,
+    "memUsedPct": 47.6,
+    "diskUsedPct": "58%"
   }
 ]
