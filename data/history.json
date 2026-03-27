@@ -2458,5 +2458,32 @@
     "gatewayOk": true,
     "memUsedPct": 52.9,
     "diskUsedPct": "58%"
+  },
+  {
+    "generatedAt": "2026-03-27T05:23:14.267108Z",
+    "model": "openai-codex/gpt-5.3-codex",
+    "w5": 0,
+    "day": null,
+    "gatewayOk": true,
+    "memUsedPct": 52.1,
+    "diskUsedPct": "58%"
+  },
+  {
+    "generatedAt": "2026-03-27T09:24:05.934481Z",
+    "model": "openai-codex/gpt-5.3-codex",
+    "w5": 0,
+    "day": null,
+    "gatewayOk": true,
+    "memUsedPct": 53.0,
+    "diskUsedPct": "58%"
+  },
+  {
+    "generatedAt": "2026-03-27T21:24:12.314485Z",
+    "model": "openai-codex/gpt-5.3-codex",
+    "w5": 0,
+    "day": null,
+    "gatewayOk": true,
+    "memUsedPct": 51.0,
+    "diskUsedPct": "58%"
   }
 ]
